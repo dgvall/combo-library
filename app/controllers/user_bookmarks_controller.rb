@@ -1,0 +1,2 @@
+class UserBookmarksController < ApplicationController
+end
