@@ -19,9 +19,7 @@ ActiveRecord::Schema.define(version: 2023_04_27_152750) do
     t.string "name"
     t.string "image_path"
     t.string "description"
-    t.string "normals"
-    t.string "specials"
-    t.string "supers"
+    t.string "motions"
     t.integer "game_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
