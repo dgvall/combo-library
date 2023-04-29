@@ -1,0 +1,28 @@
+.home {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.home-column {
+  display: flex;
+  flex-direction: column;
+  margin-left: 3vw;
+  margin-right: 3vw;
+  width: 20vw;
+}
+
+.home-column h2 {
+  display: flex;
+  justify-content: center;
+  font-size: 3rem;
+}
+
+.home-column p {
+  display: flex;
+  /* justify-content: center; */
+  padding-bottom: 1.5vh;
+  /* text-indent: 3rem; */
+  margin: 0;
+  font-size: 2rem;
+}
