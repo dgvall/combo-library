@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
 .form-header {
@@ -17,4 +18,18 @@
 .form-button {
   margin-top: 1vh;
   font-size: 2rem;
+}
+
+.errors-list {
+  margin-top: 2vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.errors-list li {
+  padding-right: 1vw;
+  font-size: 1.7rem;
+  list-style:square;
+  color: red;
 }
