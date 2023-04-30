@@ -1,9 +1,23 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { UserContext } from './context/user'
 import { NavLink } from 'react-router-dom'
 
 import './NavBar.css'
 
 function NavBar() {
+  const { user, setUser } = useContext(UserContext)
+
+  function handleLogout() {
+    fetch('/logout', {
+      method: "DELETE"
+    })
+      .then((r) => {
+        if (r.ok) {
+          setUser(null)
+        }
+      })
+  }
+
   return (
     <nav className = 'navbar'>
       <div className = 'navbar-left'>
@@ -21,18 +35,35 @@ function NavBar() {
       <div className = 'navbar-center'>
         <h1 className = 'navbar-title'>COMBO LIBRARY</h1>
       </div>
+      
+      {
+        user
+        ?
+          <div className = 'navbar-right'>
+            <NavLink
+              className = 'navbar-header'
+              exact to = {`/bookmarks/${user.id}`}
+            >BOOKMARKS</NavLink>
 
-      <div className = 'navbar-right'>
-        <NavLink
-          className = 'navbar-header'
-          exact to = '/signup'
-        >Signup</NavLink>
+            <NavLink
+              className = 'navbar-header'
+              exact to = '/home'
+              onClick = {handleLogout}
+            >Logout</NavLink>
+          </div>
+        :
+          <div className = 'navbar-right'>
+            <NavLink
+              className = 'navbar-header'
+              exact to = '/signup'
+            >Signup</NavLink>
 
-        <NavLink
-          className = 'navbar-header'
-          exact to = '/login'
-        >Login</NavLink>
-      </div>
+            <NavLink
+              className = 'navbar-header'
+              exact to = '/login'
+            >Login</NavLink>
+          </div>
+      }
     </nav>
   )
 }

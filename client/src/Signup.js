@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import { UserContext } from './context/user'
 
 import './Signup.css'
@@ -9,6 +10,7 @@ function Signup() {
   const [password, setPassword] = useState("")
   const [passwordConfirmation, setPasswordConfirmation] = useState("")
   const [errors, setErrors] = useState([])
+  const history = useHistory()
 
   function handleSubmit(e) {
     e.preventDefault()
@@ -30,6 +32,7 @@ function Signup() {
         if (r.ok) {
           r.json().then((user)=> {
             setUser(user)
+            history.push('/home')
           })
         }
         else {

@@ -1,4 +1,5 @@
 import React, {useContext, useState} from 'react'
+import { useHistory } from 'react-router-dom'
 import { UserContext } from './context/user'
 
 function Login() {
@@ -6,6 +7,7 @@ function Login() {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [errors, setErrors] = useState([])
+  const history = useHistory()
 
   function handleSubmit(e) {
     e.preventDefault()
@@ -26,6 +28,7 @@ function Login() {
         if (r.ok) {
           r.json().then((user)=> {
             setUser(user)
+            history.push('/home')
           })
         }
         else {
