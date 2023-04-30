@@ -1,4 +1,5 @@
-import React, {useState, useEffect} from 'react'
+import React, {useContext, useEffect} from 'react'
+import { UserContext } from './context/user'
 import { Switch, Route } from 'react-router-dom'
 
 import NavBar from './NavBar'
@@ -9,7 +10,7 @@ import Login from './Login'
 import './App.css'
 
 function App() {
-  const [user, setUser] = useState(null)
+  const { user, setUser } = useContext(UserContext)
 
   useEffect(() => {
     fetch("/me").then((r) => {
@@ -29,14 +30,10 @@ function App() {
           <Home />
         </Route>
         <Route exact path = '/signup'>
-          <Signup
-            setUser = {setUser}
-          />
+          <Signup />
         </Route>
         <Route exact path = '/login'>
-          <Login
-            setUser = {setUser}
-          />
+          <Login />
         </Route>
       </Switch>
     </div>

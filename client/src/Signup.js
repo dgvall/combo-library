@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
+import { UserContext } from './context/user'
 
 import './Signup.css'
 
-function Signup({setUser}) {
+function Signup() {
+  const { user, setUser } = useContext(UserContext)
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [passwordConfirmation, setPasswordConfirmation] = useState("")

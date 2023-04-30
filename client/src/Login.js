@@ -1,6 +1,8 @@
-import React, {useState} from 'react'
+import React, {useContext, useState} from 'react'
+import { UserContext } from './context/user'
 
-function Login({setUser}) {
+function Login() {
+  const { user, setUser } = useContext(UserContext)
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [errors, setErrors] = useState([])
