@@ -6,4 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-# Game.create!(name: "Guilty Gear: Strive", image_path: "")
+
+# Game.create!(name: "Guilty Gear: Strive", image_url: "https://i.imgur.com/ioPuJfQ.png")
+
+# Character.create!(name: "Testament", image_url: "https://i.imgur.com/YebETRP.png")
