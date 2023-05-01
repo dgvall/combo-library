@@ -3,6 +3,7 @@ import React from 'react'
 import './Home.css'
 
 function Home() {
+  
   return (
     <div className = 'home'>
       <div className = 'home-column'>
@@ -27,6 +28,7 @@ function Home() {
       <div className = 'home-column'>
         <h2>WHY SAVE COMBOS?</h2>
         <p>Saving combos provides resources for other fighting game players to help them learn and improve. Whether it be learning a new character or a new fighting game, sharing combos makes the learning process easier for everyone.</p>
+        <img src = "https://i.imgur.com/YSM5bS6.png"/>
       </div>
     </div>
   )
