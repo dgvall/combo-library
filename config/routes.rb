@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
   
-  resources :user_bookmarks
-  resources :users
-  resources :combos
-  resources :characters
-  resources :games
+  # resources :user_bookmarks
+  # resources :users
+  # resources :combos
+  # resources :characters
+  resources :games, only: [:index]
 
   post "/signup", to: "users#create"
   get "/me", to: "users#show"

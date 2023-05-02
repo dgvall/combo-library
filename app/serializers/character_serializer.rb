@@ -1,3 +1,3 @@
 class CharacterSerializer < ActiveModel::Serializer
-  attributes :id
+  attributes :id, :motions, :starters, :image_url, :name
 end
