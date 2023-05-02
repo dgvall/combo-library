@@ -14,6 +14,7 @@ import './App.css'
 function App() {
   const { user, setUser } = useContext(UserContext)
   const [games, setGames] = useState(null)
+  const [selectedGame, setSelectedGame] = useState(null)
 
   useEffect(() => {
     fetch("/me").then((r) => {
@@ -21,15 +22,20 @@ function App() {
         r.json().then((user) => setUser(user))
       }
     })
-  }, [])
 
-  useEffect(() => {
     fetch("/games").then((r) => {
       if (r.ok) {
         r.json().then((gamesData) => setGames(gamesData) )
       }
     })
   }, [])
+
+  function handleGameSelection(abbreviation) {
+    if (games) {
+      const game = games.find((g) => g.abbreviation = abbreviation)
+      setSelectedGame(game)
+    }
+  }
 
   console.log(games)
 
@@ -52,7 +58,10 @@ function App() {
           />
         </Route>
         <Route exact path = '/:game'>
-          <CharactersPage />
+          <CharactersPage
+            handleGameSelection = {handleGameSelection}
+            selectedGame = {selectedGame}
+          />
         </Route>
       </Switch>
     </div>

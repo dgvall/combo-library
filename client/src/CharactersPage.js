@@ -1,9 +1,13 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 
-function CharactersPage() {
+function CharactersPage({ selectedGame, handleGameSelection }) {
   const { game } = useParams()
-  console.log(game)
+
+  useEffect(() => {
+    handleGameSelection(game)
+  }, [game, selectedGame])
+  
   return (
     <div>
       
