@@ -4,12 +4,12 @@ import { useParams } from 'react-router-dom'
 import Character from './Character'
 import './CharacterPage.css'
 
-function CharactersPage({ selectedGame, handleGameSelection }) {
+function CharactersPage({ dataRetrieved, selectedGame, handleGameSelection }) {
   const { game } = useParams()
 
   useEffect(() => {
     handleGameSelection(game)
-  }, [game, selectedGame])
+  }, [game, selectedGame, dataRetrieved])
 
   return (
     <div className = 'characters-container'>

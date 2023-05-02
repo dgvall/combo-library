@@ -15,6 +15,7 @@ function App() {
   const { user, setUser } = useContext(UserContext)
   const [games, setGames] = useState(null)
   const [selectedGame, setSelectedGame] = useState(null)
+  const [dataRetrieved, setDataRetrieved] = useState(false)
 
   useEffect(() => {
     fetch("/me").then((r) => {
@@ -25,13 +26,16 @@ function App() {
 
     fetch("/games").then((r) => {
       if (r.ok) {
-        r.json().then((gamesData) => setGames(gamesData) )
+        r.json().then((gamesData) => {
+          setGames(gamesData)
+          setDataRetrieved(true)
+        })
       }
     })
   }, [])
 
   function handleGameSelection(abbreviation) {
-    if (games) {
+    if (dataRetrieved) {
       const game = games.find((g) => g.abbreviation = abbreviation)
       setSelectedGame(game)
     }
@@ -61,6 +65,7 @@ function App() {
           <CharactersPage
             handleGameSelection = {handleGameSelection}
             selectedGame = {selectedGame}
+            dataRetrieved = {dataRetrieved}
           />
         </Route>
       </Switch>
