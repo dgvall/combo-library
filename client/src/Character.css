@@ -1,0 +1,12 @@
+.character {
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  border: solid red 2px;
+  max-width: 20vw;
+  margin: 1vw;
+}
+
+.character img {
+  max-height: 30vh;
+}
