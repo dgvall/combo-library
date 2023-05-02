@@ -1,4 +1,4 @@
-import React, {useContext, useEffect} from 'react'
+import React, {useContext, useState, useEffect} from 'react'
 import { UserContext } from './context/user'
 import { Switch, Route } from 'react-router-dom'
 
@@ -6,11 +6,14 @@ import NavBar from './NavBar'
 import Home from './Home'
 import Signup from './Signup'
 import Login from './Login'
+import GamesPage from './GamesPage'
+import CharactersPage from './CharactersPage'
 
 import './App.css'
 
 function App() {
   const { user, setUser } = useContext(UserContext)
+  const [games, setGames] = useState(null)
 
   useEffect(() => {
     fetch("/me").then((r) => {
@@ -20,7 +23,15 @@ function App() {
     })
   }, [])
 
-  console.log(user)
+  useEffect(() => {
+    fetch("/games").then((r) => {
+      if (r.ok) {
+        r.json().then((gamesData) => setGames(gamesData) )
+      }
+    })
+  }, [])
+
+  console.log(games)
 
   return (
     <div>
@@ -34,6 +45,14 @@ function App() {
         </Route>
         <Route exact path = '/login'>
           <Login />
+        </Route>
+        <Route exact path = '/games'>
+          <GamesPage
+            games = {games}
+          />
+        </Route>
+        <Route exact path = '/:game'>
+          <CharactersPage />
         </Route>
       </Switch>
     </div>
