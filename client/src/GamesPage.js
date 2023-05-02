@@ -14,6 +14,7 @@ function GamesPage({ games }) {
               key = {game.name}
               imageUrl = {game.image_url}
               name = {game.name}
+              abbreviation = {game.abbreviation}
             />
           )
         })

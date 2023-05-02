@@ -2,12 +2,12 @@ import React from 'react'
 import { useHistory } from 'react-router-dom'
 import './Game.css'
 
-function Game({ imageUrl, name }) {
+function Game({ imageUrl, name, abbreviation }) {
   const history = useHistory()
   return (
     <div
       className = 'game'
-      onClick = {() => history.push('/ggst')}
+      onClick = {() => history.push(`/${abbreviation}`)}
     >
       <img 
         src = {imageUrl}
