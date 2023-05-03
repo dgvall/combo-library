@@ -1,6 +1,27 @@
-.characters-container {
+.character-page {
   display: flex;
-  justify-content: flex-start;
-  flex-direction: row;
-  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.character-display {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: solid red 2px;
+  width: 33vw;
+}
+
+.character-display h2 {
+  display: flex;
+  font-size: 5rem;
+  margin: none;
+  padding: none;
+  border: solid red 2px;
+}
+
+.character-display img {
+  display: flex;
+  max-width: 30vw;
+  border: solid red 2px;
 }

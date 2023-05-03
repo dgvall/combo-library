@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   # resources :characters
   resources :games, only: [:index]
 
+  get "/characters/:character_slug", to: "characters#show"
+
   post "/signup", to: "users#create"
   get "/me", to: "users#show"
 

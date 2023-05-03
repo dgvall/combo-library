@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 
 import Character from './Character'
-import './CharacterPage.css'
+import './CharactersPage.css'
 
 function CharactersPage({ dataRetrieved, selectedGame, handleGameSelection }) {
   const { game } = useParams()
