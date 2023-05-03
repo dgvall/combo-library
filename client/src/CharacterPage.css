@@ -9,7 +9,7 @@
   justify-content: center;
   align-items: center;
   border: solid red 2px;
-  width: 33vw;
+  max-width: 33vw;
 }
 
 .character-display h2 {

@@ -35,6 +35,8 @@ function App() {
     })
   }, [])
 
+  console.log(user)
+
   function handleGameSelection(abbreviation) {
     if (dataRetrieved) {
       const game = games.find((g) => g.abbreviation = abbreviation)
