@@ -8,6 +8,7 @@ import Signup from './Signup'
 import Login from './Login'
 import GamesPage from './GamesPage'
 import CharactersPage from './CharactersPage'
+import CharacterPage from './CharacterPage'
 
 import './App.css'
 
@@ -67,6 +68,9 @@ function App() {
             selectedGame = {selectedGame}
             dataRetrieved = {dataRetrieved}
           />
+        </Route>
+        <Route exact path = '/:game/:character'>
+          <CharacterPage />
         </Route>
       </Switch>
     </div>
