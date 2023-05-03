@@ -22,6 +22,7 @@ function CharactersPage({ dataRetrieved, selectedGame, handleGameSelection }) {
               id = {c.id}
               imageUrl = {c.image_url}
               name = {c.name}
+              game = {game}
             />
           )
         })
