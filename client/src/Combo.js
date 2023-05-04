@@ -43,7 +43,7 @@ function Combo( { id, imageUrls, youtubeId} ) {
 
       {
         showNotes &&
-        <p>Author notes will go here, add them to the schema soon! Emoji should only show if it includes notes. Cog should only show if user uploaded the combo!</p>
+        <p className = 'author-notes'>Author notes will go here, add them to the schema soon! Emoji should only show if it includes notes. Cog should only show if user uploaded the combo!</p>
       }
 
       <div className = 'buttons-container'>

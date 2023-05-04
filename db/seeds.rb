@@ -32,3 +32,14 @@
 #   character_id: 1,
 #   user_id: 1
 # )
+
+# Combo.create!(
+# inputs: "2 S - 2 H - 236 S",
+# youtube_id: "KHiWsEckmEw",
+# starter: "2S",
+# location: "Midscreen",
+# hit_type: "Normal",
+# meterless: 1,
+# character_id: 1,
+# user_id: 1
+# )

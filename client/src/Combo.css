@@ -21,6 +21,11 @@
   font-size: 2rem;
 }
 
+.author-notes {
+  margin-left: 5vw;
+  margin-right: 5vw;
+}
+
 .buttons-container {
   display: flex;
   margin-left: 91%;

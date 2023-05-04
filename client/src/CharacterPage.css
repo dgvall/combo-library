@@ -28,7 +28,8 @@
 
 .combos-container {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: flex-start;
   width: 50vw;
   border: solid purple 2px;
 }
