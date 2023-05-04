@@ -1,4 +1,6 @@
 import React from 'react'
+import YouTube from 'react-youtube'
+
 import Icon from './Icon'
 
 import './Combo.css'
@@ -20,6 +22,7 @@ function Combo( { id, imageUrls, youtubeId} ) {
           })
         }
       </div>
+      <YouTube videoId = {youtubeId}/>
     </div>
   )
 }

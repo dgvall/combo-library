@@ -2,8 +2,8 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  /* justify-content: center;
-  border: solid red 2px; */
+  border: solid blue 2px;
+  width: 100%;
 }
 
 .icons-container {
