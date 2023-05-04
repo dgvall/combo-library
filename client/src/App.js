@@ -9,6 +9,7 @@ import Login from './Login'
 import GamesPage from './GamesPage'
 import CharactersPage from './CharactersPage'
 import CharacterPage from './CharacterPage'
+import UploadPage from './UploadPage'
 
 import './App.css'
 
@@ -73,6 +74,9 @@ function App() {
         </Route>
         <Route exact path = '/:game/:character'>
           <CharacterPage />
+        </Route>
+        <Route exact path = '/:game/:character/upload'>
+          <UploadPage />
         </Route>
       </Switch>
     </div>

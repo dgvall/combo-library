@@ -33,3 +33,17 @@
   width: 50vw;
   border: solid purple 2px;
 }
+
+.upload-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  border: solid black 3px;
+  width: 3vw;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  margin-left: 92%
+}

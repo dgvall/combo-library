@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useHistory } from 'react-router-dom'
 
 import Combo from './Combo'
 
@@ -7,6 +7,7 @@ import './CharacterPage.css'
 
 function CharacterPage() {
   const { game, character } = useParams()
+  const history = useHistory()
   const [characterData, setCharacterData] = useState(null)
   console.log(character)
 
@@ -20,13 +21,16 @@ function CharacterPage() {
   }, [])
   console.log(characterData)
 
-
   return (
     <div className = 'character-page' >
       {
         characterData &&
           <>
             <div className = "combos-container">
+              <button
+                className = 'upload-button'
+                onClick = {() => history.push(`/${game}/${character}/upload`)}
+              >+</button>
               {
                 characterData.combos.map((c) => {
                   return (
