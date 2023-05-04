@@ -11,3 +11,21 @@
   flex-direction: row;
   flex-wrap: wrap;
 }
+
+.video-button {
+  display: flex;
+  margin-left: 95%;
+}
+
+.video-button button{
+  font-size: 2rem;
+}
+
+.buttons-container {
+  display: flex;
+  margin-left: 91%;
+}
+
+.buttons-container button {
+  font-size: 2rem;
+}
