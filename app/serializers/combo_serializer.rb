@@ -5,15 +5,15 @@ class ComboSerializer < ActiveModel::Serializer
     object.inputs.split(' ').map do |input|
       case input
       when '-'
-        'https://i.imgur.com/SzG00rs.png'
+        'https://i.imgur.com/IxEwf4u.png'
       when 'S'
-        'https://imgur.com/KtvFf0G'
+        'https://i.imgur.com/KtvFf0G.png'
       when '2'
-        'https://imgur.com/KezFbHr'
+        'https://i.imgur.com/KezFbHr.png'
       when 'H'
-        'https://imgur.com/Ki3AR78'
+        'https://i.imgur.com/Ki3AR78.png'
       when '236'
-        'https://imgur.com/FGoSIYq'
+        'https://i.imgur.com/FGoSIYq.png'
       end
     end
   end

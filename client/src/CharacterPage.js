@@ -33,7 +33,7 @@ function CharacterPage() {
                     <Combo
                       key = {c.id}
                       id = {c.id}
-                      inputs = {c.inputs}
+                      imageUrls = {c.image_urls}
                       youtubeId = {c.youtube_id}
                     />
                   )

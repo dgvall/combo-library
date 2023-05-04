@@ -25,3 +25,10 @@
   max-width: 30vw;
   border: solid red 2px;
 }
+
+.combos-container {
+  display: flex;
+  justify-content: center;
+  width: 50vw;
+  border: solid red 2px;
+}

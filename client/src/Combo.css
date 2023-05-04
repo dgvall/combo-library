@@ -1,3 +1,13 @@
 .combo-container {
   display: flex;
+  align-items: center;
+  flex-direction: column;
+  /* justify-content: center;
+  border: solid red 2px; */
+}
+
+.icons-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
