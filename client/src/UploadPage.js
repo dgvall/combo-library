@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
+import { CharacterDataContext } from './context/CharacterData'
 import { useHistory, useParams} from 'react-router-dom'
 
 import './UploadPage.css'
 
 function UploadPage() {
   const history = useHistory()
+  const { characterData, setCharacterData} = useContext(CharacterDataContext)
   const { game, character } = useParams()
 
   const [starter, setStarter] = useState("")
@@ -15,10 +17,7 @@ function UploadPage() {
   const [authorNotes, setAuthorNotes] = useState("")
   const [youtubeId, setYoutubeId] = useState("")
 
-  useEffect(() => {
-    
-  }, [])
-
+  console.log(characterData)
   return (
     <div className = 'upload-combo-page'>
       <div className = 'combo-details-container'>

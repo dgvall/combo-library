@@ -1,6 +1,7 @@
 import React, {useContext, useState, useEffect} from 'react'
 import { UserContext } from './context/user'
-import { Switch, Route } from 'react-router-dom'
+import { CharacterDataProvider } from './context/CharacterData'
+import { Switch, Route, Router } from 'react-router-dom'
 
 import NavBar from './NavBar'
 import Home from './Home'
@@ -45,8 +46,6 @@ function App() {
     }
   }
 
-  console.log(games)
-
   return (
     <div>
       <NavBar />
@@ -72,12 +71,18 @@ function App() {
             dataRetrieved = {dataRetrieved}
           />
         </Route>
+
         <Route exact path = '/:game/:character'>
-          <CharacterPage />
-        </Route>
+          <CharacterDataProvider>
+            < CharacterPage />
+              </CharacterDataProvider>
+            </Route>
         <Route exact path = '/:game/:character/upload'>
-          <UploadPage />
+          <CharacterDataProvider>
+            <UploadPage />
+          </CharacterDataProvider>
         </Route>
+       
       </Switch>
     </div>
   );

@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { useParams, useHistory } from 'react-router-dom'
-
+import { CharacterDataContext } from './context/CharacterData'
 import Combo from './Combo'
 
 import './CharacterPage.css'
@@ -8,18 +8,7 @@ import './CharacterPage.css'
 function CharacterPage() {
   const { game, character } = useParams()
   const history = useHistory()
-  const [characterData, setCharacterData] = useState(null)
-  console.log(character)
-
-  useEffect(() => {
-    fetch(`/characters/${character}`)
-      .then((r) => {
-        if (r.ok) {
-          r.json().then((data) => setCharacterData(data))
-        }
-      })
-  }, [])
-  console.log(characterData)
+  const { characterData, setCharacterData} = useContext(CharacterDataContext)
 
   return (
     <div className = 'character-page' >
