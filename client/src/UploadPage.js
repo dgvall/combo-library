@@ -7,6 +7,14 @@ function UploadPage() {
   const history = useHistory()
   const { game, character } = useParams()
 
+  const [starter, setStarter] = useState("")
+  const [meterless, setMeterless] = useState(0)
+  const [location, setLocation] = useState("")
+  const [hitType, setHitType] = useState("")
+  const [damage, setDamage] = useState("")
+  const [authorNotes, setAuthorNotes] = useState("")
+  const [youtubeId, setYoutubeId] = useState("")
+
   useEffect(() => {
     
   }, [])
