@@ -2,13 +2,27 @@ import React from 'react'
 
 import './Icon.css'
 
-function Icon( {url} ) {
+function Icon( {url, handleClick} ) {
+
   console.log(url)
   return (
-      <img
-      className = 'icon'
-      src = {url}
-    />
+    <div>
+      {
+        handleClick
+        ?
+          <img
+            onClick = {() => handleClick(url)}
+            className = 'icon'
+            src = {url}
+          />
+        :
+          <img
+            className = 'icon'
+            src = {url}
+          />
+        }
+      
+    </div>
   )
 }
 

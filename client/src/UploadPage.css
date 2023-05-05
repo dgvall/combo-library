@@ -28,3 +28,28 @@
   width: 25vw;
   border: solid blue 2px;
 }
+
+.input-container {
+  margin-bottom: 2vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.input-container input {
+  border: solid black 2px;
+  font-size: 1.1rem;
+}
+
+.input-container textarea {
+  font-size: 1.1rem;
+  height: 7vh;
+  width: 15vw;
+  resize: none;
+  border: solid black 2px;
+}
+
+.checkbox-container {
+  display: flex;
+  flex-direction: row;
+}
