@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { CharacterDataContext } from './context/CharacterData'
 import { useHistory, useParams} from 'react-router-dom'
+import YouTube from 'react-youtube'
 
 import DropdownMenu from './DropdownMenu'
 import Icon from './Icon'
@@ -20,6 +21,7 @@ function UploadPage() {
   const [damage, setDamage] = useState("")
   const [authorNotes, setAuthorNotes] = useState("")
   const [imageUrls, setImageUrls] = useState([])
+  const [youtubeInput, setYoutubeInput] = useState("")
   const [youtubeId, setYoutubeId] = useState("")
 
   console.log(characterData)
@@ -30,6 +32,10 @@ function UploadPage() {
         setDamage(e.target.value)
       }
     }
+  }
+  const youtubeStyles = {
+    width: '320vw', 
+    height: '180vh', 
   }
   const test = ["https://i.imgur.com/Fby15hF.png", "https://i.imgur.com/Fby15hF.png", "https://i.imgur.com/Fby15hF.png", "https://i.imgur.com/Fby15hF.png", "https://i.imgur.com/Fby15hF.png", "https://i.imgur.com/Fby15hF.png", "https://i.imgur.com/Fby15hF.png", "https://i.imgur.com/Fby15hF.png", "https://i.imgur.com/Fby15hF.png"]
 
@@ -145,17 +151,27 @@ function UploadPage() {
                   handleClick = {handleClick}
                   handleSpace = {handleSpace}
                 />
-
-
             </div>
 
             <div className = 'combo-video-container'>
               <h2>Combo Video</h2>
+              <input
+                type = "text"
+                value = {youtubeInput}
+                onChange = {(e) => setYoutubeInput(e.target.value)}
+                placeholder = "YouTube ID"
+              />
+              <button
+                onClick = {() => setYoutubeId(youtubeInput)}
+              >Check Video</button>
+              <YouTube 
+                videoId = {youtubeId}
+                opts = {youtubeStyles}
+              />
             </div>
           </>
         : <div>Loading...</div>
       }
-   
     </div>
   )
 }

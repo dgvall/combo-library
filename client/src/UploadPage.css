@@ -17,8 +17,14 @@
   display: flex;
   align-items: center;
   flex-direction: column;
+  height: 40vw;
   width: 40vw;
   border: solid black 2px;
+}
+
+.icons-container {
+  display: flex;
+  height: 100%;
 }
 
 .combo-video-container {
@@ -52,4 +58,15 @@
 .checkbox-container {
   display: flex;
   flex-direction: row;
+}
+
+.combo-video-container input {
+  border: solid black 2px;
+  font-size: 1.1rem;
+}
+
+.combo-video-container button {
+  font-size: 1.2rem;
+  border: solid black 2px;
+  margin: 1vw;
 }
