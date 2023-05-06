@@ -43,3 +43,9 @@
 # character_id: 1,
 # user_id: 1
 # )
+
+# Game.create!(
+#  name: "Street Fighter 6",
+#  image_url: "https://static.wikia.nocookie.net/streetfighter/images/4/47/Street_fighter_6_logo.png/revision/latest?cb=20220603151920",
+#  slug: "sf6"
+#  )

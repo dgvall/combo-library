@@ -9,7 +9,7 @@ import Icon from './Icon'
 import './UploadPage.css'
 import IconPicker from './IconPicker'
 
-function UploadPage() {
+function UploadPage( { dataRetrieved, selectedGame, handleGameSelection  } ) {
   const history = useHistory()
   const { characterData, setCharacterData} = useContext(CharacterDataContext)
   const { game, character } = useParams()
@@ -25,6 +25,12 @@ function UploadPage() {
   const [youtubeId, setYoutubeId] = useState("")
 
   console.log(characterData)
+
+  useEffect(() => {
+    handleGameSelection(game)
+  }, [game, selectedGame, dataRetrieved])
+
+  console.log(selectedGame)
 
   function handleSubmit(e) {
     e.preventDefault()
@@ -93,6 +99,7 @@ function UploadPage() {
           <>
             <div className = 'combo-details-container'>
               <h2>Combo Details</h2>
+              <h3>{characterData.name} - {selectedGame.name}</h3>
               <div className = 'checkbox-container'>
                 <h3>Meterless</h3>
                 <input 
@@ -148,6 +155,7 @@ function UploadPage() {
               onKeyDown = {handleKeyDown}
             >
               <h2>Combo Builder</h2>
+              <div className = 'combo-display'>
                 <div className = 'icons-container'>
                   {
                     imageUrls.map((url, index) => {
@@ -158,8 +166,14 @@ function UploadPage() {
                         />
                       )
                     })
-                  }
+                  }   
                 </div>
+                <button
+                  className = 'clear-button'
+                  onClick = {() => setImageUrls([])}
+                >
+                Clear</button>
+              </div>
                 <IconPicker
                   extraUrls = {test}
                   buttonUrls = {test}

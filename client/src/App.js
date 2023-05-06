@@ -39,9 +39,9 @@ function App() {
 
   console.log(user)
 
-  function handleGameSelection(abbreviation) {
+  function handleGameSelection(slug) {
     if (dataRetrieved) {
-      const game = games.find((g) => g.abbreviation = abbreviation)
+      const game = games.find((g) => g.slug === slug)
       setSelectedGame(game)
     }
   }
@@ -79,7 +79,11 @@ function App() {
             </Route>
         <Route exact path = '/:game/:character/upload'>
           <CharacterDataProvider>
-            <UploadPage />
+            <UploadPage
+              handleGameSelection = {handleGameSelection}
+              selectedGame = {selectedGame}
+              dataRetrieved = {dataRetrieved}
+            />
           </CharacterDataProvider>
         </Route>
        
