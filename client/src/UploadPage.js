@@ -26,6 +26,24 @@ function UploadPage() {
 
   console.log(characterData)
 
+  function handleSubmit(e) {
+    e.preventDefault()
+
+    const comboObj = {
+      starter,
+      meterless,
+      location,
+      hit_type: hitType,
+      damage,
+      author_notes: authorNotes,
+      youtube_id: youtubeId
+      // need to add inputs
+      // youtube id only works after clicking check video
+    }
+
+    console.log(comboObj)
+  }
+
   function handleDamageChange(e) {
     if (!isNaN(e.target.value)) {
       if (e.target.value <= 1500) {
@@ -175,7 +193,10 @@ function UploadPage() {
                 <div>
                   ERRORS HERE
                 </div>
-                <button className = 'submit-combo-button'>
+                <button
+                onClick = {handleSubmit}
+                className = 'submit-combo-button'
+                >
                   Submit
                 </button>
               </div>
