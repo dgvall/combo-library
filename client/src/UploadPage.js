@@ -154,20 +154,31 @@ function UploadPage() {
             </div>
 
             <div className = 'combo-video-container'>
-              <h2>Combo Video</h2>
-              <input
-                type = "text"
-                value = {youtubeInput}
-                onChange = {(e) => setYoutubeInput(e.target.value)}
-                placeholder = "YouTube ID"
-              />
-              <button
-                onClick = {() => setYoutubeId(youtubeInput)}
-              >Check Video</button>
-              <YouTube 
-                videoId = {youtubeId}
-                opts = {youtubeStyles}
-              />
+              <div className = 'video'>
+                <h2>Combo Video</h2>
+                <input
+                  type = "text"
+                  value = {youtubeInput}
+                  onChange = {(e) => setYoutubeInput(e.target.value)}
+                  placeholder = "YouTube ID"
+                />
+                <button
+                  className = 'check-video-button'
+                  onClick = {() => setYoutubeId(youtubeInput)}
+                >Check Video</button>
+                <YouTube 
+                  videoId = {youtubeId}
+                  opts = {youtubeStyles}
+                />
+              </div>
+              <div className = 'submit'>
+                <div>
+                  ERRORS HERE
+                </div>
+                <button className = 'submit-combo-button'>
+                  Submit
+                </button>
+              </div>
             </div>
           </>
         : <div>Loading...</div>
