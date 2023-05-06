@@ -1,0 +1,2 @@
+class GameInputsController < ApplicationController
+end

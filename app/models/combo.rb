@@ -13,4 +13,5 @@ class Combo < ApplicationRecord
   validates :meterless, presence: true
   validates :character_id, presence: true
   validates :user_id, presence: true
+  validates :author_notes, length: { maximum: 300 }
 end

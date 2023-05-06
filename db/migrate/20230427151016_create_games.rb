@@ -4,6 +4,7 @@ class CreateGames < ActiveRecord::Migration[6.1]
       t.string :name
       t.string :image_url
       t.string :slug
+      t.string :hit_types
       t.timestamps
     end
   end
