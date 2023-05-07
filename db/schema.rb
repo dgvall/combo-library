@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 2023_05_06_222122) do
     t.string "location"
     t.string "hit_type"
     t.boolean "meterless"
+    t.integer "damage"
     t.string "author_notes"
     t.integer "character_id"
     t.integer "user_id"

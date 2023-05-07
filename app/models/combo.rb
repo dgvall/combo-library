@@ -10,7 +10,8 @@ class Combo < ApplicationRecord
   validates :starter, presence: true
   validates :location, presence: true
   validates :hit_type, presence: true
-  validates :meterless, presence: true
+  validates :meterless, inclusion: { in: [true, false] }
+  validates :damage, presence: true, numericality: { less_than_or_equal_to: 1500 }
   validates :character_id, presence: true
   validates :user_id, presence: true
   validates :author_notes, length: { maximum: 300 }

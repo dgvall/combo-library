@@ -23,6 +23,7 @@ function UploadPage( { dataRetrieved, selectedGame, handleGameSelection  } ) {
   const [youtubeInput, setYoutubeInput] = useState("")
   const [youtubeId, setYoutubeId] = useState("")
   const [inputs, setInputs] = useState("")
+  const [errors, setErrors] = useState([])
 
 
   useEffect(() => {
@@ -38,7 +39,7 @@ function UploadPage( { dataRetrieved, selectedGame, handleGameSelection  } ) {
 
     const comboObj = {
       starter,
-      meterless: Number(meterless),
+      meterless: meterless,
       location,
       hit_type: hitType,
       damage: parseInt(damage),
@@ -48,6 +49,24 @@ function UploadPage( { dataRetrieved, selectedGame, handleGameSelection  } ) {
       // youtube id only works after clicking check video
     }
     console.log(comboObj)
+
+    fetch(`/characters/${characterData.id}/combos`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(comboObj)
+    })
+      .then((r) => {
+        if (r.ok) {
+          r.json().then((data) => {
+            console.log(data)
+          })
+        }
+        else {
+          r.json().then((error) => console.log(error.errors))
+        }
+      })
   }
 
   function handleDamageChange(e) {

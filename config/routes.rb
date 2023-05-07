@@ -6,11 +6,13 @@ Rails.application.routes.draw do
   # resources :user_bookmarks
   # resources :users
   # resources :combos
+  get "/characters/:character_slug", to: "characters#show"
+
   resources :characters do
     resources :combos, only: [:create]
   end
+
   resources :games, only: [:index]
-  get "/characters/:character_slug", to: "characters#show"
 
   post "/signup", to: "users#create"
   get "/me", to: "users#show"

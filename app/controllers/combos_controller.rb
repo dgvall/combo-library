@@ -8,7 +8,7 @@ class CombosController < ApplicationController
     if combo.save
       render json: combo, status: :created
     else
-      render json: combo.errors, status: :unprocessable_entity
+      render json: {errors: combo.errors.full_messages}, status: :unprocessable_entity
     end
 
   end
@@ -16,6 +16,6 @@ class CombosController < ApplicationController
   private
 
   def combo_params
-    params.permit(:inputs, :youtube_id, :starter, :location, :hit_type, :meterless, :author_notes)
+    params.require(:combo).permit(:inputs, :youtube_id, :starter, :location, :hit_type, :meterless, :author_notes, :character_id, :damage)
   end
 end

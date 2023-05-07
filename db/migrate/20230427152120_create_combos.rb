@@ -7,6 +7,7 @@ class CreateCombos < ActiveRecord::Migration[6.1]
       t.string :location
       t.string :hit_type
       t.boolean :meterless
+      t.integer :damage
       t.string :author_notes
       t.integer :character_id
       t.integer :user_id
