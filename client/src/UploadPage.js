@@ -60,7 +60,9 @@ function UploadPage( { dataRetrieved, selectedGame, handleGameSelection  } ) {
       .then((r) => {
         if (r.ok) {
           r.json().then((data) => {
+            // add combo to characterData state
             console.log(data)
+            history.push(`/${game}/${character}`)
           })
         }
         else {

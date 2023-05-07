@@ -5,16 +5,19 @@ import Icon from './Icon'
 
 import './Combo.css'
 
-function Combo( { id, imageUrls, youtubeId} ) {
+function Combo( { id, imageUrls, youtubeId, authorNotes} ) {
   const [showVideo, setShowVideo] = useState(false)
   const [showNotes, setShowNotes] = useState(false)
   console.log(imageUrls)
   return (
     <div className = 'combo-container'>
       <div className = 'buttons-container'>
-        <button
-          onClick = {() => setShowNotes(() => !showNotes)}
-        >🗒️</button>
+        {
+          authorNotes &&
+            <button
+              onClick = {() => setShowNotes(() => !showNotes)}
+            >🗒️</button>
+        }
 
         <button
           onClick = {() => setShowVideo(() => !showVideo)}
@@ -43,7 +46,7 @@ function Combo( { id, imageUrls, youtubeId} ) {
 
       {
         showNotes &&
-        <p className = 'author-notes'>Author notes will go here, add them to the schema soon! Emoji should only show if it includes notes. Cog should only show if user uploaded the combo!</p>
+        <p className = 'author-notes'>{authorNotes}</p>
       }
 
       <div className = 'buttons-container'>

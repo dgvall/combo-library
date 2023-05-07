@@ -22,12 +22,14 @@ function CharacterPage() {
               >+</button>
               {
                 characterData.combos.map((c) => {
+                  console.log(c)
                   return (
                     <Combo
                       key = {c.id}
                       id = {c.id}
                       imageUrls = {c.image_urls}
                       youtubeId = {c.youtube_id}
+                      authorNotes = {c.author_notes}
                     />
                   )
                 })

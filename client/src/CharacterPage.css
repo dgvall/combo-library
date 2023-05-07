@@ -6,7 +6,7 @@
 .character-display {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   border: solid red 2px;
   max-width: 33vw;
