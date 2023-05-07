@@ -65,68 +65,60 @@ function IconPicker({extraInputs, buttonInputs, motionInputs, spacebarUrl, handl
               })
             }
           </div>
-
-        <h2>Buttons</h2>
-      <div className = 'picker-row'>
-        {
-          buttonInputs.map((u, index) => {
-            return (
-              <ClickableIcon
-                handleClick = {handleClick}
-                key = {u.id}
-                url = {u.image_url}
-                name = {u.name}
-              />
-            )
-          })
-        }
-      </div>
+          <h2>Buttons</h2>
+          <div className = 'picker-row'>
+            {
+              buttonInputs.map((u, index) => {
+                return (
+                  <ClickableIcon
+                    handleClick = {handleClick}
+                    key = {u.id}
+                    url = {u.image_url}
+                    name = {u.name}
+                  />
+                )
+              })
+            }
+          </div>
         </div>
 
         <div className = 'picker-column'>
-        <h2>Directions</h2>
-      <div className = 'picker-row-directions'>
-        {
-          directionInputs.map((u, index) => {
-            return (
-              <ClickableIcon
-                handleClick = {handleClick}
-                key = {index}
-                url = {u.image_url}
-                name = {u.name}
-              />
-            )
-          })
-        }
-      </div>  
-
-      <h2>Motions</h2>
-      <div className = 'picker-row'>
-        {
-          motionInputs.map((u, index) => {
-            return (
-              <ClickableIcon
-                handleClick = {handleClick}
-                key = {index}
-                url = {u.image_url}
-                name = {u.name}
-              />
-            )
-          })
-        }
-      </div>
+          <h2>Directions</h2>
+          <div className = 'picker-row-directions'>
+            {
+              directionInputs.map((u, index) => {
+                return (
+                  <ClickableIcon
+                    handleClick = {handleClick}
+                    key = {index}
+                    url = {u.image_url}
+                    name = {u.name}
+                  />
+                )
+              })
+            }
+          </div>  
+          <h2>Motions</h2>
+          <div className = 'picker-row'>
+            {
+              motionInputs.map((u, index) => {
+                return (
+                  <ClickableIcon
+                    handleClick = {handleClick}
+                    key = {index}
+                    url = {u.image_url}
+                    name = {u.name}
+                  />
+                )
+              })
+            }
+          </div>
         </div>
       </div>
-      
-
-    
-
       <img
         src = "https://miketips.files.wordpress.com/2013/04/spacebar-pagedown.png"
         onClick = {handleSpace}
       />
-
-      
     </div>
   )
 }

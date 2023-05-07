@@ -38,7 +38,7 @@ function UploadPage( { dataRetrieved, selectedGame, handleGameSelection  } ) {
 
     const comboObj = {
       starter,
-      meterless,
+      meterless: Number(meterless),
       location,
       hit_type: hitType,
       damage: parseInt(damage),
@@ -73,7 +73,7 @@ function UploadPage( { dataRetrieved, selectedGame, handleGameSelection  } ) {
 
   function handleSpace() {
     // set spaceUrl from game data later!
-    const spaceUrl = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAJ1BMVEX///8AAACGhobg4OCUlJTc3Ny+vr6BgYGQkJB9fX3o6OjBwcHj4+PWbIn5AAAA0UlEQVR4nO3bSQ6DQAxFQRLm4f7nzR5YINlyE6nqAF9+++6uAwAAAAAAAAAAAAAAAAAAAAAA4H9N8/dk3YpP2NbzCfOUOL98LsbE+SfG6wlL4vzwysIhcV5hAYVBCgsoDFJYQGGQwgIKgxQWUBiksIDCIIUFFAYpLKAwSGEBhUEKCygMUlhAYdBNYZ84/0RfXrgffaVjLy98AYUKFbanUKHC9hQqVNieQoUK28ssvHmr/wKZb/Wv/y1eIPW/BQAAAAAAAAAAAAAAAAAAAAAAANV+DKkWELiZZ7MAAAAASUVORK5CYII="
+    const spaceUrl = "https://i.imgur.com/IxEwf4u.png"
     setImageUrls(() => [...imageUrls, spaceUrl])
     setInputs(() => `${inputs} -`)
   }
