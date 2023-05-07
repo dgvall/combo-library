@@ -64,7 +64,7 @@ function UploadPage( { dataRetrieved, selectedGame, handleGameSelection  } ) {
           })
         }
         else {
-          r.json().then((error) => console.log(error.errors))
+          r.json().then((error) => setErrors(error.errors))
         }
       })
   }
@@ -221,9 +221,15 @@ function UploadPage( { dataRetrieved, selectedGame, handleGameSelection  } ) {
                 />
               </div>
               <div className = 'submit'>
-                <div>
-                  ERRORS HERE
-                </div>
+                <ul className = 'errors-list'>
+                  {
+                    errors.map((e, index) => {
+                      return (
+                        <li key = {index}>{e}</li>
+                      )
+                    })
+                  }
+                </ul>
                 <button
                 onClick = {handleSubmit}
                 className = 'submit-combo-button'
