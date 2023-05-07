@@ -11,7 +11,7 @@ Game.create!(
  name: "Guilty Gear: Strive",
  image_url: "https://i.imgur.com/ioPuJfQ.png",
  slug: "ggst",
- hit_types: "Normal, Counter"
+ hit_types: "Normal Counter"
  )
 
 Character.create!(

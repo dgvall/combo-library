@@ -2,11 +2,11 @@ import React from 'react'
 
 import './Icon.css'
 
-function Icon( {url} ) {
-
+function ClickableIcon( {url, name, handleClick} ) {
   return (
     <div>
       <img
+        onClick = {() => handleClick(url, name)}
         className = 'icon'
         src = {url}
       />
@@ -14,4 +14,4 @@ function Icon( {url} ) {
   )
 }
 
-export default Icon
+export default ClickableIcon

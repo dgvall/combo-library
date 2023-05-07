@@ -2,12 +2,11 @@ import React, { useState, useEffect, useContext } from 'react'
 import { CharacterDataContext } from './context/CharacterData'
 import { useHistory, useParams} from 'react-router-dom'
 import YouTube from 'react-youtube'
-
+import IconPicker from './IconPicker'
 import DropdownMenu from './DropdownMenu'
 import Icon from './Icon'
 
 import './UploadPage.css'
-import IconPicker from './IconPicker'
 
 function UploadPage( { dataRetrieved, selectedGame, handleGameSelection  } ) {
   const history = useHistory()
@@ -23,14 +22,16 @@ function UploadPage( { dataRetrieved, selectedGame, handleGameSelection  } ) {
   const [imageUrls, setImageUrls] = useState([])
   const [youtubeInput, setYoutubeInput] = useState("")
   const [youtubeId, setYoutubeId] = useState("")
+  const [inputs, setInputs] = useState("")
 
-  console.log(characterData)
 
   useEffect(() => {
     handleGameSelection(game)
   }, [game, selectedGame, dataRetrieved])
 
-  console.log(selectedGame)
+  // console.log(selectedGame)
+  // console.log(characterData)
+  console.log(inputs)
 
   function handleSubmit(e) {
     e.preventDefault()
@@ -40,13 +41,12 @@ function UploadPage( { dataRetrieved, selectedGame, handleGameSelection  } ) {
       meterless,
       location,
       hit_type: hitType,
-      damage,
+      damage: parseInt(damage),
       author_notes: authorNotes,
-      youtube_id: youtubeId
-      // need to add inputs
+      youtube_id: youtubeId,
+      inputs
       // youtube id only works after clicking check video
     }
-
     console.log(comboObj)
   }
 
@@ -61,26 +61,21 @@ function UploadPage( { dataRetrieved, selectedGame, handleGameSelection  } ) {
     width: '320vw', 
     height: '180vh', 
   }
-  const test = ["https://i.imgur.com/Fby15hF.png", "https://i.imgur.com/Fby15hF.png", "https://i.imgur.com/Fby15hF.png", "https://i.imgur.com/Fby15hF.png", "https://i.imgur.com/Fby15hF.png", "https://i.imgur.com/Fby15hF.png", "https://i.imgur.com/Fby15hF.png", "https://i.imgur.com/Fby15hF.png", "https://i.imgur.com/Fby15hF.png"]
 
-  function getHitTypes() {
-    if (game == "ggst") {
-      return ["Normal", "Counter"]
-    }
-    else if (game == "sf6") {
-      return ["Normal", "Counter", "Punish Counter"]
-    }
-  }
-
-  function handleClick(src) {
+  function handleClick(src, name) {
     console.log(src)
     setImageUrls(() => [...imageUrls, src])
+    if (inputs.length > 0) {
+      setInputs(() => `${inputs} ${name}`)
+    }
+    else setInputs(name)
   }
 
   function handleSpace() {
     // set spaceUrl from game data later!
     const spaceUrl = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAJ1BMVEX///8AAACGhobg4OCUlJTc3Ny+vr6BgYGQkJB9fX3o6OjBwcHj4+PWbIn5AAAA0UlEQVR4nO3bSQ6DQAxFQRLm4f7nzR5YINlyE6nqAF9+++6uAwAAAAAAAAAAAAAAAAAAAAAA4H9N8/dk3YpP2NbzCfOUOL98LsbE+SfG6wlL4vzwysIhcV5hAYVBCgsoDFJYQGGQwgIKgxQWUBiksIDCIIUFFAYpLKAwSGEBhUEKCygMUlhAYdBNYZ84/0RfXrgffaVjLy98AYUKFbanUKHC9hQqVNieQoUK28ssvHmr/wKZb/Wv/y1eIPW/BQAAAAAAAAAAAAAAAAAAAAAAANV+DKkWELiZZ7MAAAAASUVORK5CYII="
     setImageUrls(() => [...imageUrls, spaceUrl])
+    setInputs(() => `${inputs} -`)
   }
 
   function handleKeyDown(e) {
@@ -89,12 +84,17 @@ function UploadPage( { dataRetrieved, selectedGame, handleGameSelection  } ) {
     }
   }
 
+  function handleClear() {
+    setImageUrls([])
+    setInputs("")
+  }
+
   console.log(characterData)
   console.log(starter)
   return (
     <div className = 'upload-combo-page'>
       {
-        characterData
+        characterData&&selectedGame
         ?
           <>
             <div className = 'combo-details-container'>
@@ -124,7 +124,7 @@ function UploadPage( { dataRetrieved, selectedGame, handleGameSelection  } ) {
               />
 
               <DropdownMenu
-                options = {getHitTypes()}
+                options = {selectedGame.hit_types}
                 value = {hitType}
                 setValue = {setHitType}
                 placeholder = "Hit Type"
@@ -170,16 +170,14 @@ function UploadPage( { dataRetrieved, selectedGame, handleGameSelection  } ) {
                 </div>
                 <button
                   className = 'clear-button'
-                  onClick = {() => setImageUrls([])}
+                  onClick = {handleClear}
                 >
                 Clear</button>
               </div>
                 <IconPicker
-                  extraUrls = {test}
-                  buttonUrls = {test}
-                  directionUrls = {test}
-                  motionUrls = {test}
-                  spacebarUrl = {test}
+                  extraInputs = {selectedGame.inputs["Extra"]}
+                  buttonInputs = {selectedGame.inputs["Normal"]}
+                  motionInputs = {characterData.inputs["Motion"]}
                   handleClick = {handleClick}
                   handleSpace = {handleSpace}
                 />
