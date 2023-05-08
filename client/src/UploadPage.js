@@ -60,8 +60,8 @@ function UploadPage( { dataRetrieved, selectedGame, handleGameSelection  } ) {
       .then((r) => {
         if (r.ok) {
           r.json().then((data) => {
-            // add combo to characterData state
-            console.log(data)
+            // add combo to characterData state, still need to add to user bookmark state
+            addCombo(data)
             history.push(`/${game}/${character}`)
           })
         }
@@ -69,6 +69,11 @@ function UploadPage( { dataRetrieved, selectedGame, handleGameSelection  } ) {
           r.json().then((error) => setErrors(error.errors))
         }
       })
+  }
+
+  function addCombo(newCombo) {
+    const updatedCombos = [...characterData.combos, newCombo]
+    setCharacterData({...characterData, combos: updatedCombos})
   }
 
   function handleDamageChange(e) {

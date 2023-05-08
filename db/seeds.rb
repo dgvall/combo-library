@@ -49,13 +49,13 @@ user_id: 1
 )
 
 Input.create!(
-  input_type: "Normal",
+  input_type: "Button",
   name: "S",
   image_url: "https://i.imgur.com/KtvFf0G.png"
 )
 
 Input.create!(
-  input_type: "Normal",
+  input_type: "Button",
   name: "H",
   image_url: "https://i.imgur.com/Ki3AR78.png"
 )
