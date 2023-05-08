@@ -53,7 +53,7 @@ class ComboSerializer < ActiveModel::Serializer
       when '426'
         'https://i.imgur.com/eoQSkqs.png'
       when '624'
-        'https://i.imgur.com/eoQSkqs.png'
+        'https://i.imgur.com/iocDwKJ.png'
       when '684'
         'https://i.imgur.com/4Iem06x.png'
       when '486'
