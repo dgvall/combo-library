@@ -58,13 +58,13 @@ dash = Input.create!(
 
 ggst.inputs << [p, k, s, h, d, dash, rc]
 
-i236 = Input.create!(
+i268 = Input.create!(
   input_type: "Motion",
   name: "236",
   image_url: "https://i.imgur.com/FGoSIYq.png"
 )
 
-i214 = Input.create!(
+i248 = Input.create!(
 input_type: "Motion",
 name: "214",
 image_url: "https://i.imgur.com/F0hNuQt.png"
@@ -144,7 +144,7 @@ testament = Character.create!(
  game_id: 1
  )
 
-testament.inputs << [i236, i214]
+testament.inputs << [i236, i214, i248, i268, i684, i486, i624, i426, i862, i842, circle]
 
 # Combo.create!(
 #   inputs: "S - 2 S - H - 236 H",
