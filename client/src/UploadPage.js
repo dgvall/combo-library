@@ -202,7 +202,7 @@ function UploadPage( { dataRetrieved, selectedGame, handleGameSelection  } ) {
               </div>
                 <IconPicker
                   extraInputs = {selectedGame.inputs["Extra"]}
-                  buttonInputs = {selectedGame.inputs["Normal"]}
+                  buttonInputs = {selectedGame.inputs["Button"]}
                   motionInputs = {characterData.inputs["Motion"]}
                   handleClick = {handleClick}
                   handleSpace = {handleSpace}
