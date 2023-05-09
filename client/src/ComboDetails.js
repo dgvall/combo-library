@@ -1,12 +1,46 @@
 import React, {useState} from 'react'
+import './ComboDetails.css'
 
 import DropdownMenu from './DropdownMenu'
 
 function ComboDetails({characterData, selectedGame, setDisplayedCombos}) {
   const [starter, setStarter] = useState("")
-  const [meterless, setMeterless] = useState(false)
+  const [meterless, setMeterless] = useState("")
   const [location, setLocation] = useState("")
   const [hitType, setHitType] = useState("")
+
+  function getFilters() {
+    let filters = {}
+
+    let obj = {
+      starter,
+      meterless,
+      location,
+      hit_type: hitType
+    }
+
+    Object.entries(obj).forEach(([key, value]) => {
+
+      if( !!value ) {
+        filters[key] = value
+      }
+
+      if ( value === 'False') {
+        filters[key] = false
+      }
+
+      else if (value === 'True') {
+        filters[key] = true
+      }
+    })
+    return filters
+  }
+
+  function handleFilter() {
+    const filters = getFilters()
+    console.log(filters)
+    // fetch('/')
+  }
 
   return (
     <div className = 'combo-details-container'>
@@ -17,14 +51,13 @@ function ComboDetails({characterData, selectedGame, setDisplayedCombos}) {
 
             <h2>Combo Filter</h2>
                 <h3>{characterData.name} - {selectedGame.name}</h3>
-                <div className = 'checkbox-container'>
-                  <h3>Meterless</h3>
-                  <input 
-                    type = 'checkbox'
-                    checked = {meterless}
-                    onChange = {() => setMeterless(() => !meterless)}
-                  />
-                </div>
+                <DropdownMenu
+                  options = {['True', 'False']}
+                  value = {meterless}
+                  setValue = {setMeterless}
+                  placeholder = "Both"
+                  title = "Meterless?"
+                />
                 <DropdownMenu
                   options = {characterData.starters}
                   value = {starter}
@@ -47,6 +80,10 @@ function ComboDetails({characterData, selectedGame, setDisplayedCombos}) {
                   placeholder = "Hit Type"
                   title = "Hit Type"
                 />
+                <button
+                  className = "filter-button"
+                  onClick = {handleFilter}
+                >Filter</button>
                 {/* <div className = 'input-container'>
                   <h3>Damage</h3>
                   <input
