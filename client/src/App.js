@@ -74,7 +74,11 @@ function App() {
 
         <Route exact path = '/:game/:character'>
           <CharacterDataProvider>
-            < CharacterPage />
+            < CharacterPage
+              handleGameSelection = {handleGameSelection}
+              selectedGame = {selectedGame}
+              dataRetrieved = {dataRetrieved}
+            />
               </CharacterDataProvider>
             </Route>
         <Route exact path = '/:game/:character/upload'>

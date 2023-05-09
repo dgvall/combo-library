@@ -101,9 +101,9 @@ i486 = Input.create!(
 )
 
   i623 = Input.create!(
-input_type: "Motion",
-name: "623",
-image_url: "https://i.imgur.com/YbO0z8X.png"
+    input_type: "Motion",
+    name: "623",
+    image_url: "https://i.imgur.com/YbO0z8X.png"
   )
 
 i624 = Input.create!(
@@ -144,7 +144,7 @@ testament = Character.create!(
   game_id: 1
 )
 
-testament.inputs << [i236, i214, i248, i268, i684, i486, i624, i426, i862, i842, circle]
+testament.inputs << [i236, i214, i248, i268, i684, i486, i624, i426, i862, i842, i623, i421, circle]
 
 # Combo.create!(
 #   inputs: "S - 2 S - H - 236 H",

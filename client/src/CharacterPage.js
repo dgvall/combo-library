@@ -4,24 +4,45 @@ import { CharacterDataContext } from './context/CharacterData'
 import Combo from './Combo'
 
 import './CharacterPage.css'
+import ComboDetails from './ComboDetails'
 
-function CharacterPage() {
+function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection }) {
   const { game, character } = useParams()
   const history = useHistory()
-  const { characterData, setCharacterData} = useContext(CharacterDataContext)
+  const { characterData, setCharacterData } = useContext(CharacterDataContext)
+  const [ displayedCombos, setDisplayedCombos ] = useState([])
+
+  useEffect(() => {
+    handleGameSelection(game)
+  }, [game, selectedGame, dataRetrieved])
+
+  useEffect(() => {
+    if (characterData) {
+      setDisplayedCombos(characterData.combos)
+    }
+  }, [characterData])
+
+  // function getFilters(obj) {
+  //   return obj
+  // }
 
   return (
     <div className = 'character-page' >
       {
         characterData &&
           <>
+            <ComboDetails
+              characterData = {characterData}
+              selectedGame = {selectedGame}
+              setDisplayedCombos = {setDisplayedCombos}
+            />
             <div className = "combos-container">
               <button
                 className = 'upload-button'
                 onClick = {() => history.push(`/${game}/${character}/upload`)}
               >+</button>
               {
-                characterData.combos.map((c) => {
+                displayedCombos.map((c) => {
                   console.log(c)
                   return (
                     <Combo

@@ -71,6 +71,10 @@ function UploadPage( { dataRetrieved, selectedGame, handleGameSelection  } ) {
       })
   }
 
+  function getComboDetails(starter, meterless, location, hit_type, damage, author_notes, youtube_id) {
+    
+  }
+
   function addCombo(newCombo) {
     const updatedCombos = [...characterData.combos, newCombo]
     setCharacterData({...characterData, combos: updatedCombos})
