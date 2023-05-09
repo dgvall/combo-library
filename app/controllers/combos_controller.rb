@@ -1,4 +1,15 @@
 class CombosController < ApplicationController
+  skip_before_action :authorize, only: :filter_combos
+
+  def filter_combos
+    character = Character.find(params[:character_id])
+    combos = character.combos
+
+    if params[:filters].present?
+      filtered_combos = combos.where(filter_params)
+      render json: filtered_combos
+    end
+  end
 
   def create
     character = Character.find(params[:character_id])
@@ -17,5 +28,9 @@ class CombosController < ApplicationController
 
   def combo_params
     params.require(:combo).permit(:inputs, :youtube_id, :starter, :location, :hit_type, :meterless, :author_notes, :character_id, :damage)
+  end
+
+  def filter_params
+    params.require(:filters).permit(:starter, :hit_type, :meterless, :location)
   end
 end

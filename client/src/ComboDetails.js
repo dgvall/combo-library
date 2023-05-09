@@ -8,6 +8,7 @@ function ComboDetails({characterData, selectedGame, setDisplayedCombos}) {
   const [meterless, setMeterless] = useState("")
   const [location, setLocation] = useState("")
   const [hitType, setHitType] = useState("")
+  const [showUnfilter, setShowUnfilter] = useState(false)
 
   function getFilters() {
     let filters = {}
@@ -20,15 +21,12 @@ function ComboDetails({characterData, selectedGame, setDisplayedCombos}) {
     }
 
     Object.entries(obj).forEach(([key, value]) => {
-
       if( !!value ) {
         filters[key] = value
       }
-
       if ( value === 'False') {
         filters[key] = false
       }
-
       else if (value === 'True') {
         filters[key] = true
       }
@@ -38,8 +36,28 @@ function ComboDetails({characterData, selectedGame, setDisplayedCombos}) {
 
   function handleFilter() {
     const filters = getFilters()
-    console.log(filters)
-    // fetch('/')
+    const params = {
+      filters: filters,
+    }
+
+    if(Object.keys(filters).length > 0) {
+      fetch(`/characters/${characterData.id}/filter_combos`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(params),
+      })
+        .then((r) => {
+          if (r.ok) {
+            r.json().then((data) => {
+              setShowUnfilter(true)
+              setDisplayedCombos(data)
+            })
+          }
+        })
+    }
+    else setDisplayedCombos(characterData.combos)
   }
 
   return (
@@ -84,6 +102,18 @@ function ComboDetails({characterData, selectedGame, setDisplayedCombos}) {
                   className = "filter-button"
                   onClick = {handleFilter}
                 >Filter</button>
+
+                {
+                  showUnfilter &&
+                  <button onClick = {() => {
+                    setStarter("")
+                    setMeterless("")
+                    setLocation("")
+                    setHitType("")
+                    setDisplayedCombos(characterData.combos)
+                    setShowUnfilter(false)
+                  }}>Remove Filters</button>
+                }
                 {/* <div className = 'input-container'>
                   <h3>Damage</h3>
                   <input

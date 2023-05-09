@@ -11,6 +11,7 @@ function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection }) {
   const history = useHistory()
   const { characterData, setCharacterData } = useContext(CharacterDataContext)
   const [ displayedCombos, setDisplayedCombos ] = useState([])
+  
 
   useEffect(() => {
     handleGameSelection(game)
@@ -36,6 +37,7 @@ function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection }) {
               selectedGame = {selectedGame}
               setDisplayedCombos = {setDisplayedCombos}
             />
+
             <div className = "combos-container">
               <button
                 className = 'upload-button'

@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   # resources :combos
   get "/characters/:character_slug", to: "characters#show"
 
+  post "/characters/:character_id/filter_combos", to: "combos#filter_combos"
+
   resources :characters do
     resources :combos, only: [:create]
   end
