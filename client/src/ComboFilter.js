@@ -1,9 +1,9 @@
 import React, {useState} from 'react'
-import './ComboDetails.css'
+import './ComboFilter.css'
 
 import DropdownMenu from './DropdownMenu'
 
-function ComboDetails({characterData, selectedGame, setDisplayedCombos}) {
+function ComboFilter({characterData, selectedGame, setDisplayedCombos}) {
   const [starter, setStarter] = useState("")
   const [meterless, setMeterless] = useState("")
   const [location, setLocation] = useState("")
@@ -24,10 +24,10 @@ function ComboDetails({characterData, selectedGame, setDisplayedCombos}) {
       if( !!value ) {
         filters[key] = value
       }
-      if ( value === 'False') {
+      if ( value === 'False' ) {
         filters[key] = false
       }
-      else if (value === 'True') {
+      if ( value === 'True' ) {
         filters[key] = true
       }
     })
@@ -60,12 +60,21 @@ function ComboDetails({characterData, selectedGame, setDisplayedCombos}) {
     else setDisplayedCombos(characterData.combos)
   }
 
+  function handleUnfilter() {
+    setStarter("")
+    setMeterless("")
+    setLocation("")
+    setHitType("")
+    setDisplayedCombos(characterData.combos)
+    setShowUnfilter(false)
+  }
+
   return (
-    <div className = 'combo-details-container'>
+    <div>
       {
         characterData&&selectedGame
         ?
-          <div>
+          <div className = 'combo-filter'>
 
             <h2>Combo Filter</h2>
                 <h3>{characterData.name} - {selectedGame.name}</h3>
@@ -105,14 +114,10 @@ function ComboDetails({characterData, selectedGame, setDisplayedCombos}) {
 
                 {
                   showUnfilter &&
-                  <button onClick = {() => {
-                    setStarter("")
-                    setMeterless("")
-                    setLocation("")
-                    setHitType("")
-                    setDisplayedCombos(characterData.combos)
-                    setShowUnfilter(false)
-                  }}>Remove Filters</button>
+                  <button
+                    className = 'filter-button'
+                    onClick = {handleUnfilter}
+                  >Remove Filters</button>
                 }
                 {/* <div className = 'input-container'>
                   <h3>Damage</h3>
@@ -138,4 +143,4 @@ function ComboDetails({characterData, selectedGame, setDisplayedCombos}) {
   )
 }
 
-export default ComboDetails
+export default ComboFilter

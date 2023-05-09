@@ -4,14 +4,13 @@ import { CharacterDataContext } from './context/CharacterData'
 import Combo from './Combo'
 
 import './CharacterPage.css'
-import ComboDetails from './ComboDetails'
+import ComboFilter from './ComboFilter'
 
 function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection }) {
   const { game, character } = useParams()
   const history = useHistory()
   const { characterData, setCharacterData } = useContext(CharacterDataContext)
   const [ displayedCombos, setDisplayedCombos ] = useState([])
-  
 
   useEffect(() => {
     handleGameSelection(game)
@@ -32,11 +31,13 @@ function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection }) {
       {
         characterData &&
           <>
-            <ComboDetails
+          <div className = 'combos-filter-container'>
+            <ComboFilter
               characterData = {characterData}
               selectedGame = {selectedGame}
               setDisplayedCombos = {setDisplayedCombos}
             />
+          </div>
 
             <div className = "combos-container">
               <button

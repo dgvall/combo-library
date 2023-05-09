@@ -1,0 +1,11 @@
+.filter-button {
+  font-size: 1.2rem;
+  border: solid black 2px;
+  margin-top: 1vh;
+}
+
+.combo-filter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

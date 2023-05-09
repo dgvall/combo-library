@@ -2,19 +2,25 @@
   display: flex;
   justify-content: center;
 }
-
+.combos-filter-container {
+  display: flex;
+  justify-content: center;
+  border: solid red 2px;
+  width: 20vw;
+  max-width: 33vw;
+}
 .character-display {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   border: solid red 2px;
-  max-width: 33vw;
+  max-width: 20vw;
 }
 
 .character-display h2 {
   display: flex;
-  font-size: 5rem;
+  font-size: 2vw;
   margin: none;
   padding: none;
   border: solid red 2px;
@@ -22,7 +28,7 @@
 
 .character-display img {
   display: flex;
-  max-width: 30vw;
+  max-width: 20vw;
   border: solid red 2px;
 }
 
@@ -40,10 +46,10 @@
   align-items: center;
   font-size: 2rem;
   border: solid black 3px;
-  width: 3vw;
+  /* width: 3vw; */
   padding-left: 50px;
   padding-right: 50px;
   padding-top: 7px;
   padding-bottom: 7px;
-  margin-left: 92%
+  margin-left: 45vw;
 }
