@@ -3,7 +3,7 @@ class Combo < ApplicationRecord
   belongs_to :user
   
   has_many :user_bookmarks, dependent: :destroy
-  has_many :bookmarked_users, through: :user_bookmarks, source: :users
+  has_many :bookmarked_users, through: :user_bookmarks, source: :user
 
   validates :inputs, presence: true
   validates :youtube_id, presence: true

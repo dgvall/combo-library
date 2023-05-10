@@ -3,7 +3,7 @@ class User < ApplicationRecord
   has_many :combos
   
   has_many :user_bookmarks
-  has_many :bookmarked_combos, through: :users_bookmarks, source: :combos
+  has_many :bookmarked_combos, through: :user_bookmarks, source: :combo
 
   validates :username, presence: true, uniqueness: {case_sensitive: false}
   validates :password_digest, presence: true

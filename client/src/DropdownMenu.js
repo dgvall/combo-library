@@ -3,7 +3,7 @@ import React from 'react'
 import './DropdownMenu.css'
 
 function DropdownMenu( {options, value, setValue, placeholder, title} ) {
-  console.log(options)
+ 
   return (
     <div className = 'dropdown-container'>
       <h3>{title}</h3>

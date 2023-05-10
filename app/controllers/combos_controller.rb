@@ -17,6 +17,7 @@ class CombosController < ApplicationController
     combo.user = @current_user
 
     if combo.save
+      @current_user.bookmarked_combos << combo
       render json: combo, status: :created
     else
       render json: {errors: combo.errors.full_messages}, status: :unprocessable_entity

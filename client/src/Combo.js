@@ -8,7 +8,6 @@ import './Combo.css'
 function Combo( { id, imageUrls, youtubeId, authorNotes} ) {
   const [showVideo, setShowVideo] = useState(false)
   const [showNotes, setShowNotes] = useState(false)
-  console.log(imageUrls)
   return (
     <div className = 'combo-container'>
       <div className = 'buttons-container'>

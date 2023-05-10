@@ -1,7 +1,7 @@
 import React, {useContext, useState, useEffect} from 'react'
 import { UserContext } from './context/user'
 import { CharacterDataProvider } from './context/CharacterData'
-import { Switch, Route, Router } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 
 import NavBar from './NavBar'
 import Home from './Home'
@@ -37,14 +37,14 @@ function App() {
     })
   }, [])
 
-  console.log(user)
-
   function handleGameSelection(slug) {
     if (dataRetrieved) {
       const game = games.find((g) => g.slug === slug)
       setSelectedGame(game)
     }
   }
+
+  console.log(user)
 
   return (
     <div>
@@ -84,6 +84,17 @@ function App() {
         <Route exact path = '/:game/:character/upload'>
           <CharacterDataProvider>
             <UploadPage
+              handleGameSelection = {handleGameSelection}
+              selectedGame = {selectedGame}
+              dataRetrieved = {dataRetrieved}
+            />
+          </CharacterDataProvider>
+        </Route>
+
+        <Route exact path = '/:game/:character/:comboId'>
+          <CharacterDataProvider>
+            <UploadPage
+              isEdit = {true}
               handleGameSelection = {handleGameSelection}
               selectedGame = {selectedGame}
               dataRetrieved = {dataRetrieved}

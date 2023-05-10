@@ -46,7 +46,6 @@ function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection }) {
               >+</button>
               {
                 displayedCombos.map((c) => {
-                  console.log(c)
                   return (
                     <Combo
                       key = {c.id}

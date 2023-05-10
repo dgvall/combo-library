@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react'
+import { UserContext } from './context/user'
 import { CharacterDataContext } from './context/CharacterData'
 import { useHistory, useParams} from 'react-router-dom'
 import YouTube from 'react-youtube'
@@ -8,10 +9,13 @@ import Icon from './Icon'
 
 import './UploadPage.css'
 
-function UploadPage( { dataRetrieved, selectedGame, handleGameSelection  } ) {
+function UploadPage( { dataRetrieved, selectedGame, handleGameSelection, isEdit  } ) {
   const history = useHistory()
   const { characterData, setCharacterData} = useContext(CharacterDataContext)
-  const { game, character } = useParams()
+  const { user, setUser } = useContext(UserContext)
+  const { game, character, comboId } = useParams()
+  console.log(user)
+  
 
   const [starter, setStarter] = useState("")
   const [meterless, setMeterless] = useState(false)
@@ -25,14 +29,20 @@ function UploadPage( { dataRetrieved, selectedGame, handleGameSelection  } ) {
   const [inputs, setInputs] = useState("")
   const [errors, setErrors] = useState([])
 
+  // console.log(comboId)
 
   useEffect(() => {
     handleGameSelection(game)
   }, [game, selectedGame, dataRetrieved])
 
+  useEffect(() => {
+    if(isEdit) {
+      
+    }
+  }, [])
+
   // console.log(selectedGame)
   // console.log(characterData)
-  console.log(inputs)
 
   function handleSubmit(e) {
     e.preventDefault()
@@ -118,9 +128,6 @@ function UploadPage( { dataRetrieved, selectedGame, handleGameSelection  } ) {
     setImageUrls([])
     setInputs("")
   }
-
-  console.log(characterData)
-  console.log(starter)
   return (
     <div className = 'upload-combo-page'>
       {
