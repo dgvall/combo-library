@@ -43,20 +43,20 @@ function UploadPage( { dataRetrieved, selectedGame, handleGameSelection, isEdit 
         // checks if comboId is uploaded by this user
         if (foundId) {
           let foundCharacter = user.bookmarks.find((b) => b.character.slug == character)
-          console.log(foundCharacter)
           if (foundCharacter) {
             let foundCombo = foundCharacter.combos.find((c) => c.id == comboId)
-            console.log(foundCombo)
-            setStarter(foundCombo.starter)
-            setMeterless(foundCombo.meterless)
-            setLocation(foundCombo.location)
-            setHitType(foundCombo.hit_type)
-            setDamage(foundCombo.damage)
-            setAuthorNotes(foundCombo.author_notes)
-            setYoutubeInput(foundCombo.youtube_id)
-            setYoutubeId(foundCombo.youtube_id)
-            setInputs(foundCombo.inputs)
-            setImageUrls(foundCombo.image_urls)
+            if (foundCombo) {
+              setStarter(foundCombo.starter)
+              setMeterless(foundCombo.meterless)
+              setLocation(foundCombo.location)
+              setHitType(foundCombo.hit_type)
+              setDamage(foundCombo.damage)
+              setAuthorNotes(foundCombo.author_notes)
+              setYoutubeInput(foundCombo.youtube_id)
+              setYoutubeId(foundCombo.youtube_id)
+              setInputs(foundCombo.inputs)
+              setImageUrls(foundCombo.image_urls)
+            }
           }
         }
       }

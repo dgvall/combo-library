@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { useParams, useHistory } from 'react-router-dom'
 import { CharacterDataContext } from './context/CharacterData'
+import { UserContext } from './context/user'
 import Combo from './Combo'
 
 import './CharacterPage.css'
@@ -10,6 +11,7 @@ function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection }) {
   const { game, character } = useParams()
   const history = useHistory()
   const { characterData, setCharacterData } = useContext(CharacterDataContext)
+  const { user, setUser } = useContext(UserContext)
   const [ displayedCombos, setDisplayedCombos ] = useState([])
 
   useEffect(() => {
@@ -21,6 +23,10 @@ function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection }) {
       setDisplayedCombos(characterData.combos)
     }
   }, [characterData])
+
+  function handleClickEdit(comboId) {
+    history.push(`/${game}/${character}/${comboId}`)
+  }
 
   // function getFilters(obj) {
   //   return obj
@@ -46,6 +52,12 @@ function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection }) {
               >+</button>
               {
                 displayedCombos.map((c) => {
+                  let canEdit = false
+                  if (user) {
+                    if (c.user_id == user.id) {
+                      canEdit = true
+                    }
+                  }
                   return (
                     <Combo
                       key = {c.id}
@@ -53,6 +65,8 @@ function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection }) {
                       imageUrls = {c.image_urls}
                       youtubeId = {c.youtube_id}
                       authorNotes = {c.author_notes}
+                      canEdit = {canEdit}
+                      handleClickEdit = {handleClickEdit}
                     />
                   )
                 })

@@ -5,7 +5,7 @@ import Icon from './Icon'
 
 import './Combo.css'
 
-function Combo( { id, imageUrls, youtubeId, authorNotes} ) {
+function Combo( { id, imageUrls, youtubeId, authorNotes, canEdit, handleClickEdit} ) {
   const [showVideo, setShowVideo] = useState(false)
   const [showNotes, setShowNotes] = useState(false)
   return (
@@ -49,7 +49,12 @@ function Combo( { id, imageUrls, youtubeId, authorNotes} ) {
       }
 
       <div className = 'buttons-container'>
-        <button>⚙️</button>
+        {
+          canEdit &&
+          <button
+            onClick = {() => handleClickEdit(id)}
+          >⚙️</button>
+        }
         <button>🔖</button>
       </div>
     </div>
