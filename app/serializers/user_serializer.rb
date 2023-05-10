@@ -7,8 +7,14 @@ class UserSerializer < ActiveModel::Serializer
     object.bookmarked_combos.group_by(&:character).map do |character, combos|
       {
         character: character,
-        combos: combos
+        combos: serialize_combos(combos)
       }
     end
+  end
+
+  private
+
+  def serialize_combos(combos)
+    ActiveModelSerializers::SerializableResource.new(combos, each_serializer: ComboSerializer)
   end
 end

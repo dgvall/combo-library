@@ -22,7 +22,19 @@ class CombosController < ApplicationController
     else
       render json: {errors: combo.errors.full_messages}, status: :unprocessable_entity
     end
+  end
 
+  def update
+    combo = Combo.find(params[:id])
+    if combo.user_id == @current_user.id
+      if combo.update(combo_params)
+        render json: combo, status: :ok
+      else
+        render json: {errors: combo.errors.full_messages}, status: :unprocessable_entity
+      end
+    else
+      render json: {errors: ["Not Authorized"]}, status: :unauthorized
+    end
   end
 
   private

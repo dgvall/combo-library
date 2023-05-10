@@ -45,7 +45,7 @@ function App() {
   }
 
   if (user) {
-    console.log(user.bookmarks)
+    console.log(user)
   }
 
   return (

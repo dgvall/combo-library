@@ -14,7 +14,6 @@ function UploadPage( { dataRetrieved, selectedGame, handleGameSelection, isEdit 
   const { characterData, setCharacterData} = useContext(CharacterDataContext)
   const { user, setUser } = useContext(UserContext)
   const { game, character, comboId } = useParams()
-  console.log(user)
   
 
   const [starter, setStarter] = useState("")
@@ -36,13 +35,33 @@ function UploadPage( { dataRetrieved, selectedGame, handleGameSelection, isEdit 
   }, [game, selectedGame, dataRetrieved])
 
   useEffect(() => {
+    // checks if on edit page
     if(isEdit) {
-      
+      // checks if logged in
+      if(user) {
+        let foundId = user.combo_ids.find((id) => id == comboId)
+        // checks if comboId is uploaded by this user
+        if (foundId) {
+          let foundCharacter = user.bookmarks.find((b) => b.character.slug == character)
+          console.log(foundCharacter)
+          if (foundCharacter) {
+            let foundCombo = foundCharacter.combos.find((c) => c.id == comboId)
+            console.log(foundCombo)
+            setStarter(foundCombo.starter)
+            setMeterless(foundCombo.meterless)
+            setLocation(foundCombo.location)
+            setHitType(foundCombo.hit_type)
+            setDamage(foundCombo.damage)
+            setAuthorNotes(foundCombo.author_notes)
+            setYoutubeInput(foundCombo.youtube_id)
+            setYoutubeId(foundCombo.youtube_id)
+            setInputs(foundCombo.inputs)
+            setImageUrls(foundCombo.image_urls)
+          }
+        }
+      }
     }
-  }, [])
-
-  // console.log(selectedGame)
-  // console.log(characterData)
+  }, [user, character, comboId])
 
   function handleSubmit(e) {
     e.preventDefault()
@@ -60,29 +79,45 @@ function UploadPage( { dataRetrieved, selectedGame, handleGameSelection, isEdit 
     }
     console.log(comboObj)
 
-    fetch(`/characters/${characterData.id}/combos`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(comboObj)
-    })
-      .then((r) => {
-        if (r.ok) {
-          r.json().then((data) => {
-            // add combo to characterData state, still need to add to user bookmark state
-            addCombo(data)
-            history.push(`/${game}/${character}`)
-          })
-        }
-        else {
-          r.json().then((error) => setErrors(error.errors))
-        }
-      })
-  }
+    if (isEdit) {
 
-  function getComboDetails(starter, meterless, location, hit_type, damage, author_notes, youtube_id) {
-    
+      fetch(`/characters/${characterData.id}/combos/${comboId}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(comboObj)
+      })
+        .then((r) => {
+          if(r.ok) {
+            r.json().then((data) => console.log(data))
+          }
+          else {
+            r.json().then((error) => setErrors(error.errors))
+          }
+        })
+    }
+    else {
+      fetch(`/characters/${characterData.id}/combos`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(comboObj)
+      })
+        .then((r) => {
+          if (r.ok) {
+            r.json().then((data) => {
+              // add combo to characterData state, still need to add to user bookmark state
+              addCombo(data)
+              history.push(`/${game}/${character}`)
+            })
+          }
+          else {
+            r.json().then((error) => setErrors(error.errors))
+          }
+        })
+    }
   }
 
   function addCombo(newCombo) {
@@ -101,6 +136,8 @@ function UploadPage( { dataRetrieved, selectedGame, handleGameSelection, isEdit 
     width: '320vw', 
     height: '180vh', 
   }
+
+  console.log(inputs)
 
   function handleClick(src, name) {
     console.log(src)
