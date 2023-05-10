@@ -4,8 +4,11 @@ class UserSerializer < ActiveModel::Serializer
   # has_many :bookmarked_combos
 
   def bookmarks
-    object.bookmarked_combos.group_by(&:character)
+    object.bookmarked_combos.group_by(&:character).map do |character, combos|
+      {
+        character: character,
+        combos: combos
+      }
+    end
   end
-
-  
 end

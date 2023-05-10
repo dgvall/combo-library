@@ -44,7 +44,9 @@ function App() {
     }
   }
 
-  console.log(user)
+  if (user) {
+    console.log(user.bookmarks)
+  }
 
   return (
     <div>
