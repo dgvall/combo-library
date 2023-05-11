@@ -132,7 +132,7 @@ function UploadPage( { dataRetrieved, selectedGame, handleGameSelection, isEdit 
     const updatedComboIds = [...user.combo_ids, newCombo.id]
     const updatedBookmarks = user.bookmarks.map((b) => {
       if (b.character.slug === character) {
-        b.combos = [...b.combos, newCombo]
+        b.combos = [newCombo, ...b.combos]
         return b
       } else return b
     })
@@ -141,14 +141,29 @@ function UploadPage( { dataRetrieved, selectedGame, handleGameSelection, isEdit 
   }
 
   function updateCombo(newCombo) {
+    // update characterData state
     const updatedCombos = characterData.combos.map((c) => {
       if (c.id === newCombo.id) {
         return newCombo
       }
       else return c
     })
-
     setCharacterData({...characterData, combos: updatedCombos})
+
+    // update user state
+    const updatedBookmarks = user.bookmarks.map((b) => {
+      if (b.character.slug === character) {
+        const updatedCombos = b.combos.map((c) => {
+          if (c.id === newCombo.id) {
+            return newCombo
+          }
+          else return c
+        })
+        return {...b, combos: updatedCombos}
+      } else return b
+    })
+    const updatedUser = {...user, bookmarks: updatedBookmarks}
+    setUser(updatedUser)
   }
 
   function handleDamageChange(e) {
