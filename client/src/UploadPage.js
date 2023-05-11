@@ -90,7 +90,10 @@ function UploadPage( { dataRetrieved, selectedGame, handleGameSelection, isEdit 
       })
         .then((r) => {
           if(r.ok) {
-            r.json().then((data) => console.log(data))
+            r.json().then((data) => {
+              updateCombo(data)
+              history.push(`/${game}/${character}`)
+            })
           }
           else {
             r.json().then((error) => setErrors(error.errors))
@@ -121,7 +124,30 @@ function UploadPage( { dataRetrieved, selectedGame, handleGameSelection, isEdit 
   }
 
   function addCombo(newCombo) {
-    const updatedCombos = [...characterData.combos, newCombo]
+    // update characterData state
+    const updatedCombos = [newCombo, ...characterData.combos]
+    setCharacterData({...characterData, combos: updatedCombos})
+
+    // update user state
+    const updatedComboIds = [...user.combo_ids, newCombo.id]
+    const updatedBookmarks = user.bookmarks.map((b) => {
+      if (b.character.slug === character) {
+        b.combos = [...b.combos, newCombo]
+        return b
+      } else return b
+    })
+    const updatedUser = {...user, combo_ids: updatedComboIds, bookmarks: updatedBookmarks}
+    setUser(updatedUser)
+  }
+
+  function updateCombo(newCombo) {
+    const updatedCombos = characterData.combos.map((c) => {
+      if (c.id === newCombo.id) {
+        return newCombo
+      }
+      else return c
+    })
+
     setCharacterData({...characterData, combos: updatedCombos})
   }
 
@@ -137,10 +163,7 @@ function UploadPage( { dataRetrieved, selectedGame, handleGameSelection, isEdit 
     height: '180vh', 
   }
 
-  console.log(inputs)
-
   function handleClick(src, name) {
-    console.log(src)
     setImageUrls(() => [...imageUrls, src])
     if (inputs.length > 0) {
       setInputs(() => `${inputs} ${name}`)
