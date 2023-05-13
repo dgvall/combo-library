@@ -27,7 +27,10 @@ function ComboForm( { dataRetrieved, selectedGame, handleGameSelection, isEdit  
   const [inputs, setInputs] = useState("")
   const [errors, setErrors] = useState([])
 
-  // console.log(comboId)
+
+  useEffect(() => {
+    console.log(user)
+  }, [user])
 
   useEffect(() => {
     handleGameSelection(game)
@@ -110,7 +113,6 @@ function ComboForm( { dataRetrieved, selectedGame, handleGameSelection, isEdit  
         .then((r) => {
           if (r.ok) {
             r.json().then((data) => {
-              // add combo to characterData state, still need to add to user bookmark state
               addCombo(data)
               history.push(`/${game}/${character}`)
             })
@@ -122,10 +124,42 @@ function ComboForm( { dataRetrieved, selectedGame, handleGameSelection, isEdit  
     }
   }
 
+  function handleDelete() {
+    fetch(`/characters/${characterData.id}/combos/${comboId}`, {
+      method: "DELETE",
+    })
+      .then((r) => {
+        if (r.ok) {
+          deleteCombo()
+          history.push(`/${game}/${character}`)
+        }
+        else {
+          r.json().then((error) => setErrors(error.errors))
+        }
+      })
+  }
+
+  function deleteCombo() {
+    // update characterData state
+    const updatedCharacterCombos = characterData.combos.filter((c) => c.id != comboId)
+    setCharacterData({...characterData, combos: updatedCharacterCombos})
+
+    // update user state
+    const updatedComboIds = user.combo_ids.filter((c) => c != comboId)
+    const updatedBookmarks = user.bookmarks.map((b) => {
+      if (b.character.slug === character) {
+        const updatedCombos = b.combos.filter((c) => c.id != comboId)
+        return {...b, combos: updatedCombos}
+      } else return b
+    })
+    const updatedUser = {...user, combo_ids: updatedComboIds, bookmarks: updatedBookmarks}
+    setUser(updatedUser)
+  }
+
   function addCombo(newCombo) {
     // update characterData state
-    const updatedCombos = [newCombo, ...characterData.combos]
-    setCharacterData({...characterData, combos: updatedCombos})
+    const updatedCharacterCombos = [newCombo, ...characterData.combos]
+    setCharacterData({...characterData, combos: updatedCharacterCombos})
 
     // update user state
     const updatedComboIds = [...user.combo_ids, newCombo.id]
@@ -141,13 +175,13 @@ function ComboForm( { dataRetrieved, selectedGame, handleGameSelection, isEdit  
 
   function updateCombo(newCombo) {
     // update characterData state
-    const updatedCombos = characterData.combos.map((c) => {
+    const updatedCharacterCombos = characterData.combos.map((c) => {
       if (c.id === newCombo.id) {
         return newCombo
       }
       else return c
     })
-    setCharacterData({...characterData, combos: updatedCombos})
+    setCharacterData({...characterData, combos: updatedCharacterCombos})
 
     // update user state
     const updatedBookmarks = user.bookmarks.map((b) => {
@@ -322,12 +356,26 @@ function ComboForm( { dataRetrieved, selectedGame, handleGameSelection, isEdit  
                     })
                   }
                 </ul>
-                <button
-                onClick = {handleSubmit}
-                className = 'submit-combo-button'
-                >
-                  Submit
-                </button>
+                {
+                  isEdit
+                  ?
+                    <div className = 'button-column'>
+                      <button
+                        onClick = {handleDelete}
+                        className = 'delete-combo-button'
+                      >DELETE</button>
+
+                      <button
+                        onClick = {handleSubmit}
+                        className = 'submit-combo-button'
+                      >Edit</button>
+                    </div>
+                  :
+                    <button
+                      onClick = {handleSubmit}
+                      className = 'submit-combo-button'
+                    >Upload</button>
+                }
               </div>
             </div>
           </>

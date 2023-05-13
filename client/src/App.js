@@ -44,10 +44,6 @@ function App() {
     }
   }
 
-  if (user) {
-    console.log(user)
-  }
-
   return (
     <div>
       <NavBar />

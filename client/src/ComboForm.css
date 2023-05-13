@@ -56,6 +56,11 @@
   align-items: center
 }
 
+.button-column {
+  display: flex;
+  flex-direction: column;
+}
+
 .submit {
   display: flex;
   flex-direction: column;
@@ -66,6 +71,13 @@
   font-size: 2rem;
   border: solid black 2px;
   margin: 1em;
+}
+
+.delete-combo-button {
+  font-size: 2rem;
+  border: solid red 2px;
+  color: red;
+  margin-top: 1em;
 }
 
 .input-container {

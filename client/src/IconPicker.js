@@ -6,7 +6,6 @@ import ClickableIcon from './ClickableIcon'
 
 
 function IconPicker({extraInputs, buttonInputs, motionInputs, spacebarUrl, handleClick, handleSpace}) {
-  console.log(extraInputs)
 
   const directionInputs = [
     {

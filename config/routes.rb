@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   post "/characters/:character_id/filter_combos", to: "combos#filter_combos"
 
   resources :characters do
-    resources :combos, only: [:create, :update]
+    resources :combos, only: [:create, :update, :destroy]
   end
 
   resources :games, only: [:index]

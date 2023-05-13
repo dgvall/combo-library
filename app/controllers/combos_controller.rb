@@ -37,6 +37,16 @@ class CombosController < ApplicationController
     end
   end
 
+  def destroy
+    combo = Combo.find(params[:id])
+    if combo.user_id == @current_user.id
+      combo.destroy
+      head :no_content
+    else
+      render json: {errors: ["Not Authorized"]}, status: :unauthorized
+    end
+  end
+
   private
 
   def combo_params
