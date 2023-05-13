@@ -7,14 +7,13 @@ import IconPicker from './IconPicker'
 import DropdownMenu from './DropdownMenu'
 import Icon from './Icon'
 
-import './UploadPage.css'
+import './ComboForm.css'
 
-function UploadPage( { dataRetrieved, selectedGame, handleGameSelection, isEdit  } ) {
+function ComboForm( { dataRetrieved, selectedGame, handleGameSelection, isEdit  } ) {
   const history = useHistory()
   const { characterData, setCharacterData} = useContext(CharacterDataContext)
   const { user, setUser } = useContext(UserContext)
   const { game, character, comboId } = useParams()
-  
 
   const [starter, setStarter] = useState("")
   const [meterless, setMeterless] = useState(false)
@@ -338,4 +337,4 @@ function UploadPage( { dataRetrieved, selectedGame, handleGameSelection, isEdit 
   )
 }
 
-export default UploadPage
+export default ComboForm

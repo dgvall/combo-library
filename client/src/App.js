@@ -10,7 +10,7 @@ import Login from './Login'
 import GamesPage from './GamesPage'
 import CharactersPage from './CharactersPage'
 import CharacterPage from './CharacterPage'
-import UploadPage from './UploadPage'
+import ComboForm from './ComboForm'
 
 import './App.css'
 
@@ -85,7 +85,7 @@ function App() {
             </Route>
         <Route exact path = '/:game/:character/upload'>
           <CharacterDataProvider>
-            <UploadPage
+            <ComboForm
               handleGameSelection = {handleGameSelection}
               selectedGame = {selectedGame}
               dataRetrieved = {dataRetrieved}
@@ -95,7 +95,7 @@ function App() {
 
         <Route exact path = '/:game/:character/:comboId'>
           <CharacterDataProvider>
-            <UploadPage
+            <ComboForm
               isEdit = {true}
               handleGameSelection = {handleGameSelection}
               selectedGame = {selectedGame}
