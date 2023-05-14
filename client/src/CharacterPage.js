@@ -28,10 +28,6 @@ function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection }) {
     history.push(`/${game}/${character}/${comboId}`)
   }
 
-  // function getFilters(obj) {
-  //   return obj
-  // }
-
   return (
     <div className = 'character-page' >
       {

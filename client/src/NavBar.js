@@ -42,7 +42,7 @@ function NavBar() {
           <div className = 'navbar-right'>
             <NavLink
               className = 'navbar-header'
-              exact to = {`/bookmarks/${user.id}`}
+              exact to = {`/${user.username}/bookmarks/`}
             >BOOKMARKS</NavLink>
 
             <NavLink

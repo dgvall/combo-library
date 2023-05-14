@@ -1,9 +1,13 @@
 class CharacterSerializer < ActiveModel::Serializer
-  attributes :id, :starters, :image_url, :name, :slug, :inputs
+  attributes :id, :starters, :image_url, :name, :slug, :inputs, :combos
 
   has_many :inputs
+  has_many :combos
+  # belongs_to :game
 
-  belongs_to :game
+    def hello
+      "hello"
+    end
     def starters
       object.starters.split(" ")
     end
@@ -12,6 +16,4 @@ class CharacterSerializer < ActiveModel::Serializer
       inputs = object.inputs.group_by(&:input_type)
       inputs
     end
-
-  has_many :combos
 end

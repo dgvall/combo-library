@@ -67,6 +67,16 @@ function App() {
             handleGameSelection = {handleGameSelection}
             selectedGame = {selectedGame}
             dataRetrieved = {dataRetrieved}
+            isBookmarks = {false}
+          />
+        </Route>
+
+        <Route exact path = '/:username/bookmarks'>
+          <CharactersPage
+            handleGameSelection = {handleGameSelection}
+            selectedGame = {selectedGame}
+            dataRetrieved = {dataRetrieved}
+            isBookmarks = {true}
           />
         </Route>
 
@@ -77,8 +87,9 @@ function App() {
               selectedGame = {selectedGame}
               dataRetrieved = {dataRetrieved}
             />
-              </CharacterDataProvider>
-            </Route>
+          </CharacterDataProvider>
+        </Route>
+
         <Route exact path = '/:game/:character/upload'>
           <CharacterDataProvider>
             <ComboForm

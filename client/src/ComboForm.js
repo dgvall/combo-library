@@ -27,11 +27,6 @@ function ComboForm( { dataRetrieved, selectedGame, handleGameSelection, isEdit  
   const [inputs, setInputs] = useState("")
   const [errors, setErrors] = useState([])
 
-
-  useEffect(() => {
-    console.log(user)
-  }, [user])
-
   useEffect(() => {
     handleGameSelection(game)
   }, [game, selectedGame, dataRetrieved])
