@@ -48,20 +48,58 @@ function App() {
     <div>
       <NavBar />
       <Switch>
+
         <Route exact path = '/home'>
           <Home />
         </Route>
+
         <Route exact path = '/signup'>
           <Signup />
         </Route>
+
         <Route exact path = '/login'>
           <Login />
         </Route>
+
         <Route exact path = '/games'>
           <GamesPage
             games = {games}
           />
         </Route>
+
+        <Route exact path = '/:username/bookmarks/:character'>
+          <CharacterDataProvider>
+            < CharacterPage
+              handleGameSelection = {handleGameSelection}
+              selectedGame = {selectedGame}
+              dataRetrieved = {dataRetrieved}
+              isBookmarks = {true}
+            />
+          </CharacterDataProvider>
+        </Route>
+
+        <Route exact path = '/:game/:character/upload'>
+          <CharacterDataProvider>
+            <ComboForm
+              isEdit = {false}
+              handleGameSelection = {handleGameSelection}
+              selectedGame = {selectedGame}
+              dataRetrieved = {dataRetrieved}
+            />
+          </CharacterDataProvider>
+        </Route>
+
+        <Route exact path = '/:game/:character/:comboId'>
+          <CharacterDataProvider>
+            <ComboForm
+              isEdit = {true}
+              handleGameSelection = {handleGameSelection}
+              selectedGame = {selectedGame}
+              dataRetrieved = {dataRetrieved}
+            />
+          </CharacterDataProvider>
+        </Route>
+        
         <Route exact path = '/:game'>
           <CharactersPage
             handleGameSelection = {handleGameSelection}
@@ -86,31 +124,10 @@ function App() {
               handleGameSelection = {handleGameSelection}
               selectedGame = {selectedGame}
               dataRetrieved = {dataRetrieved}
+              isBookmarks = {false}
             />
           </CharacterDataProvider>
         </Route>
-
-        <Route exact path = '/:game/:character/upload'>
-          <CharacterDataProvider>
-            <ComboForm
-              handleGameSelection = {handleGameSelection}
-              selectedGame = {selectedGame}
-              dataRetrieved = {dataRetrieved}
-            />
-          </CharacterDataProvider>
-        </Route>
-
-        <Route exact path = '/:game/:character/:comboId'>
-          <CharacterDataProvider>
-            <ComboForm
-              isEdit = {true}
-              handleGameSelection = {handleGameSelection}
-              selectedGame = {selectedGame}
-              dataRetrieved = {dataRetrieved}
-            />
-          </CharacterDataProvider>
-        </Route>
-       
       </Switch>
     </div>
   );

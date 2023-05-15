@@ -9,7 +9,7 @@ import Icon from './Icon'
 
 import './ComboForm.css'
 
-function ComboForm( { dataRetrieved, selectedGame, handleGameSelection, isEdit  } ) {
+function ComboForm( { dataRetrieved, selectedGame, handleGameSelection, isEdit } ) {
   const history = useHistory()
   const { characterData, setCharacterData} = useContext(CharacterDataContext)
   const { user, setUser } = useContext(UserContext)

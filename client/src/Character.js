@@ -3,12 +3,21 @@ import { useHistory } from 'react-router-dom'
 
 import './Character.css'
 
-function Character({ id, imageUrl, name, game, slug }) {
+function Character({ id, imageUrl, name, game, slug, isBookmarks, username }) {
   const history = useHistory()
+
+  function handleClick() {
+    if (isBookmarks) {
+      history.push(`/${username}/bookmarks/${slug}`)
+    }
+    else {
+      history.push(`/${game}/${slug}`)
+    }
+  }
   return (
     <div
       className = 'character'
-      onClick = {() => history.push(`/${game}/${slug}`)}
+      onClick = {handleClick}
     >
       <img 
         src = {imageUrl}

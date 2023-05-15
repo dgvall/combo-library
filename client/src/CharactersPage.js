@@ -6,7 +6,7 @@ import Character from './Character'
 import './CharactersPage.css'
 
 function CharactersPage({ dataRetrieved, selectedGame, handleGameSelection, isBookmarks }) {
-  const { game } = useParams()
+  const { game, username } = useParams()
   const { user, setUser } = useContext(UserContext)
 
   useEffect(() => {
@@ -24,7 +24,6 @@ function CharactersPage({ dataRetrieved, selectedGame, handleGameSelection, isBo
           {
             user&&
               user.bookmarks.map((b) => {
-                console.log(b)
                 return (
                   <Character
                     key = {b.character.id}
@@ -33,6 +32,8 @@ function CharactersPage({ dataRetrieved, selectedGame, handleGameSelection, isBo
                     name = {b.character.name}
                     slug = {b.character.slug}
                     game = {b.game.slug}
+                    isBookmarks = {isBookmarks}
+                    username = {username}
                   />
                 )
               })

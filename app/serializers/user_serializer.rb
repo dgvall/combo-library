@@ -8,7 +8,7 @@ class UserSerializer < ActiveModel::Serializer
       {
         character: serialize_characters(character),
         combos: serialize_combos(combos),
-        game: character.game
+        game: serialize_game(character.game)
       }
     end
   end
@@ -21,5 +21,9 @@ class UserSerializer < ActiveModel::Serializer
 
   def serialize_combos(combos)
     ActiveModelSerializers::SerializableResource.new(combos, each_serializer: ComboSerializer)
+  end
+
+  def serialize_game(game)
+    ActiveModelSerializers::SerializableResource.new(game, each_serializer: GameSerializer)
   end
 end
