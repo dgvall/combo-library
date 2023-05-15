@@ -3,7 +3,7 @@ import './ComboFilter.css'
 
 import DropdownMenu from './DropdownMenu'
 
-function ComboFilter({characterData, selectedGame, setDisplayedCombos}) {
+function ComboFilter({characterData, selectedGame, setDisplayedCombos, isBookmarks, combos, username, character}) {
   const [starter, setStarter] = useState("")
   const [meterless, setMeterless] = useState("")
   const [location, setLocation] = useState("")
@@ -41,23 +41,50 @@ function ComboFilter({characterData, selectedGame, setDisplayedCombos}) {
     }
 
     if(Object.keys(filters).length > 0) {
-      fetch(`/characters/${characterData.id}/filter_combos`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(params),
-      })
-        .then((r) => {
-          if (r.ok) {
-            r.json().then((data) => {
-              setShowUnfilter(true)
-              setDisplayedCombos(data)
-            })
-          }
+      if (!isBookmarks) {
+        fetch(`/characters/${characterData.id}/filter_combos`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(params),
         })
+          .then((r) => {
+            if (r.ok) {
+              r.json().then((data) => {
+                setShowUnfilter(true)
+                setDisplayedCombos(data)
+              })
+            }
+          })
+      }
+      else {
+        console.log("check bombos!")
+        fetch(`/users/${username}/characters/${character}/filter_bookmarked_combos`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(params),
+        })
+          .then((r) => {
+            if (r.ok) {
+              r.json().then((data) => {
+                setShowUnfilter(true)
+                setDisplayedCombos(data)
+              })
+            }
+          })
+      }
     }
-    else setDisplayedCombos(characterData.combos)
+    else {
+      if (!isBookmarks) {
+        setDisplayedCombos(characterData.combos)
+      }
+      else {
+        setDisplayedCombos(combos)
+      }
+    }
   }
 
   function handleUnfilter() {
@@ -65,7 +92,13 @@ function ComboFilter({characterData, selectedGame, setDisplayedCombos}) {
     setMeterless("")
     setLocation("")
     setHitType("")
-    setDisplayedCombos(characterData.combos)
+    if (!isBookmarks) {
+      setDisplayedCombos(characterData.combos)
+    }
+    else {
+      setDisplayedCombos(combos)
+    }
+    
     setShowUnfilter(false)
   }
 

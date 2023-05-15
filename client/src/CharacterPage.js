@@ -47,6 +47,15 @@ function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection, isBoo
     }
   }
 
+  function handleClickUpload() {
+    if (!isBookmarks) {
+      history.push(`/${game}/${character}/upload`)
+    }
+    else {
+      history.push(`/${bookmark.game.slug}/${character}/upload`)
+    }
+  }
+
   return (
     <>
     {
@@ -61,13 +70,17 @@ function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection, isBoo
               characterData = {bookmark.character}
               selectedGame = {bookmark.game}
               setDisplayedCombos = {setDisplayedCombos}
+              isBookmarks = {isBookmarks}
+              combos = {bookmark.combos}
+              character = {character}
+              username = {username}
             />
           </div>
 
             <div className = "combos-container">
               <button
                 className = 'upload-button'
-                onClick = {() => history.push(`/${game}/${character}/upload`)}
+                onClick = {handleClickUpload}
               >+</button>
               {
                 displayedCombos.map((c) => {

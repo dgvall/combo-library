@@ -9,10 +9,17 @@ Rails.application.routes.draw do
   get "/characters/:character_slug", to: "characters#show"
 
   post "/characters/:character_id/filter_combos", to: "combos#filter_combos"
+  post "/users/:username/characters/:character_slug/filter_bookmarked_combos", to: "user_bookmarks#filter_bookmarked_combos"
 
   resources :characters do
     resources :combos, only: [:create, :update, :destroy]
   end
+
+  # resources :users do 
+  #   resources :characters do
+  #     resources :user_bookmarks, only: [:show]
+  #   end
+  # end
 
   resources :games, only: [:index]
 
