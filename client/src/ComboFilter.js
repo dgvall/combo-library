@@ -79,7 +79,7 @@ function ComboFilter({characterData, selectedGame, setDisplayedCombos, isBookmar
     }
     else {
       if (!isBookmarks) {
-        setDisplayedCombos(characterData.combos)
+        setDisplayedCombos(combos)
       }
       else {
         setDisplayedCombos(combos)
@@ -92,13 +92,7 @@ function ComboFilter({characterData, selectedGame, setDisplayedCombos, isBookmar
     setMeterless("")
     setLocation("")
     setHitType("")
-    if (!isBookmarks) {
-      setDisplayedCombos(characterData.combos)
-    }
-    else {
-      setDisplayedCombos(combos)
-    }
-    
+    setDisplayedCombos(combos)
     setShowUnfilter(false)
   }
 

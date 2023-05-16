@@ -31,12 +31,13 @@ function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection, isBoo
     if (isBookmarks) {
       if (user) {
         const foundBookmark = user.bookmarks.find((b) => b.character.slug === character)
+        // think about setting this up
+        // setCharacterData(foundBookmark.character)
         setBookmark(foundBookmark)
         setDisplayedCombos(foundBookmark.combos)
-        console.log(user)
       }
     }
-  }, [user, character, username, game])
+  }, [user, character, username, game, characterData])
 
   function handleClickEdit(comboId) {
     if (!isBookmarks) {
@@ -89,7 +90,7 @@ function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection, isBoo
                     if (c.user_id == user.id) {
                       canEdit = true
                     }
-                  }
+                  } 
                   return (
                     <Combo
                       key = {c.id}
@@ -99,6 +100,7 @@ function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection, isBoo
                       authorNotes = {c.author_notes}
                       canEdit = {canEdit}
                       handleClickEdit = {handleClickEdit}
+                      isBookmarked = {true}
                     />
                   )
                 })
@@ -121,6 +123,10 @@ function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection, isBoo
               characterData = {characterData}
               selectedGame = {selectedGame}
               setDisplayedCombos = {setDisplayedCombos}
+              isBookmarks = {isBookmarks}
+              combos = {characterData.combos}
+              character = {character}
+              username = {username}
             />
           </div>
 
@@ -132,11 +138,19 @@ function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection, isBoo
               {
                 displayedCombos.map((c) => {
                   let canEdit = false
+                  let isBookmarked = false
                   if (user) {
                     if (c.user_id == user.id) {
                       canEdit = true
+                      isBookmarked = true
                     }
-                  }
+                    else {
+                      let foundBookmarkId = user.bookmarked_combo_ids.find((i) => i === c.id)
+                      if (foundBookmarkId) {
+                        isBookmarked = true
+                      } 
+                    }
+                  } 
                   return (
                     <Combo
                       key = {c.id}
@@ -146,6 +160,7 @@ function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection, isBoo
                       authorNotes = {c.author_notes}
                       canEdit = {canEdit}
                       handleClickEdit = {handleClickEdit}
+                      isBookmarked = {isBookmarked}
                     />
                   )
                 })

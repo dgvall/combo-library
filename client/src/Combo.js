@@ -5,7 +5,7 @@ import Icon from './Icon'
 
 import './Combo.css'
 
-function Combo( { id, imageUrls, youtubeId, authorNotes, canEdit, handleClickEdit} ) {
+function Combo( { id, imageUrls, youtubeId, authorNotes, canEdit, handleClickEdit, isBookmarked} ) {
   const [showVideo, setShowVideo] = useState(false)
   const [showNotes, setShowNotes] = useState(false)
   return (
@@ -55,7 +55,13 @@ function Combo( { id, imageUrls, youtubeId, authorNotes, canEdit, handleClickEdi
             onClick = {() => handleClickEdit(id)}
           >⚙️</button>
         }
-        <button>🔖</button>
+        {
+          isBookmarked
+          ?
+          <button>🔖</button>
+          :
+          <button>x</button>
+        }
       </div>
     </div>
   )
