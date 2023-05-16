@@ -15,11 +15,10 @@ Rails.application.routes.draw do
     resources :combos, only: [:create, :update, :destroy]
   end
 
-  # resources :users do 
-  #   resources :characters do
-  #     resources :user_bookmarks, only: [:show]
-  #   end
-  # end
+  resources :users do 
+    resources :user_bookmarks, only: [:create, :destroy]
+    
+  end
 
   resources :games, only: [:index]
 

@@ -172,8 +172,8 @@ function ComboForm( { dataRetrieved, selectedGame, handleGameSelection, isEdit }
     }
     // create a new bookmarked character
     else {
-      const newBookmark = {character: characterData, combos: [newCombo]}
-      const updatedBookmarks = {...user.bookmarks, newBookmark}
+      const newBookmark = {character: characterData, combos: [newCombo], game: selectedGame}
+      const updatedBookmarks = [...user.bookmarks, newBookmark]
       const updatedUser = {...user, combo_ids: updatedComboIds, bookmarks: updatedBookmarks}
       setUser(updatedUser)
     }

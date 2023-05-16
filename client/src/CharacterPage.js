@@ -17,6 +17,7 @@ function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection, isBoo
 
   useEffect(() => {
     handleGameSelection(game)
+    console.log(selectedGame)
   }, [game, selectedGame, dataRetrieved])
 
   useEffect(() => {
@@ -31,10 +32,12 @@ function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection, isBoo
     if (isBookmarks) {
       if (user) {
         const foundBookmark = user.bookmarks.find((b) => b.character.slug === character)
+        if (foundBookmark) {
+          setBookmark(foundBookmark)
+          setDisplayedCombos(foundBookmark.combos)
+        }
         // think about setting this up
         // setCharacterData(foundBookmark.character)
-        setBookmark(foundBookmark)
-        setDisplayedCombos(foundBookmark.combos)
       }
     }
   }, [user, character, username, game, characterData])
@@ -55,6 +58,33 @@ function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection, isBoo
     else {
       history.push(`/${bookmark.game.slug}/${character}/upload`)
     }
+  }
+
+  function addBookmark(newCombo) {
+    const updatedBookmarkIds = [...user.bookmarked_combo_ids, newCombo.id]
+
+    const foundCharacter = user.bookmarks.find((b) => b.character.slug == character)
+    if (foundCharacter) {
+      const updatedBookmarks = user.bookmarks.map((b) => {
+        if (b.character.slug === character) {
+          b.combos = [newCombo, ...b.combos]
+          return b
+        } else return b
+      })
+      const updatedUser = {...user, combo_ids: updatedBookmarkIds, bookmarks: updatedBookmarks}
+      setUser(updatedUser)
+    }
+    // create a new bookmarked character
+    else {
+      const newBookmark = {character: characterData, combos: [newCombo], game: selectedGame}
+      const updatedBookmarks = [...user.bookmarks, newBookmark]
+      const updatedUser = {...user, combo_ids: updatedBookmarkIds, bookmarks: updatedBookmarks}
+      setUser(updatedUser)
+    }
+  }
+
+  function removeBookmark(comboId) {
+
   }
 
   return (
@@ -101,6 +131,9 @@ function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection, isBoo
                       canEdit = {canEdit}
                       handleClickEdit = {handleClickEdit}
                       isBookmarked = {true}
+                      user = {user}
+                      addBookmark = {addBookmark}
+                      removeBookmark = {removeBookmark}
                     />
                   )
                 })
@@ -161,6 +194,9 @@ function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection, isBoo
                       canEdit = {canEdit}
                       handleClickEdit = {handleClickEdit}
                       isBookmarked = {isBookmarked}
+                      user = {user}
+                      addBookmark = {addBookmark}
+                      removeBookmark = {removeBookmark}
                     />
                   )
                 })
