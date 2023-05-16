@@ -36,6 +36,9 @@ function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection, isBoo
           setBookmark(foundBookmark)
           setDisplayedCombos(foundBookmark.combos)
         }
+        else {
+          history.push(`/${username}/bookmarks`)
+        }
         // think about setting this up
         // setCharacterData(foundBookmark.character)
       }
@@ -84,7 +87,31 @@ function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection, isBoo
   }
 
   function removeBookmark(comboId) {
+    const updatedBookmarkIds = user.bookmarked_combo_ids.filter((c) => c != comboId)
+    // const updatedBookmarks = user.bookmarks.map((b) => {
+    //   if (b.character.slug === character) {
+    //     const updatedCombos = b.combos.filter((c) => c.id != comboId)
+    //     return {...b, combos: updatedCombos}
+    //   } else return b
+    // })
 
+    // if this leads to issues, revert to above code. Will test with more characters later
+    const updatedBookmarks = user.bookmarks.map((b) => {
+      if (b.character.slug === character) {
+        const updatedCombos = b.combos.filter((c) => c.id !== comboId);
+        if (updatedCombos.length !== 0) {
+          return { ...b, combos: updatedCombos };
+        } else {
+          return null; // Return null for bookmarks with no updatedCombos
+        }
+      } else {
+        return b;
+      }
+    }).filter(Boolean); // Remove null bookmark objects
+
+    const updatedUser = {...user, bookmarked_combo_ids: updatedBookmarkIds, bookmarks: updatedBookmarks}
+    setUser(updatedUser)
+    console.log(updatedUser)
   }
 
   return (

@@ -5,7 +5,7 @@ import Icon from './Icon'
 
 import './Combo.css'
 
-function Combo( { id, imageUrls, youtubeId, authorNotes, canEdit, handleClickEdit, isBookmarked, user, addBookmark} ) {
+function Combo( { id, imageUrls, youtubeId, authorNotes, canEdit, handleClickEdit, isBookmarked, user, addBookmark, removeBookmark} ) {
   const [showVideo, setShowVideo] = useState(false)
   const [showNotes, setShowNotes] = useState(false)
   const [bookmarked, setBookmarked] = useState(isBookmarked)
@@ -17,7 +17,7 @@ function Combo( { id, imageUrls, youtubeId, authorNotes, canEdit, handleClickEdi
       .then((r) => {
         if (r.ok) {
           setBookmarked(false)
-          // remove from bookmark/b/combos state and from bookmarked_combo_ids
+          removeBookmark(id)
         }
       })
   }
@@ -33,10 +33,9 @@ function Combo( { id, imageUrls, youtubeId, authorNotes, canEdit, handleClickEdi
       .then((r) => {
         if (r.ok) {
           setBookmarked(true)
-          r.json().then((data) => {
-            addBookmark(data)
+          r.json().then((comboData) => {
+            addBookmark(comboData)
           })
-          // add to bookmark/b/combos state and to bookmarked_combo_ids
         }
       })
   }
