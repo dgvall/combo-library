@@ -141,13 +141,38 @@ function ComboForm( { dataRetrieved, selectedGame, handleGameSelection, isEdit }
 
     // update user state
     const updatedComboIds = user.combo_ids.filter((c) => c != comboId)
+    const updatedBookmarkIds = user.bookmarked_combo_ids.filter((c) => c !== parseInt(comboId))
+    // const updatedBookmarks = user.bookmarks.map((b) => {
+    //   if (b.character.slug === character) {
+    //     const updatedCombos = b.combos.filter((c) => c.id != comboId)
+    //     return {...b, combos: updatedCombos}
+    //   } else return b
+    // })
+
+    // if this leads to issues, revert to above code. Will test with more characters later
     const updatedBookmarks = user.bookmarks.map((b) => {
+      console.log(1)
       if (b.character.slug === character) {
-        const updatedCombos = b.combos.filter((c) => c.id != comboId)
-        return {...b, combos: updatedCombos}
-      } else return b
-    })
-    const updatedUser = {...user, combo_ids: updatedComboIds, bookmarks: updatedBookmarks}
+        console.log(2)
+        const updatedCombos = b.combos.filter((c) => c.id !== parseInt(comboId));
+        if (updatedCombos.length !== 0) {
+          console.log(3)
+          return { ...b, combos: updatedCombos };
+        } else {
+          console.log(4)
+          return null; // Return null for bookmarks with no updatedCombos
+        }
+      } else {
+        console.log(5)
+        return b;
+      }
+    }).filter(Boolean); // Remove null bookmark objects
+
+    console.log(updatedBookmarks)
+
+    console.log(user)
+    const updatedUser = {...user, combo_ids: updatedComboIds, bookmarked_combo_ids: updatedBookmarkIds, bookmarks: updatedBookmarks}
+    console.log(updatedUser)
     setUser(updatedUser)
   }
 
@@ -158,6 +183,7 @@ function ComboForm( { dataRetrieved, selectedGame, handleGameSelection, isEdit }
 
     // update user state
     const updatedComboIds = [...user.combo_ids, newCombo.id]
+    const updatedBookmarkIds = [...user.bookmarked_combo_ids, newCombo.id]
 
     const foundCharacter = user.bookmarks.find((b) => b.character.slug == character)
     if (foundCharacter) {
@@ -167,14 +193,14 @@ function ComboForm( { dataRetrieved, selectedGame, handleGameSelection, isEdit }
           return b
         } else return b
       })
-      const updatedUser = {...user, combo_ids: updatedComboIds, bookmarks: updatedBookmarks}
+      const updatedUser = {...user, combo_ids: updatedComboIds, bookmarked_combo_ids: updatedBookmarkIds, bookmarks: updatedBookmarks}
       setUser(updatedUser)
     }
     // create a new bookmarked character
     else {
       const newBookmark = {character: characterData, combos: [newCombo], game: selectedGame}
       const updatedBookmarks = [...user.bookmarks, newBookmark]
-      const updatedUser = {...user, combo_ids: updatedComboIds, bookmarks: updatedBookmarks}
+      const updatedUser = {...user, combo_ids: updatedComboIds, bookmarked_combo_ids: updatedBookmarkIds, bookmarks: updatedBookmarks}
       setUser(updatedUser)
     }
   }

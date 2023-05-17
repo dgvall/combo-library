@@ -26,7 +26,7 @@ class UserBookmarksController < ApplicationController
   def destroy
     bookmarked_combo = @current_user.user_bookmarks.find_by(combo_id: params[:id])
     if(bookmarked_combo)
-      if (bookmarked_combo.user_id != @current_user.id) 
+      if (bookmarked_combo.combo.user_id != @current_user.id)
         bookmarked_combo.destroy
         head :no_content
       else render json: { error: 'User submitted combos must stay bookmarked'}, status: :not_found

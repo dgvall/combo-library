@@ -98,16 +98,18 @@ function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection, isBoo
     // if this leads to issues, revert to above code. Will test with more characters later
     const updatedBookmarks = user.bookmarks.map((b) => {
       if (b.character.slug === character) {
-        const updatedCombos = b.combos.filter((c) => c.id !== comboId);
+        const updatedCombos = b.combos.filter((c) => c.id !== comboId)
         if (updatedCombos.length !== 0) {
-          return { ...b, combos: updatedCombos };
+          return { ...b, combos: updatedCombos }
         } else {
-          return null; // Return null for bookmarks with no updatedCombos
+          return null // Return null for bookmarks with no updatedCombos
         }
       } else {
-        return b;
+        return b
       }
-    }).filter(Boolean); // Remove null bookmark objects
+    }).filter(Boolean) // Remove null bookmark objects
+
+    console.log(updatedBookmarks)
 
     const updatedUser = {...user, bookmarked_combo_ids: updatedBookmarkIds, bookmarks: updatedBookmarks}
     setUser(updatedUser)
