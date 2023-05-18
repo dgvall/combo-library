@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import YouTube from 'react-youtube'
 
 import Icon from './Icon'
@@ -9,6 +9,10 @@ function Combo( { id, imageUrls, youtubeId, authorNotes, canEdit, handleClickEdi
   const [showVideo, setShowVideo] = useState(false)
   const [showNotes, setShowNotes] = useState(false)
   const [bookmarked, setBookmarked] = useState(isBookmarked)
+  
+  useEffect(() => {
+    setBookmarked(isBookmarked)
+  }, [isBookmarked])
 
   function handleRemoveBookmark() {
     fetch(`/users/${user.id}/user_bookmarks/${id}`, {

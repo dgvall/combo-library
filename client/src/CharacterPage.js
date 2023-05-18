@@ -202,9 +202,11 @@ function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection, isBoo
                   let canEdit = false
                   let isBookmarked = false
                   if (user) {
+                    console.log("user found!")
                     if (c.user_id == user.id) {
                       canEdit = true
                       isBookmarked = true
+                      console.log("ids match!")
                     }
                     else {
                       let foundBookmarkId = user.bookmarked_combo_ids.find((i) => i === c.id)
@@ -212,7 +214,7 @@ function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection, isBoo
                         isBookmarked = true
                       } 
                     }
-                  } 
+                  }
                   return (
                     <Combo
                       key = {c.id}
