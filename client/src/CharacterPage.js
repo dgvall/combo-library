@@ -178,7 +178,7 @@ function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection, isBoo
       :
       <>
       {
-        characterData && user &&
+        characterData &&
           <div className = 'character-page'>
           <div className = 'combos-filter-container'>
             <ComboFilter

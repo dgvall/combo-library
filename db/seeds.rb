@@ -144,11 +144,125 @@ testament = Character.create!(
   game_id: 1
 )
 
-testament.inputs << [i236, i214, i248, i268, i684, i486, i624, i426, i862, i842, i623, i421, circle]
+testament.inputs << [i236, i214]
 
+jacko = Character.create!(
+  name: "Jack-O'",
+  slug: "jacko",
+  image_url: "https://i.imgur.com/NrtJYac.png",
+  starters: "5P 5K cS fS 5H 5D 2P 2K 2S 2H 2D 6P 6H jP jK jS jH jD Throw jThrow 236K 214K 214H 6246P",
+  game_id: 1
+)
 
-Game.create!(
+jacko.inputs << [i236, i214, i624]
+
+nago = Character.create!(
+  name: "Nagoriyuki",
+  slug: "nagoriyuki",
+  image_url: "https://i.imgur.com/Gbo1O4C.png",
+  starters: "5P 5K cS fS 5H 5D 2P 2K 2S 2H 2D 6P 6K 6H jP jK jS jH jD Throw jThrow 236S 214H 623H 623P 6246S",
+  game_id: 1
+)
+
+nago.inputs << [i236, i214, i623, i624]
+
+millia = Character.create!(
+  name: "Millia Rage",
+  slug: "millia",
+  image_url: "https://i.imgur.com/JKTa3P3.png",
+  starters: "5P 5K cS fS 5H 5D 2P 2K 2S 2H 2D 6P 6K 6H jP jK jS jH jD Throw jThrow 236S 236H j236P 214P 214S j236H 6246H 236236S",
+  game_id: 1
+)
+
+millia.inputs << [i236, i214, i624]
+
+chipp = Character.create!(
+  name: "Chipp Zanuff",
+  slug: "chipp",
+  image_url: "https://i.imgur.com/El1opwl.png",
+  starters: "5P 5K cS fS 5H 5D 2P 2K 2S 2H 2D 6P 6K 6H jP jK jS jH jD j2K Throw jThrow 236P 236K 623S 236H 236S 236K 624S 6246H 236236P",
+  game_id: 1
+)
+
+chipp.inputs << [i236, i623, i624]
+
+goldlewis = Character.create!(
+  name: "Goldlewis Dickinson",
+  slug: "goldlewis",
+  image_url: "https://i.imgur.com/7RMgeRI.png",
+  starters: "5P 5K cS fS 5H 5D 2P 2K 2S 2H 2D 6P 6H jP jK jS jH jD Throw jThrow 426H 624H 268H 248H 684H 486H 842H 862H 236S 360H 720H 1080H 236236K",
+  game_id: 1
+)
+
+goldlewis.inputs << [i236, i426, i624, i268, i684, i486, i842, i862, i236, circle]
+
+sf6 = Game.create!(
  name: "Street Fighter 6",
  image_url: "https://i.imgur.com/8heu8Fj.png",
- slug: "sf6"
+ slug: "sf6",
+ hit_types: "Normal Punish-Counter Counter"
  )
+
+ lp = Input.create!(
+  input_type: "Button",
+  name: "LP",
+  image_url: "https://i.imgur.com/aCCMFrY.png"
+)
+
+mp = Input.create!(
+  input_type: "Button",
+  name: "MP",
+  image_url: "https://i.imgur.com/ptI0QQ8.png"
+)
+
+hp = Input.create!(
+  input_type: "Button",
+  name: "HP",
+  image_url: "https://i.imgur.com/AREXTeF.png"
+)
+
+lk = Input.create!(
+  input_type: "Button",
+  name: "LK",
+  image_url: "https://i.imgur.com/Mc2G0nT.png"
+)
+
+mk = Input.create!(
+  input_type: "Button",
+  name: "MK",
+  image_url: "https://i.imgur.com/NHrJZfc.png"
+)
+
+hk = Input.create!(
+  input_type: "Button",
+  name: "HK",
+  image_url: "https://i.imgur.com/VuPrTtO.png"
+)
+
+di = Input.create!(
+  input_type: "Extra",
+  name: "DI",
+  image_url: "https://i.imgur.com/XxRoCbK.png"
+)
+
+sf6.inputs << [lp, mp, hp, lk, mk, hk, di]
+
+ luke = Character.create!(
+  name: "Luke",
+  slug: "luke",
+  image_url: "https://www.streetfighter.com/6/assets/images/character/luke/luke.png",
+  starters: "LP MP HP LK MK HK 2LP 2MP 2HP 2LK 2MK 2HK 6MP 236P 214P 214M 214H 236236K 236236P 214214P",
+  game_id: 2
+ )
+
+ luke.inputs << [i236, i214]
+
+ ryu = Character.create!(
+  name: "Ryu",
+  slug: "ryu",
+  image_url: "https://www.streetfighter.com/6/assets/images/character/ryu/ryu.png",
+  starters: "LP MP HP LK MK HK 2LP 2MP 2HP 2LK 2MK 2HK 6MP 236P 214P 214M 214H 236236K 236236P 214214P",
+  game_id: 2
+ )
+
+ ryu.inputs << [i236, i214]
