@@ -1,0 +1,26 @@
+.combo-builder-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+  width: 40vw;
+  border: solid black 2px;
+}
+
+.combo-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.clear-button {
+  border: solid black 2px;
+  font-size: 1.2rem;
+  width: 4em;
+}
+
+.icons-container {
+  display: flex;
+  min-height: 12vh;
+  height: 100%;
+}

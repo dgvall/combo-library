@@ -47,10 +47,10 @@ function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection, isBoo
 
   function handleClickEdit(comboId) {
     if (!isBookmarks) {
-      history.push(`/${game}/${character}/${comboId}`)
+      history.push(`/${game}/${character}/${comboId}/edit`)
     }
     else {
-      history.push(`/${bookmark.game.slug}/${character}/${comboId}`)
+      history.push(`/${bookmark.game.slug}/${character}/${comboId}/edit`)
     }
   }
 
@@ -74,14 +74,14 @@ function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection, isBoo
           return b
         } else return b
       })
-      const updatedUser = {...user, combo_ids: updatedBookmarkIds, bookmarks: updatedBookmarks}
+      const updatedUser = {...user, bookmarked_combo_ids: updatedBookmarkIds, bookmarks: updatedBookmarks}
       setUser(updatedUser)
     }
     // create a new bookmarked character
     else {
       const newBookmark = {character: characterData, combos: [newCombo], game: selectedGame}
       const updatedBookmarks = [...user.bookmarks, newBookmark]
-      const updatedUser = {...user, combo_ids: updatedBookmarkIds, bookmarks: updatedBookmarks}
+      const updatedUser = {...user, bookmarked_combo_ids: updatedBookmarkIds, bookmarks: updatedBookmarks}
       setUser(updatedUser)
     }
   }
@@ -178,7 +178,7 @@ function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection, isBoo
       :
       <>
       {
-        characterData &&
+        characterData && user &&
           <div className = 'character-page'>
           <div className = 'combos-filter-container'>
             <ComboFilter

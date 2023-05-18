@@ -6,41 +6,6 @@
   height: 100%;
 }
 
-.combo-details-container {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  width: 25vw;
-  border: solid blue 2px;
-}
-
-.combo-builder-container {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  height: 100%;
-  width: 40vw;
-  border: solid black 2px;
-}
-
-.combo-display {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.clear-button {
-  border: solid black 2px;
-  font-size: 1.2rem;
-  width: 4em;
-}
-
-.icons-container {
-  display: flex;
-  min-height: 12vh;
-  height: 100%;
-}
-
 .combo-video-container {
   display: flex;
   align-items: center;
@@ -78,31 +43,6 @@
   border: solid red 2px;
   color: red;
   margin-top: 1em;
-}
-
-.input-container {
-  margin-bottom: 2vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.input-container input {
-  border: solid black 2px;
-  font-size: 1.1rem;
-}
-
-.input-container textarea {
-  font-size: 1.1rem;
-  height: 7vh;
-  width: 15vw;
-  resize: none;
-  border: solid black 2px;
-}
-
-.checkbox-container {
-  display: flex;
-  flex-direction: row;
 }
 
 .combo-video-container input {
