@@ -146,34 +146,9 @@ testament = Character.create!(
 
 testament.inputs << [i236, i214, i248, i268, i684, i486, i624, i426, i862, i842, i623, i421, circle]
 
-# Combo.create!(
-#   inputs: "S - 2 S - H - 236 H",
-#   youtube_id: "dQw4w9WgXcQ",
-#   starter: "cS",
-#   location: "Midscreen",
-#   damage: 300,
-#   hit_type: "Normal",
-#   meterless: false,
-#   author_notes: "Very easy",
-#   character_id: 1,
-#   user_id: 1
-# )
 
-# Combo.create!(
-# inputs: "2 S - 2 H - 236 S",
-# youtube_id: "KHiWsEckmEw",
-# starter: "2S",
-# location: "Midscreen",
-# damage: 315,
-# hit_type: "Normal",
-# meterless: true,
-# author_notes: "Very hard",
-# character_id: 1,
-# user_id: 1
-# )
-
-# Game.create!(
-#  name: "Street Fighter 6",
-#  image_url: "https://static.wikia.nocookie.net/streetfighter/images/4/47/Street_fighter_6_logo.png/revision/latest?cb=20220603151920",
-#  slug: "sf6"
-#  )
+Game.create!(
+ name: "Street Fighter 6",
+ image_url: "https://i.imgur.com/8heu8Fj.png",
+ slug: "sf6"
+ )

@@ -16,7 +16,7 @@ class UserBookmarksController < ApplicationController
   def create
     bookmarked_combo = Combo.find(params[:combo_id])
       if @current_user.bookmarked_combos.include?(bookmarked_combo)
-        render json: {error: 'Combo bookmark already exists'}
+        render json: {error: 'Combo bookmark already exists'}, status: :unprocessable_entity
       else
         @current_user.bookmarked_combos << bookmarked_combo
         render json: bookmarked_combo, status: :created
@@ -29,7 +29,7 @@ class UserBookmarksController < ApplicationController
       if (bookmarked_combo.combo.user_id != @current_user.id)
         bookmarked_combo.destroy
         head :no_content
-      else render json: { error: 'User submitted combos must stay bookmarked'}, status: :not_found
+      else render json: { error: 'User submitted combos must be bookmarked'}, status: :unprocessable_entity
       end
     else
       render json: { error: 'Combo bookmark not found' }, status: :not_found
