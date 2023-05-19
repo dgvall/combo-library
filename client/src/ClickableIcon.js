@@ -9,6 +9,7 @@ function ClickableIcon( {url, name, handleClick} ) {
         onClick = {() => handleClick(url, name)}
         className = 'icon'
         src = {url}
+        alt = {name}
       />
     </div>
   )

@@ -8,13 +8,17 @@ function CharacterDataProvider({ children }) {
   const [characterData, setCharacterData] = useState(null)
   
   useEffect(() => {
-    fetch(`/characters/${character}`)
+    fetch(`/games/${game}/characters/${character}`)
       .then((r) => {
         if (r.ok) {
           r.json().then((data) => setCharacterData(data))
         }
       })
-  }, [character])
+  }, [character, game])
+
+  useEffect(() => {
+    console.log(characterData)
+  }, [characterData])
 
   return (
     <CharacterDataContext.Provider value ={{ characterData, setCharacterData }}>

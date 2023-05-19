@@ -20,7 +20,7 @@ function UploadComboPage( { dataRetrieved, selectedGame, handleGameSelection } )
 
   useEffect(() => {
     handleGameSelection(game)
-  }, [game, selectedGame, dataRetrieved])
+  }, [game, selectedGame, dataRetrieved, handleGameSelection])
 
   function handleSubmit(e) {
     e.preventDefault()
@@ -59,7 +59,7 @@ function UploadComboPage( { dataRetrieved, selectedGame, handleGameSelection } )
     const updatedComboIds = [...user.combo_ids, newCombo.id]
     const updatedBookmarkIds = [...user.bookmarked_combo_ids, newCombo.id]
 
-    const foundCharacter = user.bookmarks.find((b) => b.character.slug == character)
+    const foundCharacter = user.bookmarks.find((b) => b.character.slug === character)
     if (foundCharacter) {
       const updatedBookmarks = user.bookmarks.map((b) => {
         if (b.character.slug === character) {

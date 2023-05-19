@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom'
 import { UserContext } from './context/user'
 
 function Login() {
-  const { user, setUser } = useContext(UserContext)
+  const { setUser } = useContext(UserContext)
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [errors, setErrors] = useState([])

@@ -7,13 +7,13 @@ import './CharactersPage.css'
 
 function CharactersPage({ dataRetrieved, selectedGame, handleGameSelection, isBookmarks }) {
   const { game, username } = useParams()
-  const { user, setUser } = useContext(UserContext)
+  const { user } = useContext(UserContext)
 
   useEffect(() => {
     if (!isBookmarks) {
       handleGameSelection(game)
     }
-  }, [game, selectedGame, dataRetrieved])
+  }, [game, selectedGame, dataRetrieved, handleGameSelection, isBookmarks])
 
   return (
     <div>
@@ -27,7 +27,7 @@ function CharactersPage({ dataRetrieved, selectedGame, handleGameSelection, isBo
                 return (
                   <Character
                     key = {b.character.id}
-                    id = {b.character.id}
+                    // id = {b.character.id}
                     imageUrl = {b.character.image_url}
                     name = {b.character.name}
                     slug = {b.character.slug}

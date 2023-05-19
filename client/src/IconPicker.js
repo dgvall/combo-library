@@ -1,11 +1,10 @@
 import React from 'react'
-import Icon from './Icon'
 import './IconPicker.css'
 
 import ClickableIcon from './ClickableIcon'
 
 
-function IconPicker({extraInputs, buttonInputs, motionInputs, spacebarUrl, handleClick, handleSpace}) {
+function IconPicker({extraInputs, buttonInputs, motionInputs, handleClick, handleSpace}) {
 
   const directionInputs = [
     {
@@ -116,6 +115,7 @@ function IconPicker({extraInputs, buttonInputs, motionInputs, spacebarUrl, handl
       </div>
       <img
         src = "https://miketips.files.wordpress.com/2013/04/spacebar-pagedown.png"
+        alt = "spacebar"
         onClick = {handleSpace}
       />
     </div>

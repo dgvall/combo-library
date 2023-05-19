@@ -35,7 +35,7 @@ function App() {
         })
       }
     })
-  }, [])
+  }, [setUser])
 
   useEffect(() => {
     console.log(user)

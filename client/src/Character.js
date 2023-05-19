@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom'
 
 import './Character.css'
 
-function Character({ id, imageUrl, name, game, slug, isBookmarks, username }) {
+function Character({ imageUrl, name, game, slug, isBookmarks, username }) {
   const history = useHistory()
 
   function handleClick() {

@@ -9,6 +9,7 @@ function Icon( {url} ) {
       <img
         className = 'icon'
         src = {url}
+        alt = "icon"
       />
     </div>
   )

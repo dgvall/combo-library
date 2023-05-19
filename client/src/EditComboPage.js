@@ -22,7 +22,7 @@ function EditComboPage( {dataRetrieved, selectedGame, handleGameSelection} ) {
 
   useEffect(() => {
     handleGameSelection(game)
-  }, [game, selectedGame, dataRetrieved])
+  }, [game, selectedGame, dataRetrieved, handleGameSelection])
 
   useEffect(() => {
       // checks if logged in
@@ -30,9 +30,9 @@ function EditComboPage( {dataRetrieved, selectedGame, handleGameSelection} ) {
         // let foundId = user.combo_ids.find((id) => id == comboId)
         // checks if comboId is uploaded by this user
         // if (foundId) {
-          let foundCharacter = user.bookmarks.find((b) => b.character.slug == character)
+          let foundCharacter = user.bookmarks.find((b) => b.character.slug === character)
           if (foundCharacter) {
-            let foundCombo = foundCharacter.combos.find((c) => c.id == comboId)
+            let foundCombo = foundCharacter.combos.find((c) => c.id === parseInt(comboId))
             if (foundCombo) {
               if (foundCombo.user_id === user.id) {
                 setCombo(foundCombo)
@@ -97,11 +97,11 @@ function EditComboPage( {dataRetrieved, selectedGame, handleGameSelection} ) {
 
   function deleteCombo() {
     // update characterData state
-    const updatedCharacterCombos = characterData.combos.filter((c) => c.id != comboId)
+    const updatedCharacterCombos = characterData.combos.filter((c) => c.id !== parseInt(comboId))
     setCharacterData({...characterData, combos: updatedCharacterCombos})
 
     // update user state
-    const updatedComboIds = user.combo_ids.filter((c) => c != comboId)
+    const updatedComboIds = user.combo_ids.filter((c) => c !== parseInt(comboId))
     const updatedBookmarkIds = user.bookmarked_combo_ids.filter((c) => c !== parseInt(comboId))
     // const updatedBookmarks = user.bookmarks.map((b) => {
     //   if (b.character.slug === character) {

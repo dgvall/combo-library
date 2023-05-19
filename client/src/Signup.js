@@ -5,7 +5,7 @@ import { UserContext } from './context/user'
 import './Signup.css'
 
 function Signup() {
-  const { user, setUser } = useContext(UserContext)
+  const { setUser } = useContext(UserContext)
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [passwordConfirmation, setPasswordConfirmation] = useState("")

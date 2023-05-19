@@ -10,15 +10,14 @@ import ComboFilter from './ComboFilter'
 function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection, isBookmarks }) {
   const { game, character, username } = useParams()
   const history = useHistory()
-  const { characterData, setCharacterData } = useContext(CharacterDataContext)
+  const { characterData } = useContext(CharacterDataContext)
   const { user, setUser } = useContext(UserContext)
   const [ displayedCombos, setDisplayedCombos ] = useState([])
   const [ bookmark, setBookmark ] = useState(null)
 
   useEffect(() => {
     handleGameSelection(game)
-    console.log(selectedGame)
-  }, [game, selectedGame, dataRetrieved])
+  }, [game, selectedGame, dataRetrieved, handleGameSelection])
 
   useEffect(() => {
     if (!isBookmarks) {
@@ -26,7 +25,7 @@ function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection, isBoo
         setDisplayedCombos(characterData.combos)
       }
     }
-  }, [characterData])
+  }, [characterData, isBookmarks])
 
   useEffect(() => {
     if (isBookmarks) {
@@ -43,7 +42,7 @@ function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection, isBoo
         // setCharacterData(foundBookmark.character)
       }
     }
-  }, [user, character, username, game, characterData])
+  }, [user, character, username, game, characterData, history, isBookmarks])
 
   function handleClickEdit(comboId) {
     if (!isBookmarks) {
@@ -66,7 +65,7 @@ function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection, isBoo
   function addBookmark(newCombo) {
     const updatedBookmarkIds = [...user.bookmarked_combo_ids, newCombo.id]
 
-    const foundCharacter = user.bookmarks.find((b) => b.character.slug == character)
+    const foundCharacter = user.bookmarks.find((b) => b.character.slug === character)
     if (foundCharacter) {
       const updatedBookmarks = user.bookmarks.map((b) => {
         if (b.character.slug === character) {
@@ -87,7 +86,7 @@ function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection, isBoo
   }
 
   function removeBookmark(comboId) {
-    const updatedBookmarkIds = user.bookmarked_combo_ids.filter((c) => c != comboId)
+    const updatedBookmarkIds = user.bookmarked_combo_ids.filter((c) => c !== parseInt(comboId))
     // const updatedBookmarks = user.bookmarks.map((b) => {
     //   if (b.character.slug === character) {
     //     const updatedCombos = b.combos.filter((c) => c.id != comboId)
@@ -98,7 +97,7 @@ function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection, isBoo
     // if this leads to issues, revert to above code. Will test with more characters later
     const updatedBookmarks = user.bookmarks.map((b) => {
       if (b.character.slug === character) {
-        const updatedCombos = b.combos.filter((c) => c.id !== comboId)
+        const updatedCombos = b.combos.filter((c) => c.id !== parseInt(comboId))
         if (updatedCombos.length !== 0) {
           return { ...b, combos: updatedCombos }
         } else {
@@ -146,7 +145,7 @@ function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection, isBoo
                 displayedCombos.map((c) => {
                   let canEdit = false
                   if (user) {
-                    if (c.user_id == user.id) {
+                    if (c.user_id === user.id) {
                       canEdit = true
                     }
                   } 
@@ -170,7 +169,7 @@ function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection, isBoo
             </div>
             <div className = 'character-display'>
               <h2>{bookmark.character.name}</h2>
-              <img src = {bookmark.character.image_url}/>
+              <img src = {bookmark.character.image_url} alt = {bookmark.character.name}/>
             </div>
         </div>
       }
@@ -202,11 +201,9 @@ function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection, isBoo
                   let canEdit = false
                   let isBookmarked = false
                   if (user) {
-                    console.log("user found!")
-                    if (c.user_id == user.id) {
+                    if (c.user_id === user.id) {
                       canEdit = true
                       isBookmarked = true
-                      console.log("ids match!")
                     }
                     else {
                       let foundBookmarkId = user.bookmarked_combo_ids.find((i) => i === c.id)
@@ -235,7 +232,7 @@ function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection, isBoo
             </div>
             <div className = 'character-display'>
               <h2>{characterData.name}</h2>
-              <img src = {characterData.image_url}/>
+              <img src = {characterData.image_url} alt = {characterData.name}/>
             </div>
           </div>
       }

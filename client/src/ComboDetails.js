@@ -32,8 +32,7 @@ function ComboDetails( { characterData, selectedGame, setComboDetails, combo }) 
       author_notes: authorNotes,
     }
     setComboDetails(comboDetailsObj)
-    console.log(comboDetailsObj)
-  }, [starter, meterless, location, hitType, damage, authorNotes])
+  }, [starter, meterless, location, hitType, damage, authorNotes, setComboDetails])
 
   function handleDamageChange(e) {
     if (!isNaN(e.target.value)) {
