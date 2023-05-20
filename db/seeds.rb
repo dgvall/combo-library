@@ -194,7 +194,7 @@ goldlewis = Character.create!(
   game_id: 1
 )
 
-goldlewis.inputs << [i236, i426, i624, i268, i684, i486, i842, i862, i236, circle]
+goldlewis.inputs << [i236, i426, i624, i268, i248, i684, i486, i842, i862, circle]
 
 sf6 = Game.create!(
  name: "Street Fighter 6",

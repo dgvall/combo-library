@@ -1,6 +1,6 @@
 class ComboSerializer < ActiveModel::Serializer
   attributes :id, :image_urls, :youtube_id, :starter, :location, :hit_type, :meterless, :author_notes, :damage, :inputs, :user_id
-
+  
   def image_urls
     object.inputs.split(' ').map do |input|
       if object.character.game.slug === "ggst"
@@ -73,7 +73,7 @@ class ComboSerializer < ActiveModel::Serializer
         when 'LP'
           'https://i.imgur.com/aCCMFrY.png'
         when 'MP'
-          'https://i.imgur.com/aCCMFrY.png'
+          'https://i.imgur.com/ptI0QQ8.png'
         when 'HP'
           'https://i.imgur.com/AREXTeF.png'
         when 'LK'
