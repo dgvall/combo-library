@@ -8,12 +8,14 @@ function CharacterDataProvider({ children }) {
   const [characterData, setCharacterData] = useState(null)
   
   useEffect(() => {
-    fetch(`/games/${game}/characters/${character}`)
+    if (game && character) {
+      fetch(`/games/${game}/characters/${character}`)
       .then((r) => {
         if (r.ok) {
           r.json().then((data) => setCharacterData(data))
         }
       })
+    }
   }, [character, game])
 
   useEffect(() => {

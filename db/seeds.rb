@@ -180,7 +180,7 @@
 #   name: "Chipp Zanuff",
 #   slug: "chipp",
 #   image_url: "https://i.imgur.com/El1opwl.png",
-#   starters: "5P 5K cS fS 5H 5D 2P 2K 2S 2H 2D 6P 6K 6H jP jK jS jH jD j2K Throw jThrow 236P 236K 623S 236H 236S 236K 624S 6246H 236236P",
+#   starters: "5P 5K cS fS 5H 5D 2P 2K 2S 2H 2D 6P 6K 6H jP jK jS jH jD j2K Throw jThrow 236P 236K 623S 236H 236S 624S 6246H 236236P",
 #   game_id: 1
 # )
 

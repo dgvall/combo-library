@@ -52,6 +52,7 @@ function ComboFilter({characterData, selectedGame, setDisplayedCombos, isBookmar
           .then((r) => {
             if (r.ok) {
               r.json().then((data) => {
+                console.log(data)
                 setShowUnfilter(true)
                 setDisplayedCombos(data)
               })
@@ -59,7 +60,6 @@ function ComboFilter({characterData, selectedGame, setDisplayedCombos, isBookmar
           })
       }
       else {
-        console.log("check bombos!")
         fetch(`/users/${username}/characters/${character}/filter_bookmarked_combos`, {
           method: "POST",
           headers: {
@@ -70,6 +70,7 @@ function ComboFilter({characterData, selectedGame, setDisplayedCombos, isBookmar
           .then((r) => {
             if (r.ok) {
               r.json().then((data) => {
+                console.log(data)
                 setShowUnfilter(true)
                 setDisplayedCombos(data)
               })

@@ -56,7 +56,7 @@ function UploadComboPage( { dataRetrieved, selectedGame, handleGameSelection } )
     setCharacterData({...characterData, combos: updatedCharacterCombos})
 
     // update user state
-    const updatedComboIds = [...user.combo_ids, newCombo.id]
+    // const updatedComboIds = [...user.combo_ids, newCombo.id]
     const updatedBookmarkIds = [...user.bookmarked_combo_ids, newCombo.id]
 
     const foundCharacter = user.bookmarks.find((b) => b.character.slug === character)
@@ -67,14 +67,14 @@ function UploadComboPage( { dataRetrieved, selectedGame, handleGameSelection } )
           return b
         } else return b
       })
-      const updatedUser = {...user, combo_ids: updatedComboIds, bookmarked_combo_ids: updatedBookmarkIds, bookmarks: updatedBookmarks}
+      const updatedUser = {...user, bookmarked_combo_ids: updatedBookmarkIds, bookmarks: updatedBookmarks}
       setUser(updatedUser)
     }
     // create a new bookmarked character
     else {
       const newBookmark = {character: characterData, combos: [newCombo], game: selectedGame}
       const updatedBookmarks = [newBookmark, ...user.bookmarks]
-      const updatedUser = {...user, combo_ids: updatedComboIds, bookmarked_combo_ids: updatedBookmarkIds, bookmarks: updatedBookmarks}
+      const updatedUser = {...user, bookmarked_combo_ids: updatedBookmarkIds, bookmarks: updatedBookmarks}
       setUser(updatedUser)
     }
   }

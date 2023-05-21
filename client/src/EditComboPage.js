@@ -35,7 +35,6 @@ function EditComboPage( {dataRetrieved, selectedGame, handleGameSelection} ) {
             let foundCombo = foundCharacter.combos.find((c) => c.id === parseInt(comboId))
             if (foundCombo) {
               if (foundCombo.user_id === user.id) {
-                console.log(foundCombo)
                 setCombo(foundCombo)
                 setYoutubeInput(foundCombo.youtube_id)
                 setYoutubeId(foundCombo.youtube_id)
@@ -102,7 +101,7 @@ function EditComboPage( {dataRetrieved, selectedGame, handleGameSelection} ) {
     setCharacterData({...characterData, combos: updatedCharacterCombos})
 
     // update user state
-    const updatedComboIds = user.combo_ids.filter((c) => c !== parseInt(comboId))
+    // const updatedComboIds = user.combo_ids.filter((c) => c !== parseInt(comboId))
     const updatedBookmarkIds = user.bookmarked_combo_ids.filter((c) => c !== parseInt(comboId))
     // const updatedBookmarks = user.bookmarks.map((b) => {
     //   if (b.character.slug === character) {
@@ -124,12 +123,7 @@ function EditComboPage( {dataRetrieved, selectedGame, handleGameSelection} ) {
         return b
       }
     }).filter(Boolean) // Remove null bookmark objects
-
-    console.log(updatedBookmarks)
-
-    console.log(user)
-    const updatedUser = {...user, combo_ids: updatedComboIds, bookmarked_combo_ids: updatedBookmarkIds, bookmarks: updatedBookmarks}
-    console.log(updatedUser)
+    const updatedUser = {...user, bookmarked_combo_ids: updatedBookmarkIds, bookmarks: updatedBookmarks}
     setUser(updatedUser)
   }
 

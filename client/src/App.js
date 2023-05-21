@@ -32,6 +32,7 @@ function App() {
         r.json().then((gamesData) => {
           setGames(gamesData)
           setDataRetrieved(true)
+          console.log(gamesData)
         })
       }
     })

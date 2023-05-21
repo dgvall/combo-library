@@ -1,5 +1,5 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :username, :combo_ids, :bookmarks, :bookmarked_combo_ids
+  attributes :id, :username, :bookmarks, :bookmarked_combo_ids
 
   def bookmarks
     object.bookmarked_combos.order(created_at: :desc).group_by(&:character).map do |character, combos|
@@ -14,7 +14,8 @@ class UserSerializer < ActiveModel::Serializer
   private
 
   def serialize_characters(character)
-    ActiveModelSerializers::SerializableResource.new(character, each_serializer: CharacterSerializer)
+    CharacterBookmarkSerializer.new(character)
+    # ActiveModelSerializers::SerializableResource.new(character, each_serializer: CharacterSerializer)
   end
 
   def serialize_combos(combos)
@@ -22,6 +23,7 @@ class UserSerializer < ActiveModel::Serializer
   end
 
   def serialize_game(game)
-    ActiveModelSerializers::SerializableResource.new(game, each_serializer: GameSerializer)
+    GameBookmarkSerializer.new(game)
+    # ActiveModelSerializers::SerializableResource.new(game, each_serializer: GameSerializer)
   end
 end

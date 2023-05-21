@@ -1,7 +1,7 @@
 class GameSerializer < ActiveModel::Serializer
   attributes :id, :name, :image_url, :slug, :inputs, :hit_types
 
-  has_many :characters
+  has_many :characters, serializer: GameCharacterSerializer
   has_many :inputs
 
   def inputs

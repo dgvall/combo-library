@@ -3,9 +3,8 @@ import { useParams, useHistory } from 'react-router-dom'
 import { CharacterDataContext } from './context/CharacterData'
 import { UserContext } from './context/user'
 import Combo from './Combo'
-
-import './CharacterPage.css'
 import ComboFilter from './ComboFilter'
+import './CharacterPage.css'
 
 function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection, isBookmarks }) {
   const { game, character, username } = useParams()
@@ -108,11 +107,8 @@ function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection, isBoo
       }
     }).filter(Boolean) // Remove null bookmark objects
 
-    console.log(updatedBookmarks)
-
     const updatedUser = {...user, bookmarked_combo_ids: updatedBookmarkIds, bookmarks: updatedBookmarks}
     setUser(updatedUser)
-    console.log(updatedUser)
   }
 
   return (
