@@ -8,7 +8,7 @@ class UserBookmarksController < ApplicationController
     combos = user.bookmarked_combos.where(character_id: character.id)
 
     if params[:filters].present?
-      filtered_combos = combos.where(filter_params)
+      filtered_combos = combos.where(filter_params).order(created_at: :desc)
       render json: filtered_combos
     end
   end
