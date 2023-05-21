@@ -73,7 +73,7 @@ function UploadComboPage( { dataRetrieved, selectedGame, handleGameSelection } )
     // create a new bookmarked character
     else {
       const newBookmark = {character: characterData, combos: [newCombo], game: selectedGame}
-      const updatedBookmarks = [...user.bookmarks, newBookmark]
+      const updatedBookmarks = [newBookmark, ...user.bookmarks]
       const updatedUser = {...user, combo_ids: updatedComboIds, bookmarked_combo_ids: updatedBookmarkIds, bookmarks: updatedBookmarks}
       setUser(updatedUser)
     }

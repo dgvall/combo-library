@@ -2,7 +2,7 @@ class UserSerializer < ActiveModel::Serializer
   attributes :id, :username, :combo_ids, :bookmarks, :bookmarked_combo_ids
 
   def bookmarks
-    object.bookmarked_combos.group_by(&:character).map do |character, combos|
+    object.bookmarked_combos.order(created_at: :desc).group_by(&:character).map do |character, combos|
       {
         character: serialize_characters(character),
         combos: serialize_combos(combos),

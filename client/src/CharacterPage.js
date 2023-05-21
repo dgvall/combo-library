@@ -79,7 +79,7 @@ function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection, isBoo
     // create a new bookmarked character
     else {
       const newBookmark = {character: characterData, combos: [newCombo], game: selectedGame}
-      const updatedBookmarks = [...user.bookmarks, newBookmark]
+      const updatedBookmarks = [newBookmark, ...user.bookmarks]
       const updatedUser = {...user, bookmarked_combo_ids: updatedBookmarkIds, bookmarks: updatedBookmarks}
       setUser(updatedUser)
     }
