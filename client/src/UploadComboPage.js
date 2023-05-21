@@ -87,7 +87,7 @@ function UploadComboPage( { dataRetrieved, selectedGame, handleGameSelection } )
   return (
     <div className = 'upload-combo-page'>
       {
-        characterData&&selectedGame
+        characterData&&selectedGame&&user
         ?
           <>
             <ComboDetails 
