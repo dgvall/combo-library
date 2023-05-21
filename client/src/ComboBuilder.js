@@ -33,11 +33,24 @@ function ComboBuilder({selectedGame, characterData, combo, inputs, setInputs}) {
     if (e.code === 'Space') {
       handleSpace()
     }
+
+    if (e.keyCode === 8) {
+      handleBackspace()
+    }
   }
 
   function handleClear() {
     setImageUrls([])
     setInputs("")
+  }
+
+  function handleBackspace() {
+    const updatedImageUrls = imageUrls.slice(0, imageUrls.length - 1)
+    setImageUrls(updatedImageUrls)
+
+    const inputsArray = inputs.split(" ")
+    const updatedInputs = inputsArray.slice(0, inputsArray.length - 1).join(" ")
+    setInputs(updatedInputs)
   }
 
   return(
@@ -60,11 +73,20 @@ function ComboBuilder({selectedGame, characterData, combo, inputs, setInputs}) {
           })
         }   
       </div>
-      <button
-        className = 'clear-button'
-        onClick = {handleClear}
-      >
+
+      <div className = "edit-combo-buttons">
+        <img
+          className = "backspace"
+          src = {"https://cdn-icons-png.flaticon.com/512/318/318218.png"}
+          alt = { "backspace" }
+          onClick = {handleBackspace}
+        />
+        <button
+          className = 'clear-button'
+          onClick = {handleClear}
+        >
       Clear</button>
+      </div>
     </div>
       <IconPicker
         extraInputs = {selectedGame.inputs["Extra"]}

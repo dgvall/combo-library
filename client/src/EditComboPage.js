@@ -35,6 +35,7 @@ function EditComboPage( {dataRetrieved, selectedGame, handleGameSelection} ) {
             let foundCombo = foundCharacter.combos.find((c) => c.id === parseInt(comboId))
             if (foundCombo) {
               if (foundCombo.user_id === user.id) {
+                console.log(foundCombo)
                 setCombo(foundCombo)
                 setYoutubeInput(foundCombo.youtube_id)
                 setYoutubeId(foundCombo.youtube_id)
