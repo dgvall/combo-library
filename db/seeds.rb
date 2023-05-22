@@ -6,7 +6,6 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-
 # ggst = Game.create!(
 #   name: "Guilty Gear: Strive",
 #   image_url: "https://i.imgur.com/ioPuJfQ.png",
@@ -159,11 +158,12 @@
 #   name: "Testament",
 #   slug: "testament",
 #   image_url: "https://i.imgur.com/YebETRP.png",
-#   starters: "5P 5K cS fS 5H 5D 2P 2K 2S 2H 2D 6P 6H jP jK jS jH jD Throw jThrow 236S 236H 214P 214S 214H 236236P 236236K",
+#   starters: "5P_5K_cS_fS_5H_5D_2P_2K_2S_2H_2D_6P_6H_j.P_j.K_j.S_j.H"
+#   starters: "5P 5K cS fS 5H 5D 2P 2K 2S 2H 2D 6P 6H jP jK jS jH jD Throw Air-Throw 236S 236H 214P 214S 214H 236236P 236236K",
 #   game_id: 1
 # )
 
-# testament.inputs << [i236, i214]
+# # testament.inputs << [i236, i214]
 
 # jacko = Character.create!(
 #   name: "Jack-O'",
@@ -173,7 +173,7 @@
 #   game_id: 1
 # )
 
-# jacko.inputs << [i236, i214, i624]
+# # jacko.inputs << [i236, i214, i624]
 
 # nago = Character.create!(
 #   name: "Nagoriyuki",
@@ -183,7 +183,7 @@
 #   game_id: 1
 # )
 
-# nago.inputs << [i236, i214, i623, i624]
+# # nago.inputs << [i236, i214, i623, i624]
 
 # millia = Character.create!(
 #   name: "Millia Rage",
@@ -193,7 +193,7 @@
 #   game_id: 1
 # )
 
-# millia.inputs << [i236, i214, i624]
+# # millia.inputs << [i236, i214, i624]
 
 # chipp = Character.create!(
 #   name: "Chipp Zanuff",
@@ -203,7 +203,7 @@
 #   game_id: 1
 # )
 
-# chipp.inputs << [i236, i623, i624]
+# # chipp.inputs << [i236, i623, i624]
 
 # goldlewis = Character.create!(
 #   name: "Goldlewis Dickinson",
@@ -213,7 +213,7 @@
 #   game_id: 1
 # )
 
-# goldlewis.inputs << [i236, i426, i624, i268, i248, i684, i486, i842, i862, circle]
+# # goldlewis.inputs << [i236, i426, i624, i268, i248, i684, i486, i842, i862, circle]
 
 # sf6 = Game.create!(
 #  name: "Street Fighter 6",
@@ -280,7 +280,7 @@
 #   game_id: 2
 #  )
 
-#  luke.inputs << [i236, i214]
+# #  luke.inputs << [i236, i214]
 
 #  ryu = Character.create!(
 #   name: "Ryu",
@@ -290,4 +290,4 @@
 #   game_id: 2
 #  )
 
-#  ryu.inputs << [i236, i214]
+# #  ryu.inputs << [i236, i214]

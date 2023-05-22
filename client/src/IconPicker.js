@@ -90,6 +90,64 @@ function IconPicker({extraInputs, buttonInputs, motionInputs, handleClick, handl
   //   }
   // ]
 
+  const motionsRow1 = [
+    {
+      name: "214",
+      image_url: "https://i.imgur.com/F0hNuQt.png"
+    },
+    {
+      name: "236",
+      image_url: "https://i.imgur.com/FGoSIYq.png"
+    },
+    {
+      name: "421",
+      image_url: "https://i.imgur.com/XUhyVUc.png"
+    },
+    {
+      name: "623",
+      image_url: "https://i.imgur.com/YbO0z8X.png"
+    },
+    {
+      name: "624",
+      image_url: "https://i.imgur.com/iocDwKJ.png"
+    },
+    {
+      name: "426",
+      image_url: "https://i.imgur.com/eoQSkqs.png"
+    },
+  ]
+
+  const motionsRow2 = [
+    {
+      name: "684",
+      image_url: "https://i.imgur.com/4Iem06x.png"
+    },
+    {
+      name: "486",
+      image_url: "https://i.imgur.com/oKZq3p4.png"
+    },
+    {
+      name: "268",
+      image_url: "https://i.imgur.com/CCdla7s.png"
+    },
+    {
+      name: "248",
+      image_url: "https://i.imgur.com/X6EeTeb.png"
+    },
+    {
+      name: "842",
+      image_url: "https://i.imgur.com/ogiRqdN.png"
+    },
+    {
+      name: "862",
+      image_url: "https://i.imgur.com/7d2vQ51.png"
+    },
+    {
+      name: "Circle",
+      image_url: "https://i.imgur.com/SoCvJ4j.png"
+    },
+  ]
+
   const universalInputs = [
     {
       name: "[",
@@ -191,7 +249,7 @@ function IconPicker({extraInputs, buttonInputs, motionInputs, handleClick, handl
 
         <div className = 'picker-column'>
           <h2>Directions</h2>
-          <div className = 'picker-directions'>
+          <div className = 'picker-rows-container'>
             <div className = 'picker-row'>
               {
                 directionsRow1.map((u, index) => {
@@ -237,7 +295,7 @@ function IconPicker({extraInputs, buttonInputs, motionInputs, handleClick, handl
             
           </div>  
           <h2>Motions</h2>
-          <div className = 'picker-row'>
+          {/* <div className = 'picker-row'>
             {
               motionInputs.map((u, index) => {
                 return (
@@ -250,7 +308,40 @@ function IconPicker({extraInputs, buttonInputs, motionInputs, handleClick, handl
                 )
               })
             }
-          </div>
+          </div> */}
+
+          <div className = 'picker-rows-container'>
+            <div className = 'picker-row'>
+              {
+                motionsRow1.map((u, index) => {
+                  return (
+                    <ClickableIcon
+                      handleClick = {handleClick}
+                      key = {u.name}
+                      url = {u.image_url}
+                      name = {u.name}
+                    />
+                  )
+                })
+              }
+            </div>
+            <div className = 'picker-row'>
+              {
+                motionsRow2.map((u, index) => {
+                  return (
+                    <ClickableIcon
+                      handleClick = {handleClick}
+                      key = {u.name}
+                      url = {u.image_url}
+                      name = {u.name}
+                    />
+                  )
+                })
+              }
+            </div>
+            
+          </div>  
+          
         </div>
       </div>
       <img
