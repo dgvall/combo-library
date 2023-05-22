@@ -4,7 +4,7 @@ import './IconPicker.css'
 import ClickableIcon from './ClickableIcon'
 
 
-function IconPicker({extraInputs, buttonInputs, motionInputs, handleClick, handleSpace}) {
+function IconPicker({extraInputs, buttonInputs, motionInputs, handleClick, handleSpace, gameSlug}) {
 
   const directionsRow1 = [
     {
@@ -140,7 +140,7 @@ function IconPicker({extraInputs, buttonInputs, motionInputs, handleClick, handl
     <div className = 'picker-container'>
       <div className = 'picker-rows'>
         <div className = 'picker-column'>
-          <h2>Extras</h2>
+          <h2>{gameSlug}</h2>
           <div className = 'picker-row'>
             {
               extraInputs.map((u) => {
@@ -150,6 +150,7 @@ function IconPicker({extraInputs, buttonInputs, motionInputs, handleClick, handl
                     key = {u.id}
                     url = {u.image_url}
                     name = {u.name}
+                    spaceIcon = {true}
                   />
                 )
               })

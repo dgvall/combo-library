@@ -94,6 +94,7 @@ function ComboBuilder({selectedGame, characterData, combo, inputs, setInputs}) {
         motionInputs = {characterData.inputs["Motion"]}
         handleClick = {handleClick}
         handleSpace = {handleSpace}
+        gameSlug = {selectedGame.slug.toUpperCase()}
       />
   </div>
   )
