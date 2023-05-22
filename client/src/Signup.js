@@ -21,7 +21,7 @@ function Signup() {
       password_confirmation: passwordConfirmation
     }
     
-    fetch('/signup', {
+    fetch('/api/signup', {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

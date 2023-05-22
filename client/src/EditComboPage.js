@@ -59,7 +59,7 @@ function EditComboPage( {dataRetrieved, selectedGame, handleGameSelection} ) {
       // youtube id only works after clicking check video
     }
 
-      fetch(`/characters/${characterData.id}/combos/${comboId}`, {
+      fetch(`/api/characters/${characterData.id}/combos/${comboId}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json"
@@ -81,7 +81,7 @@ function EditComboPage( {dataRetrieved, selectedGame, handleGameSelection} ) {
   }
 
   function handleDelete() {
-    fetch(`/characters/${characterData.id}/combos/${comboId}`, {
+    fetch(`/api/characters/${characterData.id}/combos/${comboId}`, {
       method: "DELETE",
     })
       .then((r) => {

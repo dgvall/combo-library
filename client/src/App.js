@@ -21,13 +21,13 @@ function App() {
   const [dataRetrieved, setDataRetrieved] = useState(false)
 
   useEffect(() => {
-    fetch("/me").then((r) => {
+    fetch("/api/me").then((r) => {
       if (r.ok) {
         r.json().then((user) => setUser(user))
       }
     })
 
-    fetch("/games").then((r) => {
+    fetch("/api/games").then((r) => {
       if (r.ok) {
         r.json().then((gamesData) => {
           setGames(gamesData)

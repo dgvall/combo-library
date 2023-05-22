@@ -15,7 +15,7 @@ function Combo( { id, imageUrls, youtubeId, authorNotes, canEdit, handleClickEdi
   }, [isBookmarked])
 
   function handleRemoveBookmark() {
-    fetch(`/users/${user.id}/user_bookmarks/${id}`, {
+    fetch(`/api/users/${user.id}/user_bookmarks/${id}`, {
       method: "DELETE",
     })
       .then((r) => {
@@ -27,7 +27,7 @@ function Combo( { id, imageUrls, youtubeId, authorNotes, canEdit, handleClickEdi
   }
 
   function handleBookmark() {
-    fetch(`/users/${user.id}/user_bookmarks`, {
+    fetch(`/api/users/${user.id}/user_bookmarks`, {
       method: "POST",
       headers: {
         'Content-Type': 'application/json',

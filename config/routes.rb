@@ -6,27 +6,29 @@ Rails.application.routes.draw do
   # resources :user_bookmarks
   # resources :users
   # resources :combos
-  get "/games/:game_slug/characters/:character_slug", to: "characters#show"
+  scope '/api' do
 
-  post "/characters/:character_id/filter_combos", to: "combos#filter_combos"
-  post "/users/:username/characters/:character_slug/filter_bookmarked_combos", to: "user_bookmarks#filter_bookmarked_combos"
+    get "/games/:game_slug/characters/:character_slug", to: "characters#show"
 
-  resources :characters do
-    resources :combos, only: [:create, :update, :destroy]
+    post "/characters/:character_id/filter_combos", to: "combos#filter_combos"
+    post "/users/:username/characters/:character_slug/filter_bookmarked_combos", to: "user_bookmarks#filter_bookmarked_combos"
+
+    resources :characters do
+      resources :combos, only: [:create, :update, :destroy]
+    end
+
+    resources :users do 
+      resources :user_bookmarks, only: [:create, :destroy]
+      
+    end
+      resources :games, only: [:index]
+
+    post "/signup", to: "users#create"
+    get "/me", to: "users#show"
+
+    post "/login", to: "sessions#create"
+    delete "/logout", to: "sessions#destroy"
   end
-
-  resources :users do 
-    resources :user_bookmarks, only: [:create, :destroy]
-    
-  end
-
-  resources :games, only: [:index]
-
-  post "/signup", to: "users#create"
-  get "/me", to: "users#show"
-
-  post "/login", to: "sessions#create"
-  delete "/logout", to: "sessions#destroy"
 
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!

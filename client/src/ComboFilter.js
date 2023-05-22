@@ -42,7 +42,7 @@ function ComboFilter({characterData, selectedGame, setDisplayedCombos, isBookmar
 
     if(Object.keys(filters).length > 0) {
       if (!isBookmarks) {
-        fetch(`/characters/${characterData.id}/filter_combos`, {
+        fetch(`/api/characters/${characterData.id}/filter_combos`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -60,7 +60,7 @@ function ComboFilter({characterData, selectedGame, setDisplayedCombos, isBookmar
           })
       }
       else {
-        fetch(`/users/${username}/characters/${character}/filter_bookmarked_combos`, {
+        fetch(`/api/users/${username}/characters/${character}/filter_bookmarked_combos`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

@@ -9,7 +9,7 @@ function CharacterDataProvider({ children }) {
   
   useEffect(() => {
     if (game && character) {
-      fetch(`/games/${game}/characters/${character}`)
+      fetch(`/api/games/${game}/characters/${character}`)
       .then((r) => {
         if (r.ok) {
           r.json().then((data) => setCharacterData(data))
