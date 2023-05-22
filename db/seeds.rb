@@ -56,7 +56,26 @@
 #   image_url: "https://i.imgur.com/TuBfI2x.png"
 # )
 
-# ggst.inputs << [p, k, s, h, d, dash, rc]
+# c = Input.create!(
+#   input_type: "Extra",
+#   name: "c.",
+#   image_url: "https://i.imgur.com/hd22b7L.png"
+# )
+
+# f = Input.create!(
+#   input_type: "Extra",
+#   name: "f.",
+#   image_url: "https://i.imgur.com/8ux6pvT.png"
+# )
+
+# ws = Input.create!(
+#   input_type: "Extra",
+#   name: "ws.",
+#   image_url: "https://i.imgur.com/uDCpULE.png"
+# )
+
+
+# ggst.inputs << [p, k, s, h, d, rc, dash, c, f, ws]
 
 # i236 = Input.create!(
 #   input_type: "Motion",
@@ -242,10 +261,16 @@
 # di = Input.create!(
 #   input_type: "Extra",
 #   name: "DI",
-#   image_url: "https://i.imgur.com/XxRoCbK.png"
+#   image_url: "https://i.imgur.com/TnDZpg0.png"
 # )
 
-# sf6.inputs << [lp, mp, hp, lk, mk, hk, di]
+# dr = Input.create!(
+# input_type: "Extra",
+# name: "DR",
+# image_url: "https://i.imgur.com/46kbAU5.png"
+# )
+
+# sf6.inputs << [lp, mp, hp, lk, mk, hk, di, dr]
 
 #  luke = Character.create!(
 #   name: "Luke",

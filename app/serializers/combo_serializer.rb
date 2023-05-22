@@ -90,6 +90,12 @@ class ComboSerializer < ActiveModel::Serializer
                 'https://i.imgur.com/ovXavcY.png'
               when 'Dash'
                 'https://i.imgur.com/TuBfI2x.png'
+              when 'c.'
+                'https://i.imgur.com/hd22b7L.png'
+              when 'f.'
+                'https://i.imgur.com/8ux6pvT.png'
+              when 'ws.'
+                'https://i.imgur.com/uDCpULE.png'
               end
           elsif object.character.game.slug === "sf6"
             case input
@@ -108,7 +114,9 @@ class ComboSerializer < ActiveModel::Serializer
               when 'HK'
                 'https://i.imgur.com/VuPrTtO.png'
               when 'DI'
-                'https://i.imgur.com/XxRoCbK.png'
+                'https://i.imgur.com/TnDZpg0.png'
+              when 'DR'
+                'https://i.imgur.com/46kbAU5.png'
               else
             end
             # add more elsif for games here
