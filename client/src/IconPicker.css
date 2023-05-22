@@ -30,11 +30,7 @@
   border: solid red 2px;
 }
 
-.picker-row-directions {
+.picker-directions {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  margin-left: 2vw;
-  width: 200px;
-  height: 200px;
+  flex-direction: column;
 }
