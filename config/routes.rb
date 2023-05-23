@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   
-  # resources :character_inputs
   # resources :game_inputs
   # resources :inputs
   # resources :user_bookmarks
