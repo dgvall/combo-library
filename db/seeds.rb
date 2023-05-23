@@ -233,21 +233,21 @@
 # )
 # zato = Character.create!(
 #   name: "Zato-1",
-#   slug: "zato",
+#   slug: "zato-1",
 #   image_url: "https://i.imgur.com/4gu6jxN.png",
 #   starters: "5P_5K_c.S_f.S_5H_5D_2P_2K_2S_2H_2D_6P_6K_6H_j.P_j.K_j.S_j.H_j.D_Ground Throw_Air Throw_Flight_Summon Eddie_\"Pierce\"_\"That's a lot!\"_\"Leap\"_\"Oppose\"_Invite Hell_Break The Law_Damned Fang_Drunkard Shade_Amorphous_Sun Void",
 #   game_id: 1
 # )
 # ino = Character.create!(
 #   name: "I-no",
-#   slug: "ino",
+#   slug: "i-no",
 #   image_url: "https://i.imgur.com/tnwrJvb.png",
 #   starters: "5P_5K_c.S_f.S_5H_5D_2P_2K_2S_2H_2D_6P_6H_j.P_j.K_j.S_j.H_j.D_Ground Throw_Air Throw_Antidepressant Scale_Stroke the Big Tree_Sultry Performance_Chemical Love_Megalomania_Ultimate Fortissimo",
 #   game_id: 1
 # )
 # chaos = Character.create!(
 #   name: "Happy Chaos",
-#   slug: "chaos",
+#   slug: "happy-chaos",
 #   image_url: "https://i.imgur.com/kHdSCLW.png",
 #   starters: "5P_5K_c.S_f.S_5D_2P_2K_2S_2D_6P_6K_6S_j.P_j.K_j.S_j.D_j.2K_Ground Throw_Air Throw_H / Fire_At the Ready_Steady Aim / Fire_Cancel Aim_Reload_Focus_Curse_Scapegoat_Roll_Deus Ex Machina_Super Focus",
 #   game_id: 1
