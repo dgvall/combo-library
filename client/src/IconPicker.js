@@ -127,12 +127,12 @@ function IconPicker({extraInputs, buttonInputs, handleClick, handleSpace, gameSl
       image_url: "https://i.imgur.com/oKZq3p4.png"
     },
     {
-      name: "268",
-      image_url: "https://i.imgur.com/CCdla7s.png"
-    },
-    {
       name: "248",
       image_url: "https://i.imgur.com/X6EeTeb.png"
+    },
+    {
+      name: "268",
+      image_url: "https://i.imgur.com/CCdla7s.png"
     },
     {
       name: "842",
