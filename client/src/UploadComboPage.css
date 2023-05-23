@@ -1,9 +1,8 @@
 .upload-combo-page {
   display: flex;
-  justify-content: center;
-  flex-direction: row;
-  border: solid red 2px;
+  justify-content: space-between;
   height: 100%;
+  padding: 20px;
 }
 
 .combo-video-container {
@@ -12,13 +11,16 @@
   flex-direction: column;
   justify-content: space-between;
   width: 25vw;
-  border: solid blue 2px;
+  background-color: #f1f1f1;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  border-radius: 4px;
 }
 
 .video {
   display: flex;
   flex-direction: column;
-  align-items: center
+  align-items: center;
 }
 
 .button-column {
@@ -29,31 +31,47 @@
 .submit {
   display: flex;
   flex-direction: column;
-  align-items: center
+  align-items: center;
 }
 
 .submit-combo-button {
   font-size: 2rem;
-  border: solid black 2px;
   margin: 1em;
+  padding: 10px 20px;
+  border-radius: 4px;
+  color: white;
+  background-color: #007bff;
+  border: 2px solid rgb(1, 0, 48);
+  cursor: pointer;
 }
 
 .delete-combo-button {
   font-size: 2rem;
-  border: solid red 2px;
-  color: red;
+  border: 2px solid rgb(48, 0, 0);
+  color: white;
   margin-top: 1em;
+  padding: 10px 20px;
+  border-radius: 4px;
+  background-color: #ff0000;
+  cursor: pointer;
 }
 
 .combo-video-container input {
-  border: solid black 2px;
+  border: 2px solid black;
   font-size: 1.1rem;
+  padding: 10px;
+  border-radius: 4px;
+  background-color: white;
 }
 
 .check-video-button {
   font-size: 1.2rem;
-  border: solid black 2px;
+  border: 2px solid rgb(111, 207, 255);
   margin: 1vw;
+  padding: 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: rgb(156, 220, 252);
 }
 
 .errors-list {
@@ -65,6 +83,6 @@
 .errors-list li {
   padding-right: 1vw;
   font-size: 1.1rem;
-  list-style:square;
+  list-style: square;
   color: red;
 }

@@ -143,7 +143,7 @@ function ComboFilter({characterData, selectedGame, setDisplayedCombos, isBookmar
                 {
                   showUnfilter &&
                   <button
-                    className = 'filter-button'
+                    className = 'remove-filter-button'
                     onClick = {handleUnfilter}
                   >Remove Filters</button>
                 }

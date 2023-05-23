@@ -2,12 +2,15 @@
   display: flex;
   justify-content: center;
   cursor: pointer;
-  border: solid red 2px;
   max-width: 33vw;
   margin: 1vw;
 }
 
 .character img {
   max-height: 30vh;
-  max-width: 33vw;
+  max-width: 100%;
+  object-fit: cover;
+  border-radius: 4px;
+  background-color:rgb(242, 247, 255);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }

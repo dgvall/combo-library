@@ -49,14 +49,28 @@ function Combo( { id, imageUrls, youtubeId, authorNotes, canEdit, handleClickEdi
       <div className = 'buttons-container'>
         {
           authorNotes &&
-            <button
+            // <button
+            //   onClick = {() => setShowNotes(() => !showNotes)}
+            // >🗒️</button>
+
+            <img
+              className = "bookmark-icon"
               onClick = {() => setShowNotes(() => !showNotes)}
-            >🗒️</button>
+              src = "https://i.imgur.com/wmSZLTt.png"
+              alt = "author notes button"
+            />
         }
 
-        <button
+        {/* <button
           onClick = {() => setShowVideo(() => !showVideo)}
-        >▶️</button>
+        >▶️</button> */}
+
+        <img
+          className = "bookmark-icon"
+          onClick = {() => setShowVideo(() => !showVideo)}
+          src = "https://i.imgur.com/jfFgTr3.png"
+          alt = "open video button"
+        />
 
         
       </div>
@@ -89,20 +103,40 @@ function Combo( { id, imageUrls, youtubeId, authorNotes, canEdit, handleClickEdi
           <div className = 'buttons-container'>
             {
               canEdit &&
-              <button
+              // <button
+              //   onClick = {() => handleClickEdit(id)}
+              // >⚙️</button>
+              <img
+                className = "bookmark-icon"
                 onClick = {() => handleClickEdit(id)}
-              >⚙️</button>
+                src = "https://i.imgur.com/v8uIZRI.png"
+                alt = "settings"
+              />
             }
             {
               bookmarked
               ?
-              <button
+              // <button
+              //   onClick = {handleRemoveBookmark}
+              // >🔖</button>
+
+              <img
+                className = "bookmark-icon"
+                src = "https://i.imgur.com/0DyMeol.png"
+                alt = "bookmark"
                 onClick = {handleRemoveBookmark}
-              >🔖</button>
+              />
+              
               :
-              <button
+              // <button
+              //   onClick = {handleBookmark}
+              // >x</button>
+              <img
+                className = "bookmark-icon"
+                src = "https://i.imgur.com/G2oUrm9.png"
+                alt = "bookmark"
                 onClick = {handleBookmark}
-              >x</button>
+              />
             }
           </div>
         : <></>

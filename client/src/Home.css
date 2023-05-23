@@ -20,10 +20,8 @@
 
 .home-column p {
   display: flex;
-  /* justify-content: center; */
   align-items: center;
   padding-bottom: 1.5vh;
-  /* text-indent: 3rem; */
   margin: 0;
   font-size: 2rem;
 }

@@ -407,7 +407,7 @@
 #     name: "Chun-Li",
 #     slug: "chun-li",
 #     image_url: "https://i.imgur.com/B1GnLYm.png",
-#     starters: "Drive Impact_Drive Rush_LP_MP_HP_LK_MK_HK_2LP_2MP_2HP_2LK_2MK_2HK_4MP_6MP_4HP_3HP_6HK_3HK_6HP_j.2MK_j.9_j.HP>HP_214P_214P>LP_214P>MP_214P>HP_214P>LK_214P>MK_214P>HK_Kikoken_Hundred Lightning Kicks_Lightning Kick Barrage_Aerial Hundred Lightning Kicks_Spinning Bird Kick_Hazanshu_Tensho Kicks_Kikosho_Aerial Kikosho_Hoyoku-sen_Soten Ranka",
+#     starters: "Drive Impact_Drive Rush_LP_MP_HP_LK_MK_HK_2LP_2MP_2HP_2LK_2MK_2HK_4MP or 6MP_4HP_3HP_6HK_3HK_j.2MK_j.9_j.HP>HP_214P_214P>LP_214P>MP_214P>HP_214P>LK_214P>MK_214P>HK_Kikoken_Hundred Lightning Kicks_Lightning Kick Barrage_Aerial Hundred Lightning Kicks_Spinning Bird Kick_Hazanshu_Tensho Kicks_Kikosho_Aerial Kikosho_Hoyoku-sen_Soten Ranka",
 #     game_id: 2
 #   )
 
@@ -439,7 +439,7 @@
 #     name: "Guile",
 #     slug: "guile",
 #     image_url: "https://i.imgur.com/AtD2G2k.png",
-#     starters: "Drive Impact_Drive Rush_LP_MP_HP_LK_MK_HK_2LP_2MP_2HP_2LK_2MK_2HK_6MP_4HK_6HP_4LK_4MK_6MK_6HK_3HK_MP>4HP_MPMP_2MK>6MP_2HK>3HK_Sonic Boom_Somersault Kick_Sonic Blade_Sonic Cross_Sonic Break_Sonic Hurricane_Solid Puncher_Crossfire Somersault",
+#     starters: "Drive Impact_Drive Rush_LP_MP_HP_LK_MK_HK_2LP_2MP_2HP_2LK_2MK_2HK_6MP_4HK_6HP_4LK_4MK or 6MK_6HK_3HK_MP>4HP_2MP>2MP_2MK>6MP_2HK>3HK_Sonic Boom_Somersault Kick_Sonic Blade_Sonic Cross_Sonic Break_Sonic Hurricane_Solid Puncher_Crossfire Somersault",
 #     game_id: 2
 #   )
 
@@ -463,7 +463,7 @@
 #     name: "Juri",
 #     slug: "juri",
 #     image_url: "https://i.imgur.com/rJp5Wtf.png",
-#     starters: "Drive Impact_Drive Rush_LP_MP_HP_LK_MK_HK_2LP_2MP_2HP_2LK_2MK_2HK_6MP_6MK_6HP_MP>4HP>6HP_Fuhajin_Saihasho_Ankensatsu_Go Ohsatsu_Tensenrin_Shiku-sen_Sakkai Fuhazan_Feng Shui Engine_Kaisen Dankai Raku",
+#     starters: "Drive Impact_Drive Rush_LP_MP_HP_LK_MK_HK_2LP_2MP_2HP_2LK_2MK_2HK_6MP_6MK_6HP_4HK_MP>4HP>6HP_Fuhajin_Saihasho_Ankensatsu_Go Ohsatsu_Tensenrin_Shiku-sen_Sakkai Fuhazan_Feng Shui Engine_Kaisen Dankai Raku",
 #     game_id: 2
 #   )
 

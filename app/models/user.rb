@@ -5,6 +5,6 @@ class User < ApplicationRecord
   has_many :user_bookmarks
   has_many :bookmarked_combos, through: :user_bookmarks, source: :combo
 
-  validates :username, presence: true, uniqueness: {case_sensitive: false}
+  validates :username, presence: true, uniqueness: {case_sensitive: false}, length: { maximum: 15 }
   validates :password_digest, presence: true
 end

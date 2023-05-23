@@ -3,12 +3,16 @@
   align-items: center;
   flex-direction: column;
   width: 25vw;
-  border: solid blue 2px;
+  background-color: #f1f1f1;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  border-radius: 4px;
 }
 
 .checkbox-container {
   display: flex;
   flex-direction: row;
+  margin-bottom: 10px;
 }
 
 .input-container {
@@ -18,15 +22,17 @@
   align-items: center;
 }
 
-.input-container input {
-  border: solid black 2px;
+.input-container input,
+.input-container textarea {
+  border: 2px solid black;
   font-size: 1.1rem;
+  padding: 10px;
+  border-radius: 4px;
+  background-color: white;
 }
 
 .input-container textarea {
-  font-size: 1.1rem;
   height: 7vh;
   width: 15vw;
   resize: none;
-  border: solid black 2px;
 }

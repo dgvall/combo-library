@@ -131,7 +131,6 @@ function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection, isBoo
               username = {username}
             />
           </div>
-
             <div className = "combos-container">
               <button
                 className = 'upload-button'

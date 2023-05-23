@@ -2,11 +2,17 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  border: solid blue 2px;
+  border: solid rgb(22, 22, 22) 2px;
+  margin-top: 20px;
   width: 100%;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
 }
 
 .icons-container {
+  margin-left: 15px;
+  margin-right: 15px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -34,4 +40,11 @@
 
 .buttons-container button {
   font-size: 2rem;
+}
+
+.bookmark-icon {
+  margin: 10px;
+  margin-left: 20px;
+  height: 30px;
+  width: auto;
 }

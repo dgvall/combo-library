@@ -1,8 +1,14 @@
 .game {
-  margin: 2vh;
+  display: flex;
+  margin: 4vh;
   height: 10vh;
+  cursor: pointer;
 }
 
 .game img {
   height: 10vh;
+  border-radius: 4px;
+  background-color:rgb(242, 247, 255);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  padding: 20px;
 }
