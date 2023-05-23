@@ -4,7 +4,7 @@ import './IconPicker.css'
 import ClickableIcon from './ClickableIcon'
 
 
-function IconPicker({extraInputs, buttonInputs, motionInputs, handleClick, handleSpace, gameSlug}) {
+function IconPicker({extraInputs, buttonInputs, handleClick, handleSpace, gameSlug}) {
 
   const directionsRow1 = [
     {

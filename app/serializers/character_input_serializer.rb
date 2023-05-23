@@ -1,3 +1,3 @@
-class CharacterInputSerializer < ActiveModel::Serializer
-  attributes :id
-end
+# class CharacterInputSerializer < ActiveModel::Serializer
+#   attributes :id
+# end

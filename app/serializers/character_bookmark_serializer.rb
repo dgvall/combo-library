@@ -9,7 +9,7 @@ class CharacterBookmarkSerializer < ActiveModel::Serializer
   # end
 
   def starters
-    object.starters.split(" ")
+    object.starters.split("_")
   end
 
   # def inputs

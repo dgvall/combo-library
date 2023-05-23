@@ -91,7 +91,7 @@ function ComboBuilder({selectedGame, characterData, combo, inputs, setInputs}) {
       <IconPicker
         extraInputs = {selectedGame.inputs["Extra"]}
         buttonInputs = {selectedGame.inputs["Button"]}
-        motionInputs = {characterData.inputs["Motion"]}
+        // motionInputs = {characterData.inputs["Motion"]}
         handleClick = {handleClick}
         handleSpace = {handleSpace}
         gameSlug = {selectedGame.slug.toUpperCase()}
