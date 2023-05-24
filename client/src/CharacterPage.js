@@ -5,24 +5,113 @@ import { UserContext } from './context/user'
 import Combo from './Combo'
 import ComboFilter from './ComboFilter'
 import './CharacterPage.css'
+import Pagination from './Pagination'
 
 function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection}) {
   const { game, character, username } = useParams()
   const history = useHistory()
   const { characterData } = useContext(CharacterDataContext)
   const { user, setUser } = useContext(UserContext)
+  const [unfilteredCombos, setUnfilteredCombos] = useState(null)
   const [ displayedCombos, setDisplayedCombos ] = useState([])
   const [ bookmark, setBookmark ] = useState(null)
+
+  const [currentPage, setCurrentPage] = useState(1)
+  const [totalPages, setTotalPages] = useState(1)
+  
+  const [currentFilteredPage, setCurrentFilteredPage] = useState(1)
+  const [totalFilteredPages, setTotalFilteredPages] = useState(1)
+
+  // are filteredcombos being displayed? enabled when filter is clicked, disabled when unfilter is clicked
+  const [displayedFiltered, setDisplayedFiltered] = useState(false)
+  // when filter or unfilter buttons are pressed, set pagination menu back to 1
+  const [filterButtonClicked, setFilterButtonClicked] = useState(false)
+
+
+  useEffect(() => {
+    setCurrentPage(1)
+  }, [displayedFiltered])
 
   useEffect(() => {
     handleGameSelection(game)
   }, [game, selectedGame, dataRetrieved, handleGameSelection])
 
   useEffect(() => {
-    if (characterData) {
-      setDisplayedCombos(characterData.combos)
+    if (game && character && !displayedFiltered) {
+      console.log("FETCHING FOR UNFILTERED")
+      fetch(`/api/games/${game}/characters/${character}/combos`, {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          current_page: currentPage,
+          // total_pages: totalPages,
+        })
+      })
+      .then((r) => {
+        if (r.ok) {
+          r.json().then((data) => {
+            console.log(data)
+            setDisplayedCombos(data.combos)
+            setTotalPages(data.total_pages)
+
+            if(!unfilteredCombos) {
+              setUnfilteredCombos(data.combos)
+            }
+          })
+        }
+      })
+      .catch((error) => console.log(error))
     }
-  }, [characterData])
+  }, [character, game, currentPage, totalPages])
+
+  useEffect(() => {
+    console.log(currentPage)
+    console.log(currentFilteredPage)
+  }, [currentPage, currentFilteredPage])
+
+  function handlePageChange(pageNumber) {
+    setCurrentPage(pageNumber)
+  }
+
+  function handleFilteredPageChange(pageNumber) {
+    setCurrentFilteredPage(pageNumber)
+  }
+
+  function handleKeyDown(e) {
+    console.log("he")
+    if(displayedFiltered) {
+      
+      if (e.keyCode === 39) {
+        if (currentFilteredPage + 1 <= totalFilteredPages) {
+          setCurrentFilteredPage(() => currentFilteredPage + 1)
+        }
+      } else if (e.keyCode === 37) {
+        if (currentFilteredPage > 1) {
+          setCurrentFilteredPage(() => currentFilteredPage - 1)
+        }
+      }
+    }
+    else {
+      if (e.keyCode === 39) {
+        if (currentPage + 1 <= totalPages) {
+          setCurrentPage(() => currentPage + 1)
+        }
+      } else if (e.keyCode === 37) {
+        if (currentPage > 1) {
+          setCurrentPage(() => currentPage - 1)
+        }
+      }
+    }
+  }
+
+  // useEffect(() => {
+  //   if (characterData) {
+  //     setDisplayedCombos(characterData.combos)
+  //     console.log(characterData.combos)
+  //   }
+  // }, [characterData])
 
   function handleClickEdit(comboId) {
     history.push(`/${game}/${character}/${comboId}/edit`)
@@ -81,17 +170,27 @@ function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection}) {
   return (
       <>
       {
-        characterData &&
-          <div className = 'character-page'>
+        characterData && displayedCombos &&
+          <div
+            onKeyDown={handleKeyDown}
+            tabIndex = {0}
+            className = 'character-page'
+          >
           <div className = 'combos-filter-container'>
             <ComboFilter
               characterData = {characterData}
               selectedGame = {selectedGame}
               setDisplayedCombos = {setDisplayedCombos}
               isBookmarks = {false}
-              combos = {characterData.combos}
+              combos = {unfilteredCombos}
               character = {character}
               username = {username}
+              currentFilteredPage = {currentFilteredPage}
+              setCurrentFilteredPage = {setCurrentFilteredPage}
+              setTotalFilteredPages = {setTotalFilteredPages}
+              setDisplayedFiltered = {setDisplayedFiltered}
+              setFilterButtonClicked = {setFilterButtonClicked}
+              filterButtonClicked = {filterButtonClicked}
             />
           </div>
 
@@ -132,6 +231,32 @@ function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection}) {
                     />
                   )
                 })
+              }
+              {
+                displayedFiltered
+                ?
+                <Pagination
+                onPageChange = {handleFilteredPageChange}
+                dataPerPage= {3}
+                navigation={true}
+                getStyle={'style-3'}
+                totalPages= {totalFilteredPages}
+                filterButtonClicked = {filterButtonClicked}
+                currentPageProp = {currentFilteredPage}
+              />
+        
+
+                :
+
+                <Pagination
+                onPageChange = {handlePageChange}
+                dataPerPage={3}
+                navigation={true}
+                getStyle={'style-3'}
+                totalPages= {totalPages}
+                filterButtonClicked = {filterButtonClicked}
+                currentPageProp={currentPage}
+              />
               }
             </div>
             <div className = 'character-display'>

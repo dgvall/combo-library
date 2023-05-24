@@ -1,13 +1,51 @@
 class CombosController < ApplicationController
   skip_before_action :authorize, only: :filter_combos
+  require 'will_paginate/array'
 
   def filter_combos
+    game = Game.find_by(slug: params[:game_slug])
     character = Character.find(params[:character_id])
     combos = character.combos
 
-    if params[:filters].present?
-      filtered_combos = combos.where(filter_params).order(created_at: :desc)
-      render json: filtered_combos
+    if params[:filters].present? && character && game && game.id == character.game_id
+      # filtered_combos = combos.where(filter_params).order(created_at: :desc)
+      # render json: filtered_combos
+
+      per_page = 3
+      current_page = params[:current_page].to_i || 1
+  
+      combos = character.combos.where(filter_params).order(created_at: :desc)
+      paginated_combos = combos.paginate(page: current_page, per_page: per_page)
+  
+      render json: {
+        combos: ActiveModel::Serializer::CollectionSerializer.new(paginated_combos, serializer: ComboSerializer),
+        total_pages: paginated_combos.total_pages
+      }, status: :ok
+    else
+      render json: { error: "Character not found" }, status: :not_found
+    end
+    # end
+  end
+
+  # post "games/:game_slug/characters/:character_slug/combos", to: "combos#unfiltered_combos"
+
+  def unfiltered_combos
+    game = Game.find_by(slug: params[:game_slug])
+    character = Character.find_by(slug: params[:character_slug])
+  
+    if game && character && game.id == character.game_id
+      per_page = 3
+      current_page = params[:current_page].to_i || 1
+  
+      combos = character.combos.order(created_at: :desc)
+      paginated_combos = combos.paginate(page: current_page, per_page: per_page)
+  
+      render json: {
+        combos: ActiveModel::Serializer::CollectionSerializer.new(paginated_combos, serializer: ComboSerializer),
+        total_pages: paginated_combos.total_pages
+      }, status: :ok
+    else
+      render json: { error: "Character not found" }, status: :not_found
     end
   end
 
@@ -54,6 +92,6 @@ class CombosController < ApplicationController
   end
 
   def filter_params
-    params.require(:filters).permit(:starter, :hit_type, :meterless, :location)
+    params.require(:filters).permit(:starter, :hit_type, :meterless, :location, :current_page)
   end
 end

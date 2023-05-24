@@ -1,14 +1,15 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import './ComboFilter.css'
 
 import DropdownMenu from './DropdownMenu'
 
-function ComboFilter({characterData, selectedGame, setDisplayedCombos, isBookmarks, combos, username, character}) {
+function ComboFilter({characterData, selectedGame, setDisplayedCombos, isBookmarks, combos, username, character, currentFilteredPage, setCurrentFilteredPage, setTotalFilteredPages, setDisplayedFiltered, filterButtonClicked, setFilterButtonClicked}) {
   const [starter, setStarter] = useState("")
   const [meterless, setMeterless] = useState("")
   const [location, setLocation] = useState("")
   const [hitType, setHitType] = useState("")
   const [showUnfilter, setShowUnfilter] = useState(false)
+
 
   function getFilters() {
     let filters = {}
@@ -35,14 +36,19 @@ function ComboFilter({characterData, selectedGame, setDisplayedCombos, isBookmar
   }
 
   function handleFilter() {
+    // setFilterButtonClicked(() => !filterButtonClicked)
+    // setDisplayedFiltered(true)
+    // setCurrentFilteredPage(1)
     const filters = getFilters()
     const params = {
       filters: filters,
+      current_page: 1
     }
 
     if(Object.keys(filters).length > 0) {
       if (!isBookmarks) {
-        fetch(`/api/characters/${characterData.id}/filter_combos`, {
+        console.log("FETCHING FOR FILTERED")
+        fetch(`/api/games/${selectedGame.slug}/characters/${characterData.id}/filter_combos`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -54,7 +60,12 @@ function ComboFilter({characterData, selectedGame, setDisplayedCombos, isBookmar
               r.json().then((data) => {
                 console.log(data)
                 setShowUnfilter(true)
-                setDisplayedCombos(data)
+                setDisplayedCombos(data.combos)
+                setTotalFilteredPages(data.total_pages)
+
+                setFilterButtonClicked(() => !filterButtonClicked)
+                setDisplayedFiltered(true)
+                setCurrentFilteredPage(1)
               })
             }
           })
@@ -80,13 +91,42 @@ function ComboFilter({characterData, selectedGame, setDisplayedCombos, isBookmar
     }
     else {
       if (!isBookmarks) {
-        setDisplayedCombos(combos)
+        // setDisplayedCombos(combos)
       }
       else {
-        setDisplayedCombos(combos)
+        // setDisplayedCombos(combos)
       }
     }
   }
+
+  useEffect(() => {
+      const filters = getFilters()
+      const params = {
+        filters: filters,
+        current_page: currentFilteredPage
+      }
+  
+      if(Object.keys(filters).length > 0) {
+        console.log("FETCHING FOR FILTERED")
+          fetch(`/api/games/${selectedGame.slug}/characters/${characterData.id}/filter_combos`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(params),
+          })
+            .then((r) => {
+              if (r.ok) {
+                r.json().then((data) => {
+                  console.log(data)
+                  setShowUnfilter(true)
+                  setDisplayedCombos(data.combos)
+                  setTotalFilteredPages(data.total_pages)
+                })
+              }
+            })
+      }
+  }, [currentFilteredPage])
 
   function handleUnfilter() {
     setStarter("")
@@ -95,6 +135,10 @@ function ComboFilter({characterData, selectedGame, setDisplayedCombos, isBookmar
     setHitType("")
     setDisplayedCombos(combos)
     setShowUnfilter(false)
+    setCurrentFilteredPage(1)
+    setTotalFilteredPages(1)
+    setDisplayedFiltered(false)
+    setFilterButtonClicked(() => !filterButtonClicked)
   }
 
   return (

@@ -5,7 +5,7 @@ class CharactersController < ApplicationController
   def show
     game = Game.find_by(slug: params[:game_slug])
     character = Character.find_by(slug: params[:character_slug])
-    if character.game_id === game.id 
+    if game && character && game.id === character.game_id
       render json: character, status: :ok
     else 
       render json: {error: "Character not found"}, status: :not_found

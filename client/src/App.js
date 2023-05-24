@@ -79,7 +79,6 @@ function App() {
               handleGameSelection = {handleGameSelection}
               selectedGame = {selectedGame}
               dataRetrieved = {dataRetrieved}
-              isBookmarks = {true}
             />
           </CharacterDataProvider>
         </Route>

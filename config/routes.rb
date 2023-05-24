@@ -9,7 +9,8 @@ Rails.application.routes.draw do
 
     get "/games/:game_slug/characters/:character_slug", to: "characters#show"
 
-    post "/characters/:character_id/filter_combos", to: "combos#filter_combos"
+    post "/games/:game_slug/characters/:character_slug/combos", to: "combos#unfiltered_combos"
+    post "/games/:game_slug/characters/:character_id/filter_combos", to: "combos#filter_combos"
     post "/users/:username/characters/:character_slug/filter_bookmarked_combos", to: "user_bookmarks#filter_bookmarked_combos"
 
     resources :characters do
