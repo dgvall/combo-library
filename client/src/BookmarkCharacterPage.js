@@ -6,7 +6,7 @@ import Combo from './Combo'
 import ComboFilter from './ComboFilter'
 import './CharacterPage.css'
 
-function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection}) {
+function BookmarkCharacterPage({ dataRetrieved, selectedGame, handleGameSelection }) {
   const { game, character, username } = useParams()
   const history = useHistory()
   const { characterData } = useContext(CharacterDataContext)
@@ -19,13 +19,22 @@ function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection}) {
   }, [game, selectedGame, dataRetrieved, handleGameSelection])
 
   useEffect(() => {
-    if (characterData) {
-      setDisplayedCombos(characterData.combos)
-    }
-  }, [characterData])
+      if (user) {
+        const foundBookmark = user.bookmarks.find((b) => b.character.slug === character)
+        if (foundBookmark) {
+          setBookmark(foundBookmark)
+          setDisplayedCombos(foundBookmark.combos)
+        }
+        else {
+          history.push(`/${username}/bookmarks`)
+        }
+        // think about setting this up
+        // setCharacterData(foundBookmark.character)
+      }
+  }, [user, character, username, game, characterData, history])
 
   function handleClickEdit(comboId) {
-    history.push(`/${game}/${character}/${comboId}/edit`)
+    history.push(`/${bookmark.game.slug}/${character}/${comboId}/edit`)
   }
 
   function addBookmark(newCombo) {
@@ -81,41 +90,32 @@ function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection}) {
   return (
       <>
       {
-        characterData &&
-          <div className = 'character-page'>
+        bookmark &&
+        <div className = 'character-page'>
           <div className = 'combos-filter-container'>
             <ComboFilter
-              characterData = {characterData}
-              selectedGame = {selectedGame}
+              characterData = {bookmark.character}
+              selectedGame = {bookmark.game}
               setDisplayedCombos = {setDisplayedCombos}
-              isBookmarks = {false}
-              combos = {characterData.combos}
+              isBookmarks = {true}
+              combos = {bookmark.combos}
               character = {character}
               username = {username}
             />
           </div>
-
             <div className = "combos-container">
               <button
                 className = 'upload-button'
-                onClick = {() => history.push(`/${game}/${character}/upload`)}
+                onClick = {() => history.push(`/${bookmark.game.slug}/${character}/upload`)}
               >+</button>
               {
                 displayedCombos.map((c) => {
                   let canEdit = false
-                  let isBookmarked = false
                   if (user) {
                     if (c.user_id === user.id) {
                       canEdit = true
-                      isBookmarked = true
                     }
-                    else {
-                      let foundBookmarkId = user.bookmarked_combo_ids.find((i) => i === c.id)
-                      if (foundBookmarkId) {
-                        isBookmarked = true
-                      } 
-                    }
-                  }
+                  } 
                   return (
                     <Combo
                       key = {c.id}
@@ -125,7 +125,7 @@ function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection}) {
                       authorNotes = {c.author_notes}
                       canEdit = {canEdit}
                       handleClickEdit = {handleClickEdit}
-                      isBookmarked = {isBookmarked}
+                      isBookmarked = {true}
                       user = {user}
                       addBookmark = {addBookmark}
                       removeBookmark = {removeBookmark}
@@ -135,13 +135,13 @@ function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection}) {
               }
             </div>
             <div className = 'character-display'>
-              <h2>{characterData.name}</h2>
-              <img src = {characterData.image_url} alt = {characterData.name}/>
+              <h2>{bookmark.character.name}</h2>
+              <img src = {bookmark.character.image_url} alt = {bookmark.character.name}/>
             </div>
-          </div>
+        </div>
       }
       </>
   )
 }
 
-export default CharacterPage
+export default BookmarkCharacterPage

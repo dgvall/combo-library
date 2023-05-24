@@ -13,6 +13,7 @@ import CharacterPage from './CharacterPage'
 import UploadComboPage from './UploadComboPage'
 import EditComboPage from './EditComboPage'
 import './App.css'
+import BookmarkCharacterPage from './BookmarkCharacterPage'
 
 function App() {
   const { user, setUser } = useContext(UserContext)
@@ -74,7 +75,7 @@ function App() {
 
         <Route exact path = '/:username/bookmarks/:character'>
           <CharacterDataProvider>
-            < CharacterPage
+            < BookmarkCharacterPage
               handleGameSelection = {handleGameSelection}
               selectedGame = {selectedGame}
               dataRetrieved = {dataRetrieved}
@@ -82,6 +83,17 @@ function App() {
             />
           </CharacterDataProvider>
         </Route>
+
+        {/* <Route exact path = '/:username/bookmarks/:character'>
+          <CharacterDataProvider>
+            < CharacterPage
+              handleGameSelection = {handleGameSelection}
+              selectedGame = {selectedGame}
+              dataRetrieved = {dataRetrieved}
+              isBookmarks = {true}
+            />
+          </CharacterDataProvider>
+        </Route> */}
 
         <Route exact path = '/:game/:character/upload'>
           <CharacterDataProvider>
