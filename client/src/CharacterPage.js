@@ -14,7 +14,6 @@ function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection}) {
   const { user, setUser } = useContext(UserContext)
   // const [unfilteredCombos, setUnfilteredCombos] = useState(null)
   const [ displayedCombos, setDisplayedCombos ] = useState([])
-  const [ bookmark, setBookmark ] = useState(null)
 
   const [currentPage, setCurrentPage] = useState(1)
   const [totalPages, setTotalPages] = useState(1)
@@ -121,18 +120,18 @@ function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection}) {
 
     const foundCharacter = user.bookmarks.find((b) => b.character.slug === character)
     if (foundCharacter) {
-      const updatedBookmarks = user.bookmarks.map((b) => {
-        if (b.character.slug === character) {
-          b.combos = [newCombo, ...b.combos]
-          return b
-        } else return b
-      })
-      const updatedUser = {...user, bookmarked_combo_ids: updatedBookmarkIds, bookmarks: updatedBookmarks}
+      // const updatedBookmarks = user.bookmarks.map((b) => {
+      //   if (b.character.slug === character) {
+      //     b.combos = [newCombo, ...b.combos]
+      //     return b
+      //   } else return b
+      // })
+      const updatedUser = {...user, bookmarked_combo_ids: updatedBookmarkIds}
       setUser(updatedUser)
     }
     // create a new bookmarked character
     else {
-      const newBookmark = {character: characterData, combos: [newCombo], game: selectedGame}
+      const newBookmark = {character: characterData, game: selectedGame}
       const updatedBookmarks = [newBookmark, ...user.bookmarks]
       const updatedUser = {...user, bookmarked_combo_ids: updatedBookmarkIds, bookmarks: updatedBookmarks}
       setUser(updatedUser)
@@ -149,20 +148,20 @@ function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection}) {
     // })
 
     // if this leads to issues, revert to above code. Will test with more characters later
-    const updatedBookmarks = user.bookmarks.map((b) => {
-      if (b.character.slug === character) {
-        const updatedCombos = b.combos.filter((c) => c.id !== parseInt(comboId))
-        if (updatedCombos.length !== 0) {
-          return { ...b, combos: updatedCombos }
-        } else {
-          return null // Return null for bookmarks with no updatedCombos
-        }
-      } else {
-        return b
-      }
-    }).filter(Boolean) // Remove null bookmark objects
+    // const updatedBookmarks = user.bookmarks.map((b) => {
+    //   if (b.character.slug === character) {
+    //     const updatedCombos = b.combos.filter((c) => c.id !== parseInt(comboId))
+    //     if (updatedCombos.length !== 0) {
+    //       return { ...b, combos: updatedCombos }
+    //     } else {
+    //       return null // Return null for bookmarks with no updatedCombos
+    //     }
+    //   } else {
+    //     return b
+    //   }
+    // }).filter(Boolean) // Remove null bookmark objects
 
-    const updatedUser = {...user, bookmarked_combo_ids: updatedBookmarkIds, bookmarks: updatedBookmarks}
+    const updatedUser = {...user, bookmarked_combo_ids: updatedBookmarkIds}
     setUser(updatedUser)
   }
 

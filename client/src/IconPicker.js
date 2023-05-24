@@ -236,7 +236,7 @@ function IconPicker({extraInputs, buttonInputs, handleClick, handleSpace, gameSl
                 return (
                   <ClickableIcon
                     handleClick = {handleClick}
-                    key = {u.id}
+                    key = {index}
                     url = {u.image_url}
                     name = {u.name}
                     spaceIcon = {true}

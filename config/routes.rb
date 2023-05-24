@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   # resources :combos
   scope '/api' do
 
+    get "/users/:user_id/games/:game_id/characters/:character_id/combos/:id", to: "combos#show"
     get "/games/:game_slug/characters/:character_slug", to: "characters#show"
     post "/users/:username/bookmarks/games/:game_slug/characters/:character_slug/combos", to: "user_bookmarks#unfiltered_combos"
 

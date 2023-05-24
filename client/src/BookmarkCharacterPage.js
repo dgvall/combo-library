@@ -49,7 +49,7 @@ function BookmarkCharacterPage({ dataRetrieved, selectedGame, handleGameSelectio
         // think about setting this up
         // setCharacterData(foundBookmark.character)
       }
-  }, [user, character, username, game, characterData, history])
+  }, [user, character, username, game, history])
 
   // "/users/:username/bookmarks/games/:game_slug/characters/:character_slug/combos"
   useEffect(() => {
@@ -71,6 +71,14 @@ function BookmarkCharacterPage({ dataRetrieved, selectedGame, handleGameSelectio
             console.log(data)
             setDisplayedCombos(data.combos)
             setTotalPages(data.total_pages)
+
+            if (currentPage === 1 && data.combos.length === 0) {
+              console.log("DELETE")
+
+              const updatedBookmarks = user.bookmarks.filter((b) => b.character.slug !== character)
+              setUser({...user, bookmarks: updatedBookmarks})
+              // will then push user to their bookmarks, look at first useEffect
+            }
 
             // if(!unfilteredCombos) {
             //   setUnfilteredCombos(data.combos)
@@ -104,18 +112,18 @@ function BookmarkCharacterPage({ dataRetrieved, selectedGame, handleGameSelectio
 
     const foundCharacter = user.bookmarks.find((b) => b.character.slug === character)
     if (foundCharacter) {
-      const updatedBookmarks = user.bookmarks.map((b) => {
-        if (b.character.slug === character) {
-          b.combos = [newCombo, ...b.combos]
-          return b
-        } else return b
-      })
-      const updatedUser = {...user, bookmarked_combo_ids: updatedBookmarkIds, bookmarks: updatedBookmarks}
+      // const updatedBookmarks = user.bookmarks.map((b) => {
+      //   if (b.character.slug === character) {
+      //     b.combos = [newCombo, ...b.combos]
+      //     return b
+      //   } else return b
+      // })
+      const updatedUser = {...user, bookmarked_combo_ids: updatedBookmarkIds}
       setUser(updatedUser)
     }
     // create a new bookmarked character
     else {
-      const newBookmark = {character: characterData, combos: [newCombo], game: selectedGame}
+      const newBookmark = {character: characterData, game: selectedGame}
       const updatedBookmarks = [newBookmark, ...user.bookmarks]
       const updatedUser = {...user, bookmarked_combo_ids: updatedBookmarkIds, bookmarks: updatedBookmarks}
       setUser(updatedUser)
@@ -132,20 +140,20 @@ function BookmarkCharacterPage({ dataRetrieved, selectedGame, handleGameSelectio
     // })
 
     // if this leads to issues, revert to above code. Will test with more characters later
-    const updatedBookmarks = user.bookmarks.map((b) => {
-      if (b.character.slug === character) {
-        const updatedCombos = b.combos.filter((c) => c.id !== parseInt(comboId))
-        if (updatedCombos.length !== 0) {
-          return { ...b, combos: updatedCombos }
-        } else {
-          return null // Return null for bookmarks with no updatedCombos
-        }
-      } else {
-        return b
-      }
-    }).filter(Boolean) // Remove null bookmark objects
+    // const updatedBookmarks = user.bookmarks.map((b) => {
+    //   if (b.character.slug === character) {
+    //     const updatedCombos = b.combos.filter((c) => c.id !== parseInt(comboId))
+    //     if (updatedCombos.length !== 0) {
+    //       return { ...b, combos: updatedCombos }
+    //     } else {
+    //       return null // Return null for bookmarks with no updatedCombos
+    //     }
+    //   } else {
+    //     return b
+    //   }
+    // }).filter(Boolean) // Remove null bookmark objects
 
-    const updatedUser = {...user, bookmarked_combo_ids: updatedBookmarkIds, bookmarks: updatedBookmarks}
+    const updatedUser = {...user, bookmarked_combo_ids: updatedBookmarkIds}
     setUser(updatedUser)
 
     // forces a refetch so only bookmarked data is displayed

@@ -48,6 +48,22 @@ class CombosController < ApplicationController
     end
   end
 
+  def show
+    game = Game.find(params[:game_id])
+    character = Character.find(params[:character_id])
+    combo = Combo.find(params[:id])
+
+    if combo.user_id == @current_user.id
+      if character.id == combo.character_id && game.id == character.game_id
+        render json: combo, status: :ok
+      else
+        render json: {error: "Combo Not Found"}, status: :unauthorized
+      end
+    else
+      render json: {error: "Not Authorized"}, status: :unauthorized
+    end
+  end
+
   def create
     character = Character.find(params[:character_id])
     combo = character.combos.build(combo_params)

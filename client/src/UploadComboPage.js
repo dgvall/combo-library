@@ -52,8 +52,8 @@ function UploadComboPage( { dataRetrieved, selectedGame, handleGameSelection } )
 
   function addCombo(newCombo) {
     // update characterData state
-    const updatedCharacterCombos = [newCombo, ...characterData.combos]
-    setCharacterData({...characterData, combos: updatedCharacterCombos})
+    // const updatedCharacterCombos = [newCombo, ...characterData.combos]
+    // setCharacterData({...characterData, combos: updatedCharacterCombos})
 
     // update user state
     // const updatedComboIds = [...user.combo_ids, newCombo.id]
@@ -61,18 +61,18 @@ function UploadComboPage( { dataRetrieved, selectedGame, handleGameSelection } )
 
     const foundCharacter = user.bookmarks.find((b) => b.character.slug === character)
     if (foundCharacter) {
-      const updatedBookmarks = user.bookmarks.map((b) => {
-        if (b.character.slug === character) {
-          b.combos = [newCombo, ...b.combos]
-          return b
-        } else return b
-      })
-      const updatedUser = {...user, bookmarked_combo_ids: updatedBookmarkIds, bookmarks: updatedBookmarks}
+      // const updatedBookmarks = user.bookmarks.map((b) => {
+      //   if (b.character.slug === character) {
+      //     b.combos = [newCombo, ...b.combos]
+      //     return b
+      //   } else return b
+      // })
+      const updatedUser = {...user, bookmarked_combo_ids: updatedBookmarkIds}
       setUser(updatedUser)
     }
     // create a new bookmarked character
     else {
-      const newBookmark = {character: characterData, combos: [newCombo], game: selectedGame}
+      const newBookmark = {character: characterData, game: selectedGame}
       const updatedBookmarks = [newBookmark, ...user.bookmarks]
       const updatedUser = {...user, bookmarked_combo_ids: updatedBookmarkIds, bookmarks: updatedBookmarks}
       setUser(updatedUser)
