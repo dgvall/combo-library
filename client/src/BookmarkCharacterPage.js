@@ -24,6 +24,10 @@ function BookmarkCharacterPage({ dataRetrieved, selectedGame, handleGameSelectio
 
   const [displayedFiltered, setDisplayedFiltered] = useState(false)
 
+  // refetch on unbookmark
+  const [triggerFetch, setTriggerFetch] = useState(false)
+  const [triggerFilteredFetch, setTriggerFilteredFetch] = useState(false)
+
   useEffect(() => {
     setCurrentPage(1)
   }, [displayedFiltered])
@@ -76,7 +80,7 @@ function BookmarkCharacterPage({ dataRetrieved, selectedGame, handleGameSelectio
       })
       .catch((error) => console.log(error))
     }
-  }, [character, game, currentPage, totalPages, displayedFiltered, username])
+  }, [character, game, currentPage, totalPages, displayedFiltered, username, triggerFetch])
 
   useEffect(() => {
     console.log(currentPage)
@@ -143,6 +147,12 @@ function BookmarkCharacterPage({ dataRetrieved, selectedGame, handleGameSelectio
 
     const updatedUser = {...user, bookmarked_combo_ids: updatedBookmarkIds, bookmarks: updatedBookmarks}
     setUser(updatedUser)
+
+    // forces a refetch so only bookmarked data is displayed
+    if (!displayedFiltered) {
+      setTriggerFetch(() => !triggerFetch)
+    }
+    else setTriggerFilteredFetch(() => !triggerFilteredFetch)
   }
 
   return (
@@ -163,6 +173,7 @@ function BookmarkCharacterPage({ dataRetrieved, selectedGame, handleGameSelectio
               setCurrentFilteredPage = {setCurrentFilteredPage}
               setTotalFilteredPages = {setTotalFilteredPages}
               setDisplayedFiltered = {setDisplayedFiltered}
+              triggerFilteredFetch = {triggerFilteredFetch}
             />
           </div>
             <div className = "combos-container">

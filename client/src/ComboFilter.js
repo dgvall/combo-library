@@ -3,7 +3,7 @@ import './ComboFilter.css'
 
 import DropdownMenu from './DropdownMenu'
 
-function ComboFilter({characterData, selectedGame, setDisplayedCombos, isBookmarks, combos, username, character, currentFilteredPage, setCurrentFilteredPage, setTotalFilteredPages, setDisplayedFiltered, filterButtonClicked, setFilterButtonClicked}) {
+function ComboFilter({characterData, selectedGame, setDisplayedCombos, isBookmarks, combos, username, character, currentFilteredPage, setCurrentFilteredPage, setTotalFilteredPages, setDisplayedFiltered, filterButtonClicked, setFilterButtonClicked, triggerFilteredFetch}) {
   const [starter, setStarter] = useState("")
   const [meterless, setMeterless] = useState("")
   const [location, setLocation] = useState("")
@@ -162,7 +162,7 @@ function ComboFilter({characterData, selectedGame, setDisplayedCombos, isBookmar
       }
         }
         
-  }, [currentFilteredPage])
+  }, [currentFilteredPage, triggerFilteredFetch])
 
   function handleUnfilter() {
     setStarter("")

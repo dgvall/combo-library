@@ -5,7 +5,7 @@ class UserSerializer < ActiveModel::Serializer
     object.bookmarked_combos.order(created_at: :desc).group_by(&:character).map do |character, combos|
       {
         character: serialize_characters(character),
-        combos: serialize_combos(combos),
+        # combos: serialize_combos(combos),
         game: serialize_game(character.game)
       }
     end
