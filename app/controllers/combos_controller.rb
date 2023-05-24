@@ -1,7 +1,7 @@
 class CombosController < ApplicationController
   skip_before_action :authorize, only: :filter_combos
   require 'will_paginate/array'
-
+  
   def filter_combos
     game = Game.find_by(slug: params[:game_slug])
     character = Character.find(params[:character_id])
@@ -24,7 +24,6 @@ class CombosController < ApplicationController
     else
       render json: { error: "Character not found" }, status: :not_found
     end
-    # end
   end
 
   # post "games/:game_slug/characters/:character_slug/combos", to: "combos#unfiltered_combos"

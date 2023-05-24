@@ -5,6 +5,7 @@ import { UserContext } from './context/user'
 import Combo from './Combo'
 import ComboFilter from './ComboFilter'
 import './CharacterPage.css'
+import Pagination from './Pagination'
 
 function BookmarkCharacterPage({ dataRetrieved, selectedGame, handleGameSelection }) {
   const { game, character, username } = useParams()
@@ -13,6 +14,19 @@ function BookmarkCharacterPage({ dataRetrieved, selectedGame, handleGameSelectio
   const { user, setUser } = useContext(UserContext)
   const [ displayedCombos, setDisplayedCombos ] = useState([])
   const [ bookmark, setBookmark ] = useState(null)
+
+  // const [unfilteredCombos, setUnfilteredCombos] = useState(null)
+  const [currentPage, setCurrentPage] = useState(1)
+  const [totalPages, setTotalPages] = useState(1)
+
+   const [currentFilteredPage, setCurrentFilteredPage] = useState(1)
+  const [totalFilteredPages, setTotalFilteredPages] = useState(1)
+
+  const [displayedFiltered, setDisplayedFiltered] = useState(false)
+
+  useEffect(() => {
+    setCurrentPage(1)
+  }, [displayedFiltered])
 
   useEffect(() => {
     handleGameSelection(game)
@@ -23,7 +37,7 @@ function BookmarkCharacterPage({ dataRetrieved, selectedGame, handleGameSelectio
         const foundBookmark = user.bookmarks.find((b) => b.character.slug === character)
         if (foundBookmark) {
           setBookmark(foundBookmark)
-          setDisplayedCombos(foundBookmark.combos)
+          // setDisplayedCombos(foundBookmark.combos)
         }
         else {
           history.push(`/${username}/bookmarks`)
@@ -32,6 +46,50 @@ function BookmarkCharacterPage({ dataRetrieved, selectedGame, handleGameSelectio
         // setCharacterData(foundBookmark.character)
       }
   }, [user, character, username, game, characterData, history])
+
+  // "/users/:username/bookmarks/games/:game_slug/characters/:character_slug/combos"
+  useEffect(() => {
+    if (game && character && !displayedFiltered) {
+      console.log("FETCHING FOR UNFILTERED")
+      fetch(`/api/users/${username}/bookmarks/games/${game}/characters/${character}/combos`, {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          current_page: currentPage,
+          // total_pages: totalPages,
+        })
+      })
+      .then((r) => {
+        if (r.ok) {
+          r.json().then((data) => {
+            console.log(data)
+            setDisplayedCombos(data.combos)
+            setTotalPages(data.total_pages)
+
+            // if(!unfilteredCombos) {
+            //   setUnfilteredCombos(data.combos)
+            // }
+          })
+        }
+      })
+      .catch((error) => console.log(error))
+    }
+  }, [character, game, currentPage, totalPages, displayedFiltered, username])
+
+  useEffect(() => {
+    console.log(currentPage)
+    console.log(currentFilteredPage)
+  }, [currentPage, currentFilteredPage])
+
+  function handlePageChange(pageNumber) {
+    setCurrentPage(pageNumber)
+  }
+
+  function handleFilteredPageChange(pageNumber) {
+    setCurrentFilteredPage(pageNumber)
+  }
 
   function handleClickEdit(comboId) {
     history.push(`/${bookmark.game.slug}/${character}/${comboId}/edit`)
@@ -98,9 +156,13 @@ function BookmarkCharacterPage({ dataRetrieved, selectedGame, handleGameSelectio
               selectedGame = {bookmark.game}
               setDisplayedCombos = {setDisplayedCombos}
               isBookmarks = {true}
-              combos = {bookmark.combos}
+              // combos = {unfilteredCombos}
               character = {character}
               username = {username}
+              currentFilteredPage = {currentFilteredPage}
+              setCurrentFilteredPage = {setCurrentFilteredPage}
+              setTotalFilteredPages = {setTotalFilteredPages}
+              setDisplayedFiltered = {setDisplayedFiltered}
             />
           </div>
             <div className = "combos-container">
@@ -132,6 +194,30 @@ function BookmarkCharacterPage({ dataRetrieved, selectedGame, handleGameSelectio
                     />
                   )
                 })
+              }
+               {
+                displayedFiltered
+                ?
+                <Pagination
+                onPageChange = {handleFilteredPageChange}
+                dataPerPage= {3}
+                navigation={true}
+                getStyle={'style-3'}
+                totalPages= {totalFilteredPages}
+                // filterButtonClicked = {filterButtonClicked}
+                currentPageProp = {currentFilteredPage}
+              />
+                :
+
+                <Pagination
+                onPageChange = {handlePageChange}
+                dataPerPage={3}
+                navigation={true}
+                getStyle={'style-3'}
+                totalPages= {totalPages}
+                // filterButtonClicked = {filterButtonClicked}
+                currentPageProp={currentPage}
+              />
               }
             </div>
             <div className = 'character-display'>

@@ -73,7 +73,7 @@ function App() {
           />
         </Route>
 
-        <Route exact path = '/:username/bookmarks/:character'>
+        <Route exact path = '/:username/bookmarks/:game/:character'>
           <CharacterDataProvider>
             < BookmarkCharacterPage
               handleGameSelection = {handleGameSelection}

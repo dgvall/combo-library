@@ -8,7 +8,7 @@ function Character({ imageUrl, name, game, slug, isBookmarks, username }) {
 
   function handleClick() {
     if (isBookmarks) {
-      history.push(`/${username}/bookmarks/${slug}`)
+      history.push(`/${username}/bookmarks/${game}/${slug}`)
     }
     else {
       history.push(`/${game}/${slug}`)

@@ -48,6 +48,7 @@ function ComboFilter({characterData, selectedGame, setDisplayedCombos, isBookmar
     if(Object.keys(filters).length > 0) {
       if (!isBookmarks) {
         console.log("FETCHING FOR FILTERED")
+        
         fetch(`/api/games/${selectedGame.slug}/characters/${characterData.id}/filter_combos`, {
           method: "POST",
           headers: {
@@ -63,7 +64,7 @@ function ComboFilter({characterData, selectedGame, setDisplayedCombos, isBookmar
                 setDisplayedCombos(data.combos)
                 setTotalFilteredPages(data.total_pages)
 
-                setFilterButtonClicked(() => !filterButtonClicked)
+                // setFilterButtonClicked(() => !filterButtonClicked)
                 setDisplayedFiltered(true)
                 setCurrentFilteredPage(1)
               })
@@ -71,7 +72,9 @@ function ComboFilter({characterData, selectedGame, setDisplayedCombos, isBookmar
           })
       }
       else {
-        fetch(`/api/users/${username}/characters/${character}/filter_bookmarked_combos`, {
+        console.log("FETCHING FOR BOOKMARKED FILTERED")
+        // "/users/:username/bookmarks/games/:game_slug/characters/:character_slug/filter_bookmarked_combos"
+        fetch(`/api/users/${username}/bookmarks/games/${selectedGame.slug}/characters/${character}/filter_bookmarked_combos`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -83,7 +86,12 @@ function ComboFilter({characterData, selectedGame, setDisplayedCombos, isBookmar
               r.json().then((data) => {
                 console.log(data)
                 setShowUnfilter(true)
-                setDisplayedCombos(data)
+                setDisplayedCombos(data.combos)
+                setTotalFilteredPages(data.total_pages)
+
+                // setFilterButtonClicked(() => !filterButtonClicked)
+                setDisplayedFiltered(true)
+                setCurrentFilteredPage(1)
               })
             }
           })
@@ -107,7 +115,9 @@ function ComboFilter({characterData, selectedGame, setDisplayedCombos, isBookmar
       }
   
       if(Object.keys(filters).length > 0) {
-        console.log("FETCHING FOR FILTERED")
+        console.log("EHH")
+        if (!isBookmarks) {
+          console.log("FETCHING FOR FILTERED")
           fetch(`/api/games/${selectedGame.slug}/characters/${characterData.id}/filter_combos`, {
             method: "POST",
             headers: {
@@ -126,6 +136,32 @@ function ComboFilter({characterData, selectedGame, setDisplayedCombos, isBookmar
               }
             })
       }
+      else {
+        console.log("FETCHING FOR BOOKMARKED FILTERED")
+        // "/users/:username/bookmarks/games/:game_slug/characters/:character_slug/filter_bookmarked_combos"
+        fetch(`/api/users/${username}/bookmarks/games/${selectedGame.slug}/characters/${character}/filter_bookmarked_combos`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(params),
+        })
+          .then((r) => {
+            if (r.ok) {
+              r.json().then((data) => {
+                console.log(data)
+                setShowUnfilter(true)
+                setDisplayedCombos(data.combos)
+                setTotalFilteredPages(data.total_pages)
+
+                // setFilterButtonClicked(() => !filterButtonClicked)
+                
+              })
+            }
+          })
+      }
+        }
+        
   }, [currentFilteredPage])
 
   function handleUnfilter() {
@@ -133,12 +169,12 @@ function ComboFilter({characterData, selectedGame, setDisplayedCombos, isBookmar
     setMeterless("")
     setLocation("")
     setHitType("")
-    setDisplayedCombos(combos)
+    // setDisplayedCombos(combos)
     setShowUnfilter(false)
     setCurrentFilteredPage(1)
     setTotalFilteredPages(1)
     setDisplayedFiltered(false)
-    setFilterButtonClicked(() => !filterButtonClicked)
+    // setFilterButtonClicked(() => !filterButtonClicked)
   }
 
   return (

@@ -12,7 +12,7 @@ function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection}) {
   const history = useHistory()
   const { characterData } = useContext(CharacterDataContext)
   const { user, setUser } = useContext(UserContext)
-  const [unfilteredCombos, setUnfilteredCombos] = useState(null)
+  // const [unfilteredCombos, setUnfilteredCombos] = useState(null)
   const [ displayedCombos, setDisplayedCombos ] = useState([])
   const [ bookmark, setBookmark ] = useState(null)
 
@@ -56,15 +56,15 @@ function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection}) {
             setDisplayedCombos(data.combos)
             setTotalPages(data.total_pages)
 
-            if(!unfilteredCombos) {
-              setUnfilteredCombos(data.combos)
-            }
+            // if(!unfilteredCombos) {
+            //   setUnfilteredCombos(data.combos)
+            // }
           })
         }
       })
       .catch((error) => console.log(error))
     }
-  }, [character, game, currentPage, totalPages])
+  }, [character, game, currentPage, totalPages, displayedFiltered])
 
   useEffect(() => {
     console.log(currentPage)
@@ -80,7 +80,6 @@ function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection}) {
   }
 
   function handleKeyDown(e) {
-    console.log("he")
     if(displayedFiltered) {
       
       if (e.keyCode === 39) {
@@ -182,7 +181,7 @@ function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection}) {
               selectedGame = {selectedGame}
               setDisplayedCombos = {setDisplayedCombos}
               isBookmarks = {false}
-              combos = {unfilteredCombos}
+              // combos = {unfilteredCombos}
               character = {character}
               username = {username}
               currentFilteredPage = {currentFilteredPage}
@@ -241,7 +240,7 @@ function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection}) {
                 navigation={true}
                 getStyle={'style-3'}
                 totalPages= {totalFilteredPages}
-                filterButtonClicked = {filterButtonClicked}
+                // filterButtonClicked = {filterButtonClicked}
                 currentPageProp = {currentFilteredPage}
               />
         
@@ -254,7 +253,7 @@ function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection}) {
                 navigation={true}
                 getStyle={'style-3'}
                 totalPages= {totalPages}
-                filterButtonClicked = {filterButtonClicked}
+                // filterButtonClicked = {filterButtonClicked}
                 currentPageProp={currentPage}
               />
               }
