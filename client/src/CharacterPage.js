@@ -118,7 +118,7 @@ function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection}) {
   function addBookmark(newCombo) {
     const updatedBookmarkIds = [...user.bookmarked_combo_ids, newCombo.id]
 
-    const foundCharacter = user.bookmarks.find((b) => b.character.slug === character)
+    const foundCharacter = user.bookmarks.find((b) => b.character.slug === character && b.character.game_slug === game)
     if (foundCharacter) {
       // const updatedBookmarks = user.bookmarks.map((b) => {
       //   if (b.character.slug === character) {

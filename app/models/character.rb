@@ -6,7 +6,7 @@ class Character < ApplicationRecord
   # has_many :inputs, through: :character_inputs
 
   validates :name, presence: true
-  validates :slug, presence: true, uniqueness: true
+  validates :slug, presence: true, uniqueness: { scope: :game_id }
   validates :image_url, presence: true, uniqueness: true
   validates :starters, presence: true
   validates :game_id, presence: true

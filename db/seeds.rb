@@ -355,6 +355,12 @@
 #   image_url: "https://i.imgur.com/AREXTeF.png"
 # )
 
+# p_sf6 = Input.create!(
+#   input_type: "Button",
+#   name: "P",
+#   image_url: "https://i.imgur.com/6c6Pz4v.png"
+# )
+
 # lk = Input.create!(
 #   input_type: "Button",
 #   name: "LK",
@@ -373,6 +379,12 @@
 #   image_url: "https://i.imgur.com/VuPrTtO.png"
 # )
 
+# k_sf6 = Input.create!(
+#   input_type: "Button",
+#   name: "K",
+#   image_url: "https://i.imgur.com/uTlDrTm.png"
+# )
+
 # di = Input.create!(
 #   input_type: "Extra",
 #   name: "DI",
@@ -385,7 +397,7 @@
 # image_url: "https://i.imgur.com/46kbAU5.png"
 # )
 
-# sf6.inputs << [lp, mp, hp, lk, mk, hk, di, dr]
+# sf6.inputs << [lp, mp, hp, p_sf6, lk, mk, hk, k_sf6, di, dr]
 
 #   blanka = Character.create!(
 #     name: "Blanka",

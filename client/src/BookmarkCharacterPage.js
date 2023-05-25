@@ -35,10 +35,11 @@ function BookmarkCharacterPage({ dataRetrieved, selectedGame, handleGameSelectio
   useEffect(() => {
     handleGameSelection(game)
   }, [game, selectedGame, dataRetrieved, handleGameSelection])
+  
 
   useEffect(() => {
       if (user) {
-        const foundBookmark = user.bookmarks.find((b) => b.character.slug === character)
+        const foundBookmark = user.bookmarks.find((b) => b.character.slug === character && b.character.game_slug === game)
         if (foundBookmark) {
           // setBookmark(foundBookmark)
           // setDisplayedCombos(foundBookmark.combos)
@@ -75,7 +76,7 @@ function BookmarkCharacterPage({ dataRetrieved, selectedGame, handleGameSelectio
             if (currentPage === 1 && data.combos.length === 0) {
               console.log("DELETE")
               if (user.username === username) {
-                const updatedBookmarks = user.bookmarks.filter((b) => b.character.slug !== characterData.slug)
+                const updatedBookmarks = user.bookmarks.filter((b) => b.character.slug !== characterData.slug || b.character.game_slug !== game)
                 setUser({...user, bookmarks: updatedBookmarks})
               }
             }
@@ -106,8 +107,7 @@ function BookmarkCharacterPage({ dataRetrieved, selectedGame, handleGameSelectio
 
   function addBookmark(newCombo) {
     const updatedBookmarkIds = [...user.bookmarked_combo_ids, newCombo.id]
-
-    const foundCharacter = user.bookmarks.find((b) => b.character.slug === character)
+    const foundCharacter = user.bookmarks.find((b) => b.character.slug === character && b.character.game_slug === game)
     if (foundCharacter) {
       // const updatedBookmarks = user.bookmarks.map((b) => {
       //   if (b.character.slug === character) {

@@ -3,7 +3,6 @@ class ComboSerializer < ActiveModel::Serializer
 
   def image_urls
     object.inputs.split(' ').map do |input|
-      
       case input
         when '1'
           'https://i.imgur.com/Fby15hF.png'
@@ -107,12 +106,16 @@ class ComboSerializer < ActiveModel::Serializer
                 'https://i.imgur.com/ptI0QQ8.png'
               when 'HP'
                 'https://i.imgur.com/AREXTeF.png'
+              when 'P'
+                'https://i.imgur.com/6c6Pz4v.png'
               when 'LK'
                 'https://i.imgur.com/Mc2G0nT.png'
               when 'MK'
                 'https://i.imgur.com/NHrJZfc.png'
               when 'HK'
                 'https://i.imgur.com/VuPrTtO.png'
+              when 'K'
+                'https://i.imgur.com/uTlDrTm.png'
               when 'DI'
                 'https://i.imgur.com/TnDZpg0.png'
               when 'DR'
