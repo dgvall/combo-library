@@ -192,11 +192,12 @@ function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection}) {
             />
           </div>
 
-            <div className = "combos-container">
+            <div className = "combos-container-main">
               <button
                 className = 'upload-button'
                 onClick = {() => history.push(`/${game}/${character}/upload`)}
               >+</button>
+              <div className = 'combos-container'>
               {
                 displayedCombos.map((c) => {
                   let madeCombo = false
@@ -233,6 +234,7 @@ function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection}) {
                   )
                 })
               }
+              </div>
               {
                 displayedFiltered
                 ?

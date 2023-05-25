@@ -163,11 +163,41 @@ function BookmarkCharacterPage({ dataRetrieved, selectedGame, handleGameSelectio
     else setTriggerFilteredFetch(() => !triggerFilteredFetch)
   }
 
+  function handleKeyDown(e) {
+    if(displayedFiltered) {
+      
+      if (e.keyCode === 39) {
+        if (currentFilteredPage + 1 <= totalFilteredPages) {
+          setCurrentFilteredPage(() => currentFilteredPage + 1)
+        }
+      } else if (e.keyCode === 37) {
+        if (currentFilteredPage > 1) {
+          setCurrentFilteredPage(() => currentFilteredPage - 1)
+        }
+      }
+    }
+    else {
+      if (e.keyCode === 39) {
+        if (currentPage + 1 <= totalPages) {
+          setCurrentPage(() => currentPage + 1)
+        }
+      } else if (e.keyCode === 37) {
+        if (currentPage > 1) {
+          setCurrentPage(() => currentPage - 1)
+        }
+      }
+    }
+  }
+
   return (
       <>
       {
         characterData && selectedGame &&
-        <div className = 'character-page'>
+        <div
+          onKeyDown={handleKeyDown}
+          tabIndex = {0}
+          className = 'character-page'
+        >
           <div className = 'combos-filter-container'>
             <ComboFilter
               characterData = {characterData}
@@ -184,11 +214,12 @@ function BookmarkCharacterPage({ dataRetrieved, selectedGame, handleGameSelectio
               triggerFilteredFetch = {triggerFilteredFetch}
             />
           </div>
-            <div className = "combos-container">
+            <div className = "combos-container-main">
               <button
                 className = 'upload-button'
                 onClick = {() => history.push(`/${selectedGame.slug}/${character}/upload`)}
               >+</button>
+              <div className = 'combos-container'>
               {
                 displayedCombos.map((c) => {
                   let isBookmarked = false
@@ -228,6 +259,7 @@ function BookmarkCharacterPage({ dataRetrieved, selectedGame, handleGameSelectio
                   )
                 })
               }
+              </div>
                {
                 displayedFiltered
                 ?
