@@ -1,5 +1,5 @@
 class CombosController < ApplicationController
-  skip_before_action :authorize, only: :filter_combos
+  skip_before_action :authorize, only: [:filter_combos, :unfiltered_combos]
   require 'will_paginate/array'
   
   def filter_combos

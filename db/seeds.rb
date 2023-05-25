@@ -399,7 +399,7 @@
 #     name: "Cammy",
 #     slug: "cammy",
 #     image_url: "https://i.imgur.com/PSeZzFw.png",
-#     starters: "Drive Impact_Drive Rush_LP_MP_HP_LK_MK_HK_2LP_2MP_2HP_2LK_2MK_2HK_4MP_6HK_4HK_4MP>HK_HP>HK_Spiral Arrow_Cannon Spike_Quick Spin Knuckle_Cannon Strike_Hooligan Combination_Razor's Edge Slicer_Cannon Strike_Cannon Strike_Fatal Leg Twister_Silent Step_Spin Drive Smasher_Killer Bee Spin_Aerial Killer Bee Spin_Delta Red Assault",
+#     starters: "Drive Impact_Drive Rush_LP_MP_HP_LK_MK_HK_2LP_2MP_2HP_2LK_2MK_2HK_4MP_6HK_4HK_4MP>HK_HP>HK_Spiral Arrow_Cannon Spike_Quick Spin Knuckle_Cannon Strike_Hooligan Combination_Razor's Edge Slicer_Fatal Leg Twister_Silent Step_Spin Drive Smasher_Killer Bee Spin_Aerial Killer Bee Spin_Delta Red Assault",
 #     game_id: 2
 #   )
 

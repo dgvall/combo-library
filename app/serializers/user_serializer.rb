@@ -6,7 +6,7 @@ class UserSerializer < ActiveModel::Serializer
       {
         character: serialize_characters(character),
         # combos: serialize_combos(combos),
-        game: serialize_game(character.game)
+        # game: serialize_game(character.game)
       }
     end
   end

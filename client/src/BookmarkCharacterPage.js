@@ -13,7 +13,7 @@ function BookmarkCharacterPage({ dataRetrieved, selectedGame, handleGameSelectio
   const { characterData } = useContext(CharacterDataContext)
   const { user, setUser } = useContext(UserContext)
   const [ displayedCombos, setDisplayedCombos ] = useState([])
-  const [ bookmark, setBookmark ] = useState(null)
+  // const [ bookmark, setBookmark ] = useState(null)
 
   // const [unfilteredCombos, setUnfilteredCombos] = useState(null)
   const [currentPage, setCurrentPage] = useState(1)
@@ -40,7 +40,7 @@ function BookmarkCharacterPage({ dataRetrieved, selectedGame, handleGameSelectio
       if (user) {
         const foundBookmark = user.bookmarks.find((b) => b.character.slug === character)
         if (foundBookmark) {
-          setBookmark(foundBookmark)
+          // setBookmark(foundBookmark)
           // setDisplayedCombos(foundBookmark.combos)
         }
         else {
@@ -104,7 +104,7 @@ function BookmarkCharacterPage({ dataRetrieved, selectedGame, handleGameSelectio
   }
 
   function handleClickEdit(comboId) {
-    history.push(`/${bookmark.game.slug}/${character}/${comboId}/edit`)
+    history.push(`/${game}/${character}/${comboId}/edit`)
   }
 
   function addBookmark(newCombo) {
@@ -166,12 +166,12 @@ function BookmarkCharacterPage({ dataRetrieved, selectedGame, handleGameSelectio
   return (
       <>
       {
-        bookmark &&
+        characterData && selectedGame &&
         <div className = 'character-page'>
           <div className = 'combos-filter-container'>
             <ComboFilter
-              characterData = {bookmark.character}
-              selectedGame = {bookmark.game}
+              characterData = {characterData}
+              selectedGame = {selectedGame}
               setDisplayedCombos = {setDisplayedCombos}
               isBookmarks = {true}
               // combos = {unfilteredCombos}
@@ -187,7 +187,7 @@ function BookmarkCharacterPage({ dataRetrieved, selectedGame, handleGameSelectio
             <div className = "combos-container">
               <button
                 className = 'upload-button'
-                onClick = {() => history.push(`/${bookmark.game.slug}/${character}/upload`)}
+                onClick = {() => history.push(`/${selectedGame.slug}/${character}/upload`)}
               >+</button>
               {
                 displayedCombos.map((c) => {
@@ -240,8 +240,8 @@ function BookmarkCharacterPage({ dataRetrieved, selectedGame, handleGameSelectio
               }
             </div>
             <div className = 'character-display'>
-              <h2>{bookmark.character.name}</h2>
-              <img src = {bookmark.character.image_url} alt = {bookmark.character.name}/>
+              <h2>{characterData.name}</h2>
+              <img src = {characterData.image_url} alt = {characterData.name}/>
             </div>
         </div>
       }

@@ -31,7 +31,7 @@ function CharactersPage({ dataRetrieved, selectedGame, handleGameSelection, isBo
                     imageUrl = {b.character.image_url}
                     name = {b.character.name}
                     slug = {b.character.slug}
-                    game = {b.game.slug}
+                    game = {b.character.game_slug}
                     isBookmarks = {isBookmarks}
                     username = {username}
                   />
