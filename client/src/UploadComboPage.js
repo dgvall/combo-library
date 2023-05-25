@@ -9,7 +9,7 @@ import './UploadComboPage.css'
 
 function UploadComboPage( { dataRetrieved, selectedGame, handleGameSelection } ) {
   const history = useHistory()
-  const { characterData, setCharacterData} = useContext(CharacterDataContext)
+  const { characterData } = useContext(CharacterDataContext)
   const { user, setUser } = useContext(UserContext)
   const { game, character } = useParams()
   const [youtubeInput, setYoutubeInput] = useState("")

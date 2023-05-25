@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect, useContext} from 'react'
 import { useParams, useHistory } from 'react-router-dom'
 import { CharacterDataContext } from './context/CharacterData'
 import { UserContext } from './context/user'
@@ -77,7 +77,6 @@ function BookmarkCharacterPage({ dataRetrieved, selectedGame, handleGameSelectio
 
               const updatedBookmarks = user.bookmarks.filter((b) => b.character.slug !== character)
               setUser({...user, bookmarks: updatedBookmarks})
-              // will then push user to their bookmarks, look at first useEffect
             }
 
             // if(!unfilteredCombos) {
@@ -89,6 +88,7 @@ function BookmarkCharacterPage({ dataRetrieved, selectedGame, handleGameSelectio
       .catch((error) => console.log(error))
     }
   }, [character, game, currentPage, totalPages, displayedFiltered, username, triggerFetch])
+
 
   useEffect(() => {
     console.log(currentPage)

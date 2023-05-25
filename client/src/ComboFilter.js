@@ -162,7 +162,7 @@ function ComboFilter({characterData, selectedGame, setDisplayedCombos, isBookmar
       }
         }
         
-  }, [currentFilteredPage, triggerFilteredFetch])
+  }, [currentFilteredPage, triggerFilteredFetch, character, characterData, isBookmarks, selectedGame, setDisplayedCombos, setTotalFilteredPages, username])
 
   function handleUnfilter() {
     setStarter("")

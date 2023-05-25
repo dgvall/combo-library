@@ -9,7 +9,7 @@ import './UploadComboPage.css'
 
 function EditComboPage( {dataRetrieved, selectedGame, handleGameSelection} ) {
   const history = useHistory()
-  const { characterData, setCharacterData} = useContext(CharacterDataContext)
+  const { characterData } = useContext(CharacterDataContext)
   const { user, setUser } = useContext(UserContext)
   const { game, character, comboId } = useParams()
   const [inputs, setInputs] = useState("")
@@ -143,31 +143,31 @@ function EditComboPage( {dataRetrieved, selectedGame, handleGameSelection} ) {
     setUser(updatedUser)
   }
 
-  function updateCombo(newCombo) {
-    // update characterData state
-    // const updatedCharacterCombos = characterData.combos.map((c) => {
-    //   if (c.id === newCombo.id) {
-    //     return newCombo
-    //   }
-    //   else return c
-    // })
-    // setCharacterData({...characterData, combos: updatedCharacterCombos})
+  // function updateCombo(newCombo) {
+  //   // update characterData state
+  //   // const updatedCharacterCombos = characterData.combos.map((c) => {
+  //   //   if (c.id === newCombo.id) {
+  //   //     return newCombo
+  //   //   }
+  //   //   else return c
+  //   // })
+  //   // setCharacterData({...characterData, combos: updatedCharacterCombos})
 
-    // update user state
-    // const updatedBookmarks = user.bookmarks.map((b) => {
-    //   if (b.character.slug === character) {
-    //     const updatedCombos = b.combos.map((c) => {
-    //       if (c.id === newCombo.id) {
-    //         return newCombo
-    //       }
-    //       else return c
-    //     })
-    //     return {...b, combos: updatedCombos}
-    //   } else return b
-    // })
-    // const updatedUser = {...user, bookmarks: updatedBookmarks}
-    // setUser(updatedUser)
-  }
+  //   // update user state
+  //   // const updatedBookmarks = user.bookmarks.map((b) => {
+  //   //   if (b.character.slug === character) {
+  //   //     const updatedCombos = b.combos.map((c) => {
+  //   //       if (c.id === newCombo.id) {
+  //   //         return newCombo
+  //   //       }
+  //   //       else return c
+  //   //     })
+  //   //     return {...b, combos: updatedCombos}
+  //   //   } else return b
+  //   // })
+  //   // const updatedUser = {...user, bookmarks: updatedBookmarks}
+  //   // setUser(updatedUser)
+  // }
 
   const youtubeStyles = {
     width: '320vw', 
