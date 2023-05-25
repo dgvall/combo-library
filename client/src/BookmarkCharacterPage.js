@@ -39,16 +39,17 @@ function BookmarkCharacterPage({ dataRetrieved, selectedGame, handleGameSelectio
 
   useEffect(() => {
       if (user) {
-        const foundBookmark = user.bookmarks.find((b) => b.character.slug === character && b.character.game_slug === game)
-        if (foundBookmark) {
-          // setBookmark(foundBookmark)
-          // setDisplayedCombos(foundBookmark.combos)
+        if (user.username === username) {
+          const foundBookmark = user.bookmarks.find((b) => b.character.slug === character && b.character.game_slug === game)
+          if (foundBookmark) {
+            // setBookmark(foundBookmark)
+            // setDisplayedCombos(foundBookmark.combos)
+          }
+          else {
+            // if you're on your own bookmarks without a combo, push to your combo page
+            history.push(`/${username}/bookmarks`)
+          }
         }
-        else {
-          history.push(`/${username}/bookmarks`)
-        }
-        // think about setting this up
-        // setCharacterData(foundBookmark.character)
       }
   }, [user, character, username, game, history])
 
@@ -75,9 +76,11 @@ function BookmarkCharacterPage({ dataRetrieved, selectedGame, handleGameSelectio
 
             if (currentPage === 1 && data.combos.length === 0) {
               console.log("DELETE")
-              if (user.username === username) {
-                const updatedBookmarks = user.bookmarks.filter((b) => b.character.slug !== characterData.slug || b.character.game_slug !== game)
-                setUser({...user, bookmarks: updatedBookmarks})
+              if (user) {
+                if (user.username === username) {
+                  const updatedBookmarks = user.bookmarks.filter((b) => b.character.slug !== characterData.slug || b.character.game_slug !== game)
+                  setUser({...user, bookmarks: updatedBookmarks})
+                }
               }
             }
           })
@@ -188,12 +191,23 @@ function BookmarkCharacterPage({ dataRetrieved, selectedGame, handleGameSelectio
               >+</button>
               {
                 displayedCombos.map((c) => {
+                  let isBookmarked = false
                   let canEdit = false
                   let madeCombo = false
                   if (user) {
                     if (c.user_id === user.id) {
                       canEdit = true
                       madeCombo = true
+                      isBookmarked = true
+                    }
+                    else if (user.username === username) {
+                      isBookmarked = true
+                    }
+                    else {
+                      let foundBookmarkId = user.bookmarked_combo_ids.find((i) => i === c.id)
+                      if (foundBookmarkId) {
+                        isBookmarked = true
+                      } 
                     }
                   } 
                   return (
@@ -205,7 +219,7 @@ function BookmarkCharacterPage({ dataRetrieved, selectedGame, handleGameSelectio
                       authorNotes = {c.author_notes}
                       canEdit = {canEdit}
                       handleClickEdit = {handleClickEdit}
-                      isBookmarked = {true}
+                      isBookmarked = {isBookmarked}
                       user = {user}
                       addBookmark = {addBookmark}
                       removeBookmark = {removeBookmark}
