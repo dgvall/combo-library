@@ -10,7 +10,6 @@ function ComboFilter({characterData, selectedGame, setDisplayedCombos, isBookmar
   const [hitType, setHitType] = useState("")
   const [showUnfilter, setShowUnfilter] = useState(false)
 
-
   function getFilters() {
     let filters = {}
 
@@ -49,7 +48,7 @@ function ComboFilter({characterData, selectedGame, setDisplayedCombos, isBookmar
       if (!isBookmarks) {
         console.log("FETCHING FOR FILTERED")
         
-        fetch(`/api/games/${selectedGame.slug}/characters/${characterData.id}/filter_combos`, {
+        fetch(`/api/games/${selectedGame.id}/characters/${characterData.id}/filter_combos`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -74,7 +73,7 @@ function ComboFilter({characterData, selectedGame, setDisplayedCombos, isBookmar
       else {
         console.log("FETCHING FOR BOOKMARKED FILTERED")
         // "/users/:username/bookmarks/games/:game_slug/characters/:character_slug/filter_bookmarked_combos"
-        fetch(`/api/users/${username}/bookmarks/games/${selectedGame.slug}/characters/${character}/filter_bookmarked_combos`, {
+        fetch(`/api/users/${username}/bookmarks/games/${selectedGame.id}/characters/${characterData.id}/filter_bookmarked_combos`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -118,7 +117,7 @@ function ComboFilter({characterData, selectedGame, setDisplayedCombos, isBookmar
         console.log("EHH")
         if (!isBookmarks) {
           console.log("FETCHING FOR FILTERED")
-          fetch(`/api/games/${selectedGame.slug}/characters/${characterData.id}/filter_combos`, {
+          fetch(`/api/games/${selectedGame.id}/characters/${characterData.id}/filter_combos`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -139,7 +138,7 @@ function ComboFilter({characterData, selectedGame, setDisplayedCombos, isBookmar
       else {
         console.log("FETCHING FOR BOOKMARKED FILTERED")
         // "/users/:username/bookmarks/games/:game_slug/characters/:character_slug/filter_bookmarked_combos"
-        fetch(`/api/users/${username}/bookmarks/games/${selectedGame.slug}/characters/${character}/filter_bookmarked_combos`, {
+        fetch(`/api/users/${username}/bookmarks/games/${selectedGame.id}/characters/${characterData.id}/filter_bookmarked_combos`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

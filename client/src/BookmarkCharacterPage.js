@@ -53,9 +53,9 @@ function BookmarkCharacterPage({ dataRetrieved, selectedGame, handleGameSelectio
 
   // "/users/:username/bookmarks/games/:game_slug/characters/:character_slug/combos"
   useEffect(() => {
-    if (game && character && !displayedFiltered) {
+    if (selectedGame && characterData && username && !displayedFiltered) {
       console.log("FETCHING FOR UNFILTERED")
-      fetch(`/api/users/${username}/bookmarks/games/${game}/characters/${character}/combos`, {
+      fetch(`/api/users/${username}/bookmarks/games/${selectedGame.id}/characters/${characterData.id}/combos`, {
         method: "POST",
         headers: {
           'Content-Type': 'application/json',
@@ -74,20 +74,17 @@ function BookmarkCharacterPage({ dataRetrieved, selectedGame, handleGameSelectio
 
             if (currentPage === 1 && data.combos.length === 0) {
               console.log("DELETE")
-
-              const updatedBookmarks = user.bookmarks.filter((b) => b.character.slug !== character)
-              setUser({...user, bookmarks: updatedBookmarks})
+              if (user.username === username) {
+                const updatedBookmarks = user.bookmarks.filter((b) => b.character.slug !== characterData.slug)
+                setUser({...user, bookmarks: updatedBookmarks})
+              }
             }
-
-            // if(!unfilteredCombos) {
-            //   setUnfilteredCombos(data.combos)
-            // }
           })
         }
       })
       .catch((error) => console.log(error))
     }
-  }, [character, game, currentPage, totalPages, displayedFiltered, username, triggerFetch])
+  }, [character, game, currentPage, displayedFiltered, username, triggerFetch, selectedGame, characterData])
 
 
   useEffect(() => {

@@ -1,6 +1,6 @@
 class ComboSerializer < ActiveModel::Serializer
   attributes :id, :image_urls, :youtube_id, :starter, :location, :hit_type, :meterless, :author_notes, :damage, :inputs, :user_id
-  
+
   def image_urls
     object.inputs.split(' ').map do |input|
       

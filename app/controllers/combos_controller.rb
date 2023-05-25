@@ -3,14 +3,11 @@ class CombosController < ApplicationController
   require 'will_paginate/array'
   
   def filter_combos
-    game = Game.find_by(slug: params[:game_slug])
+    game = Game.find(params[:game_id])
     character = Character.find(params[:character_id])
     combos = character.combos
 
-    if params[:filters].present? && character && game && game.id == character.game_id
-      # filtered_combos = combos.where(filter_params).order(created_at: :desc)
-      # render json: filtered_combos
-
+    if params[:filters].present? && game && character && game.id == character.game_id
       per_page = 3
       current_page = params[:current_page].to_i || 1
   
@@ -26,11 +23,9 @@ class CombosController < ApplicationController
     end
   end
 
-  # post "games/:game_slug/characters/:character_slug/combos", to: "combos#unfiltered_combos"
-
   def unfiltered_combos
-    game = Game.find_by(slug: params[:game_slug])
-    character = Character.find_by(slug: params[:character_slug])
+    game = Game.find(params[:game_id])
+    character = Character.find(params[:character_id])
   
     if game && character && game.id == character.game_id
       per_page = 3
@@ -48,6 +43,7 @@ class CombosController < ApplicationController
     end
   end
 
+  # get combo data for EditComboPage
   def show
     game = Game.find(params[:game_id])
     character = Character.find(params[:character_id])

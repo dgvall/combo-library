@@ -36,9 +36,9 @@ function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection}) {
   }, [game, selectedGame, dataRetrieved, handleGameSelection])
 
   useEffect(() => {
-    if (game && character && !displayedFiltered) {
+    if (game && character && !displayedFiltered && selectedGame && characterData) {
       console.log("FETCHING FOR UNFILTERED")
-      fetch(`/api/games/${game}/characters/${character}/combos`, {
+      fetch(`/api/games/${selectedGame.id}/characters/${characterData.id}/combos`, {
         method: "POST",
         headers: {
           'Content-Type': 'application/json',
@@ -63,7 +63,7 @@ function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection}) {
       })
       .catch((error) => console.log(error))
     }
-  }, [character, game, currentPage, totalPages, displayedFiltered])
+  }, [character, game, currentPage, displayedFiltered, selectedGame, characterData])
 
   useEffect(() => {
     console.log(currentPage)

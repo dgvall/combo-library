@@ -1,32 +1,19 @@
 class UserBookmarksController < ApplicationController
-  # skip_before_action :authorize, only: :filter_bookmarked_combos
+  skip_before_action :authorize, only: [:filter_bookmarked_combos, :unfiltered_combos]
   rescue_from ActiveRecord::RecordNotFound, with: :unprocessable_entity
   require 'will_paginate/array'
 
-  # post "/users/:username/bookmarks/games/:game_slug/characters/:character_slug/filter_bookmarked_combos", to: "user_bookmarks#filter_bookmarked_combos"
   def filter_bookmarked_combos
-    # user = User.find_by(username: params[:username])
-    # character = Character.find_by(slug: params[:character_slug])
-    # combos = user.bookmarked_combos.where(character_slug: character.slug)
+    game = Game.find(params[:game_id])
+    character = Character.find(params[:character_id])
+    user = User.find_by(username: params[:username])
 
-    # if params[:filters].present?
-    #   filtered_combos = combos.where(filter_params).order(created_at: :desc)
-    #   render json: filtered_combos
-    # end
-
-    game = Game.find_by(slug: params[:game_slug])
-    character = Character.find_by(slug: params[:character_slug])
-    # combos = character.combos
-
-    if params[:filters].present? && character && game && game.id == character.game_id && @current_user.username == params[:username]
-      # filtered_combos = combos.where(filter_params).order(created_at: :desc)
-      # render json: filtered_combos
-
+    if params[:filters].present? && user && character && game && game.id == character.game_id
       per_page = 3
       current_page = params[:current_page].to_i || 1
       
-      bookmarked_character_combos = @current_user.bookmarked_combos.where(character_id: character.id)
-      filtered_combos = bookmarked_character_combos.where(filter_params).order(created_at: :desc)
+      combos = user.bookmarked_combos.where(character_id: character.id)
+      filtered_combos = combos.where(filter_params).order(created_at: :desc)
       paginated_combos = filtered_combos.paginate(page: current_page, per_page: per_page)
   
       render json: {
@@ -38,17 +25,16 @@ class UserBookmarksController < ApplicationController
     end
   end
 
-# post "/users/:username/bookmarks/games/:game_slug/characters/:character_slug/combos", to: "user_bookmarks#unfiltered_combos"
   def unfiltered_combos
-    game = Game.find_by(slug: params[:game_slug])
-    character = Character.find_by(slug: params[:character_slug])
+    game = Game.find(params[:game_id])
+    character = Character.find(params[:character_id])
+    user = User.find_by(username: params[:username])
   
-    if game && character && game.id == character.game_id && @current_user.username === params[:username]
+    if user && game && character && game.id == character.game_id
       per_page = 3
       current_page = params[:current_page].to_i || 1
   
-      # combos = character.combos.order(created_at: :desc)
-      combos = @current_user.bookmarked_combos.where(character_id: character.id).order(created_at: :desc)
+      combos = user.bookmarked_combos.where(character_id: character.id).order(created_at: :desc)
       paginated_combos = combos.paginate(page: current_page, per_page: per_page)
   
       render json: {
@@ -59,9 +45,6 @@ class UserBookmarksController < ApplicationController
       render json: { error: "Character not found" }, status: :not_found
     end
   end
-
-
-
 
   def create
     bookmarked_combo = Combo.find(params[:combo_id])
