@@ -192,9 +192,11 @@ function BookmarkCharacterPage({ dataRetrieved, selectedGame, handleGameSelectio
               {
                 displayedCombos.map((c) => {
                   let canEdit = false
+                  let madeCombo = false
                   if (user) {
                     if (c.user_id === user.id) {
                       canEdit = true
+                      madeCombo = true
                     }
                   } 
                   return (
@@ -210,6 +212,7 @@ function BookmarkCharacterPage({ dataRetrieved, selectedGame, handleGameSelectio
                       user = {user}
                       addBookmark = {addBookmark}
                       removeBookmark = {removeBookmark}
+                      madeCombo = {madeCombo}
                     />
                   )
                 })

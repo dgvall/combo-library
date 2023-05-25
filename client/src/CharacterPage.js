@@ -199,12 +199,14 @@ function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection}) {
               >+</button>
               {
                 displayedCombos.map((c) => {
+                  let madeCombo = false
                   let canEdit = false
                   let isBookmarked = false
                   if (user) {
                     if (c.user_id === user.id) {
                       canEdit = true
                       isBookmarked = true
+                      madeCombo = true
                     }
                     else {
                       let foundBookmarkId = user.bookmarked_combo_ids.find((i) => i === c.id)
@@ -226,6 +228,7 @@ function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection}) {
                       user = {user}
                       addBookmark = {addBookmark}
                       removeBookmark = {removeBookmark}
+                      madeCombo = {madeCombo}
                     />
                   )
                 })

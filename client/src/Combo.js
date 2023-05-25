@@ -5,7 +5,7 @@ import Icon from './Icon'
 
 import './Combo.css'
 
-function Combo( { id, imageUrls, youtubeId, authorNotes, canEdit, handleClickEdit, isBookmarked, user, addBookmark, removeBookmark} ) {
+function Combo( { id, imageUrls, youtubeId, authorNotes, canEdit, handleClickEdit, isBookmarked, user, addBookmark, removeBookmark, madeCombo} ) {
   const [showVideo, setShowVideo] = useState(false)
   const [showNotes, setShowNotes] = useState(false)
   const [bookmarked, setBookmarked] = useState(isBookmarked)
@@ -45,7 +45,12 @@ function Combo( { id, imageUrls, youtubeId, authorNotes, canEdit, handleClickEdi
   }
 
   return (
-    <div className = 'combo-container'>
+    <div className = 
+      {
+        madeCombo
+        ? 'owns-combo-container'
+        :  'combo-container'
+      }>
       <div className = 'buttons-container'>
         {
           authorNotes &&
