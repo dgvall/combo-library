@@ -7,10 +7,6 @@ import './NavBar.css'
 function NavBar() {
   const { user, setUser } = useContext(UserContext)
 
-  // useEffect(() => {
-  //   console.log(selectedGame)
-  // }, [selectedGame])
-
   function handleLogout() {
     fetch('/api/logout', {
       method: "DELETE"

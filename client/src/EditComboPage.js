@@ -27,26 +27,6 @@ function EditComboPage( {dataRetrieved, selectedGame, handleGameSelection} ) {
   useEffect(() => {
       // checks if logged in
       if(user && characterData && comboId && character && selectedGame) {
-        // let foundId = user.combo_ids.find((id) => id == comboId)
-        // checks if comboId is uploaded by this user
-        // if (foundId) {
-          // let foundCharacter = user.bookmarks.find((b) => b.character.slug === character)
-          // if (foundCharacter) {
-          //   let foundCombo = foundCharacter.combos.find((c) => c.id === parseInt(comboId))
-          //   if (foundCombo) {
-          //     if (foundCombo.user_id === user.id) {
-          //       setCombo(foundCombo)
-          //       setYoutubeInput(foundCombo.youtube_id)
-          //       setYoutubeId(foundCombo.youtube_id)
-          //       setInputs(foundCombo.inputs)
-          //       // setImageUrls(foundCombo.image_urls)
-          //       setOwnsCombo(true)
-          //     }
-          //   }
-          // }
-        // }
-
-        // get "/users/:user_id/games/:game_id/characters/:character_id/combos/:id", to: "combos#show"
 
         fetch(`/api/users/${user.id}/games/${selectedGame.id}/characters/${characterData.id}/combos/${comboId}`)
         .then((r) => {
@@ -112,62 +92,10 @@ function EditComboPage( {dataRetrieved, selectedGame, handleGameSelection} ) {
   }
 
   function deleteCombo() {
-    // update characterData state
-    // const updatedCharacterCombos = characterData.combos.filter((c) => c.id !== parseInt(comboId))
-    // setCharacterData({...characterData, combos: updatedCharacterCombos})
-
-    // update user state
-    // const updatedComboIds = user.combo_ids.filter((c) => c !== parseInt(comboId))
     const updatedBookmarkIds = user.bookmarked_combo_ids.filter((c) => c !== parseInt(comboId))
-    // const updatedBookmarks = user.bookmarks.map((b) => {
-    //   if (b.character.slug === character) {
-    //     const updatedCombos = b.combos.filter((c) => c.id != comboId)
-    //     return {...b, combos: updatedCombos}
-    //   } else return b
-    // })
-
-    // if this leads to issues, revert to above code. Will test with more characters later
-    // const updatedBookmarks = user.bookmarks.map((b) => {
-    //   if (b.character.slug === character) {
-    //     const updatedCombos = b.combos.filter((c) => c.id !== parseInt(comboId))
-    //     if (updatedCombos.length !== 0) {
-    //       return { ...b, combos: updatedCombos }
-    //     } else {
-    //       return null // Return null for bookmarks with no updatedCombos
-    //     }
-    //   } else {
-    //     return b
-    //   }
-    // }).filter(Boolean) // Remove null bookmark objects
     const updatedUser = {...user, bookmarked_combo_ids: updatedBookmarkIds}
     setUser(updatedUser)
   }
-
-  // function updateCombo(newCombo) {
-  //   // update characterData state
-  //   // const updatedCharacterCombos = characterData.combos.map((c) => {
-  //   //   if (c.id === newCombo.id) {
-  //   //     return newCombo
-  //   //   }
-  //   //   else return c
-  //   // })
-  //   // setCharacterData({...characterData, combos: updatedCharacterCombos})
-
-  //   // update user state
-  //   // const updatedBookmarks = user.bookmarks.map((b) => {
-  //   //   if (b.character.slug === character) {
-  //   //     const updatedCombos = b.combos.map((c) => {
-  //   //       if (c.id === newCombo.id) {
-  //   //         return newCombo
-  //   //       }
-  //   //       else return c
-  //   //     })
-  //   //     return {...b, combos: updatedCombos}
-  //   //   } else return b
-  //   // })
-  //   // const updatedUser = {...user, bookmarks: updatedBookmarks}
-  //   // setUser(updatedUser)
-  // }
 
   const youtubeStyles = {
     width: '320vw', 

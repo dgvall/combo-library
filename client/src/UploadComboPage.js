@@ -51,22 +51,10 @@ function UploadComboPage( { dataRetrieved, selectedGame, handleGameSelection } )
   }
 
   function addCombo(newCombo) {
-    // update characterData state
-    // const updatedCharacterCombos = [newCombo, ...characterData.combos]
-    // setCharacterData({...characterData, combos: updatedCharacterCombos})
-
-    // update user state
-    // const updatedComboIds = [...user.combo_ids, newCombo.id]
     const updatedBookmarkIds = [...user.bookmarked_combo_ids, newCombo.id]
 
     const foundCharacter = user.bookmarks.find((b) => b.character.slug === character && b.character.game_slug === game)
     if (foundCharacter) {
-      // const updatedBookmarks = user.bookmarks.map((b) => {
-      //   if (b.character.slug === character) {
-      //     b.combos = [newCombo, ...b.combos]
-      //     return b
-      //   } else return b
-      // })
       const updatedUser = {...user, bookmarked_combo_ids: updatedBookmarkIds}
       setUser(updatedUser)
     }

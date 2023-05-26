@@ -3,7 +3,7 @@ import './ComboFilter.css'
 
 import DropdownMenu from './DropdownMenu'
 
-function ComboFilter({characterData, selectedGame, setDisplayedCombos, isBookmarks, combos, username, character, currentFilteredPage, setCurrentFilteredPage, setTotalFilteredPages, setDisplayedFiltered, filterButtonClicked, setFilterButtonClicked, triggerFilteredFetch}) {
+function ComboFilter({characterData, selectedGame, setDisplayedCombos, isBookmarks, username, character, currentFilteredPage, setCurrentFilteredPage, setTotalFilteredPages, setDisplayedFiltered, triggerFilteredFetch}) {
   const [starter, setStarter] = useState("")
   const [meterless, setMeterless] = useState("")
   const [location, setLocation] = useState("")
@@ -35,132 +35,67 @@ function ComboFilter({characterData, selectedGame, setDisplayedCombos, isBookmar
   }
 
   function handleFilter() {
-    // setFilterButtonClicked(() => !filterButtonClicked)
-    // setDisplayedFiltered(true)
-    // setCurrentFilteredPage(1)
     const filters = getFilters()
     const params = {
       filters: filters,
       current_page: 1
     }
+    if(Object.keys(filters).length > 0 && characterData && selectedGame) {
+      const url = isBookmarks
+      ? `/api/users/${username}/bookmarks/games/${selectedGame.id}/characters/${characterData.id}/filter_bookmarked_combos`
+      : `/api/games/${selectedGame.id}/characters/${characterData.id}/filter_combos`
 
-    if(Object.keys(filters).length > 0) {
-      if (!isBookmarks) {
-        console.log("FETCHING FOR FILTERED")
-        
-        fetch(`/api/games/${selectedGame.id}/characters/${characterData.id}/filter_combos`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(params),
-        })
-          .then((r) => {
-            if (r.ok) {
-              r.json().then((data) => {
-                console.log(data)
-                setShowUnfilter(true)
-                setDisplayedCombos(data.combos)
-                setTotalFilteredPages(data.total_pages)
-
-                // setFilterButtonClicked(() => !filterButtonClicked)
-                setDisplayedFiltered(true)
-                setCurrentFilteredPage(1)
-              })
-            }
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(params)
+    })
+      .then((r) => {
+        if (r.ok) {
+          r.json().then((data) => {
+            console.log(data)
+            setShowUnfilter(true)
+            setDisplayedCombos(data.combos)
+            setTotalFilteredPages(data.total_pages)
+            setDisplayedFiltered(true)
+            setCurrentFilteredPage(1)
           })
-      }
-      else {
-        console.log("FETCHING FOR BOOKMARKED FILTERED")
-        // "/users/:username/bookmarks/games/:game_slug/characters/:character_slug/filter_bookmarked_combos"
-        fetch(`/api/users/${username}/bookmarks/games/${selectedGame.id}/characters/${characterData.id}/filter_bookmarked_combos`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(params),
-        })
-          .then((r) => {
-            if (r.ok) {
-              r.json().then((data) => {
-                console.log(data)
-                setShowUnfilter(true)
-                setDisplayedCombos(data.combos)
-                setTotalFilteredPages(data.total_pages)
-
-                // setFilterButtonClicked(() => !filterButtonClicked)
-                setDisplayedFiltered(true)
-                setCurrentFilteredPage(1)
-              })
-            }
-          })
-      }
-    }
-    else {
-      if (!isBookmarks) {
-        // setDisplayedCombos(combos)
-      }
-      else {
-        // setDisplayedCombos(combos)
-      }
+        }
+      })
     }
   }
 
   useEffect(() => {
-      const filters = getFilters()
-      const params = {
-        filters: filters,
-        current_page: currentFilteredPage
-      }
-  
-      if(Object.keys(filters).length > 0) {
-        console.log("EHH")
-        if (!isBookmarks) {
-          console.log("FETCHING FOR FILTERED")
-          fetch(`/api/games/${selectedGame.id}/characters/${characterData.id}/filter_combos`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(params),
-          })
-            .then((r) => {
-              if (r.ok) {
-                r.json().then((data) => {
-                  console.log(data)
-                  setShowUnfilter(true)
-                  setDisplayedCombos(data.combos)
-                  setTotalFilteredPages(data.total_pages)
-                })
-              }
-            })
-      }
-      else {
-        console.log("FETCHING FOR BOOKMARKED FILTERED")
-        // "/users/:username/bookmarks/games/:game_slug/characters/:character_slug/filter_bookmarked_combos"
-        fetch(`/api/users/${username}/bookmarks/games/${selectedGame.id}/characters/${characterData.id}/filter_bookmarked_combos`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(params),
-        })
-          .then((r) => {
-            if (r.ok) {
-              r.json().then((data) => {
-                console.log(data)
-                setShowUnfilter(true)
-                setDisplayedCombos(data.combos)
-                setTotalFilteredPages(data.total_pages)
+    const filters = getFilters()
+    const params = {
+      filters: filters,
+      current_page: currentFilteredPage
+    }
+    if(Object.keys(filters).length > 0 && selectedGame && characterData) {
+      const url = isBookmarks
+      ? `/api/users/${username}/bookmarks/games/${selectedGame.id}/characters/${characterData.id}/filter_bookmarked_combos`
+      : `/api/games/${selectedGame.id}/characters/${characterData.id}/filter_combos`
 
-                // setFilterButtonClicked(() => !filterButtonClicked)
-                
-              })
-            }
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(params)
+    })
+      .then((r) => {
+        if (r.ok) {
+          r.json().then((data) => {
+            console.log(data)
+            setShowUnfilter(true)
+            setDisplayedCombos(data.combos)
+            setTotalFilteredPages(data.total_pages)
           })
-      }
         }
-        
+      })
+    }
   }, [currentFilteredPage, triggerFilteredFetch, character, characterData, isBookmarks, selectedGame, setDisplayedCombos, setTotalFilteredPages, username])
 
   function handleUnfilter() {
@@ -168,12 +103,10 @@ function ComboFilter({characterData, selectedGame, setDisplayedCombos, isBookmar
     setMeterless("")
     setLocation("")
     setHitType("")
-    // setDisplayedCombos(combos)
     setShowUnfilter(false)
     setCurrentFilteredPage(1)
     setTotalFilteredPages(1)
     setDisplayedFiltered(false)
-    // setFilterButtonClicked(() => !filterButtonClicked)
   }
 
   return (

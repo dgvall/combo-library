@@ -13,9 +13,6 @@ function BookmarkCharacterPage({ dataRetrieved, selectedGame, handleGameSelectio
   const { characterData } = useContext(CharacterDataContext)
   const { user, setUser } = useContext(UserContext)
   const [ displayedCombos, setDisplayedCombos ] = useState([])
-  // const [ bookmark, setBookmark ] = useState(null)
-
-  // const [unfilteredCombos, setUnfilteredCombos] = useState(null)
   const [currentPage, setCurrentPage] = useState(1)
   const [totalPages, setTotalPages] = useState(1)
 
@@ -42,8 +39,7 @@ function BookmarkCharacterPage({ dataRetrieved, selectedGame, handleGameSelectio
         if (user.username === username) {
           const foundBookmark = user.bookmarks.find((b) => b.character.slug === character && b.character.game_slug === game)
           if (foundBookmark) {
-            // setBookmark(foundBookmark)
-            // setDisplayedCombos(foundBookmark.combos)
+            
           }
           else {
             // if you're on your own bookmarks without a combo, push to your combo page
@@ -53,7 +49,6 @@ function BookmarkCharacterPage({ dataRetrieved, selectedGame, handleGameSelectio
       }
   }, [user, character, username, game, history])
 
-  // "/users/:username/bookmarks/games/:game_slug/characters/:character_slug/combos"
   useEffect(() => {
     if (selectedGame && characterData && username && !displayedFiltered) {
       console.log("FETCHING FOR UNFILTERED")
@@ -64,7 +59,6 @@ function BookmarkCharacterPage({ dataRetrieved, selectedGame, handleGameSelectio
         },
         body: JSON.stringify({
           current_page: currentPage,
-          // total_pages: totalPages,
         })
       })
       .then((r) => {
@@ -112,12 +106,6 @@ function BookmarkCharacterPage({ dataRetrieved, selectedGame, handleGameSelectio
     const updatedBookmarkIds = [...user.bookmarked_combo_ids, newCombo.id]
     const foundCharacter = user.bookmarks.find((b) => b.character.slug === character && b.character.game_slug === game)
     if (foundCharacter) {
-      // const updatedBookmarks = user.bookmarks.map((b) => {
-      //   if (b.character.slug === character) {
-      //     b.combos = [newCombo, ...b.combos]
-      //     return b
-      //   } else return b
-      // })
       const updatedUser = {...user, bookmarked_combo_ids: updatedBookmarkIds}
       setUser(updatedUser)
     }
@@ -132,27 +120,6 @@ function BookmarkCharacterPage({ dataRetrieved, selectedGame, handleGameSelectio
 
   function removeBookmark(comboId) {
     const updatedBookmarkIds = user.bookmarked_combo_ids.filter((c) => c !== parseInt(comboId))
-    // const updatedBookmarks = user.bookmarks.map((b) => {
-    //   if (b.character.slug === character) {
-    //     const updatedCombos = b.combos.filter((c) => c.id != comboId)
-    //     return {...b, combos: updatedCombos}
-    //   } else return b
-    // })
-
-    // if this leads to issues, revert to above code. Will test with more characters later
-    // const updatedBookmarks = user.bookmarks.map((b) => {
-    //   if (b.character.slug === character) {
-    //     const updatedCombos = b.combos.filter((c) => c.id !== parseInt(comboId))
-    //     if (updatedCombos.length !== 0) {
-    //       return { ...b, combos: updatedCombos }
-    //     } else {
-    //       return null // Return null for bookmarks with no updatedCombos
-    //     }
-    //   } else {
-    //     return b
-    //   }
-    // }).filter(Boolean) // Remove null bookmark objects
-
     const updatedUser = {...user, bookmarked_combo_ids: updatedBookmarkIds}
     setUser(updatedUser)
 
@@ -204,7 +171,6 @@ function BookmarkCharacterPage({ dataRetrieved, selectedGame, handleGameSelectio
               selectedGame = {selectedGame}
               setDisplayedCombos = {setDisplayedCombos}
               isBookmarks = {true}
-              // combos = {unfilteredCombos}
               character = {character}
               username = {username}
               currentFilteredPage = {currentFilteredPage}
@@ -269,7 +235,6 @@ function BookmarkCharacterPage({ dataRetrieved, selectedGame, handleGameSelectio
                 navigation={true}
                 getStyle={'style-3'}
                 totalPages= {totalFilteredPages}
-                // filterButtonClicked = {filterButtonClicked}
                 currentPageProp = {currentFilteredPage}
               />
                 :
@@ -280,7 +245,6 @@ function BookmarkCharacterPage({ dataRetrieved, selectedGame, handleGameSelectio
                 navigation={true}
                 getStyle={'style-3'}
                 totalPages= {totalPages}
-                // filterButtonClicked = {filterButtonClicked}
                 currentPageProp={currentPage}
               />
               }

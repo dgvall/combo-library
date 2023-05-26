@@ -6,7 +6,7 @@ class UserBookmarksController < ApplicationController
   def filter_bookmarked_combos
     game = Game.find(params[:game_id])
     character = Character.find(params[:character_id])
-    user = User.find_by(username: params[:username])
+    user = User.where("lower(username) = ?", params[:username].downcase).first
 
     if params[:filters].present? && user && character && game && game.id == character.game_id
       per_page = 3
@@ -28,7 +28,7 @@ class UserBookmarksController < ApplicationController
   def unfiltered_combos
     game = Game.find(params[:game_id])
     character = Character.find(params[:character_id])
-    user = User.find_by(username: params[:username])
+    user = User.where("lower(username) = ?", params[:username].downcase).first
   
     if user && game && character && game.id == character.game_id
       per_page = 3

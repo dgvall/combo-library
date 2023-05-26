@@ -12,7 +12,6 @@ function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection}) {
   const history = useHistory()
   const { characterData } = useContext(CharacterDataContext)
   const { user, setUser } = useContext(UserContext)
-  // const [unfilteredCombos, setUnfilteredCombos] = useState(null)
   const [ displayedCombos, setDisplayedCombos ] = useState([])
 
   const [currentPage, setCurrentPage] = useState(1)
@@ -23,8 +22,6 @@ function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection}) {
 
   // are filteredcombos being displayed? enabled when filter is clicked, disabled when unfilter is clicked
   const [displayedFiltered, setDisplayedFiltered] = useState(false)
-  // when filter or unfilter buttons are pressed, set pagination menu back to 1
-  const [filterButtonClicked, setFilterButtonClicked] = useState(false)
 
 
   useEffect(() => {
@@ -45,7 +42,6 @@ function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection}) {
         },
         body: JSON.stringify({
           current_page: currentPage,
-          // total_pages: totalPages,
         })
       })
       .then((r) => {
@@ -54,10 +50,6 @@ function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection}) {
             console.log(data)
             setDisplayedCombos(data.combos)
             setTotalPages(data.total_pages)
-
-            // if(!unfilteredCombos) {
-            //   setUnfilteredCombos(data.combos)
-            // }
           })
         }
       })
@@ -104,13 +96,6 @@ function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection}) {
     }
   }
 
-  // useEffect(() => {
-  //   if (characterData) {
-  //     setDisplayedCombos(characterData.combos)
-  //     console.log(characterData.combos)
-  //   }
-  // }, [characterData])
-
   function handleClickEdit(comboId) {
     history.push(`/${game}/${character}/${comboId}/edit`)
   }
@@ -120,12 +105,6 @@ function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection}) {
 
     const foundCharacter = user.bookmarks.find((b) => b.character.slug === character && b.character.game_slug === game)
     if (foundCharacter) {
-      // const updatedBookmarks = user.bookmarks.map((b) => {
-      //   if (b.character.slug === character) {
-      //     b.combos = [newCombo, ...b.combos]
-      //     return b
-      //   } else return b
-      // })
       const updatedUser = {...user, bookmarked_combo_ids: updatedBookmarkIds}
       setUser(updatedUser)
     }
@@ -140,27 +119,6 @@ function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection}) {
 
   function removeBookmark(comboId) {
     const updatedBookmarkIds = user.bookmarked_combo_ids.filter((c) => c !== parseInt(comboId))
-    // const updatedBookmarks = user.bookmarks.map((b) => {
-    //   if (b.character.slug === character) {
-    //     const updatedCombos = b.combos.filter((c) => c.id != comboId)
-    //     return {...b, combos: updatedCombos}
-    //   } else return b
-    // })
-
-    // if this leads to issues, revert to above code. Will test with more characters later
-    // const updatedBookmarks = user.bookmarks.map((b) => {
-    //   if (b.character.slug === character) {
-    //     const updatedCombos = b.combos.filter((c) => c.id !== parseInt(comboId))
-    //     if (updatedCombos.length !== 0) {
-    //       return { ...b, combos: updatedCombos }
-    //     } else {
-    //       return null // Return null for bookmarks with no updatedCombos
-    //     }
-    //   } else {
-    //     return b
-    //   }
-    // }).filter(Boolean) // Remove null bookmark objects
-
     const updatedUser = {...user, bookmarked_combo_ids: updatedBookmarkIds}
     setUser(updatedUser)
   }
@@ -180,15 +138,12 @@ function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection}) {
               selectedGame = {selectedGame}
               setDisplayedCombos = {setDisplayedCombos}
               isBookmarks = {false}
-              // combos = {unfilteredCombos}
               character = {character}
               username = {username}
               currentFilteredPage = {currentFilteredPage}
               setCurrentFilteredPage = {setCurrentFilteredPage}
               setTotalFilteredPages = {setTotalFilteredPages}
               setDisplayedFiltered = {setDisplayedFiltered}
-              setFilterButtonClicked = {setFilterButtonClicked}
-              filterButtonClicked = {filterButtonClicked}
             />
           </div>
 
@@ -244,7 +199,6 @@ function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection}) {
                 navigation={true}
                 getStyle={'style-3'}
                 totalPages= {totalFilteredPages}
-                // filterButtonClicked = {filterButtonClicked}
                 currentPageProp = {currentFilteredPage}
               />
         
@@ -257,7 +211,6 @@ function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection}) {
                 navigation={true}
                 getStyle={'style-3'}
                 totalPages= {totalPages}
-                // filterButtonClicked = {filterButtonClicked}
                 currentPageProp={currentPage}
               />
               }
