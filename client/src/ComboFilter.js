@@ -159,23 +159,6 @@ function ComboFilter({characterData, selectedGame, setDisplayedCombos, isBookmar
                     onClick = {handleUnfilter}
                   >Remove Filters</button>
                 }
-                {/* <div className = 'input-container'>
-                  <h3>Damage</h3>
-                  <input
-                    type = "number"
-                    value = {damage}
-                    onChange = {handleDamageChange}
-                  />
-                </div>
-                <div className = 'input-container'>
-                  <h3>Author Notes</h3>
-                  <textarea
-                    type = "text"
-                    value = {authorNotes}
-                    maxLength = {100}
-                    onChange = {(e) => setAuthorNotes(e.target.value)}
-                  />
-                </div> */}
           </div>
         : <div>Loading...</div>
       }

@@ -211,6 +211,9 @@ function BookmarkCharacterPage({ dataRetrieved, selectedGame, handleGameSelectio
                     <Combo
                       key = {c.id}
                       id = {c.id}
+                      starter = {c.starter}
+                      hitType = {c.hit_type}
+                      location = {c.location}
                       imageUrls = {c.image_urls}
                       youtubeId = {c.youtube_id}
                       authorNotes = {c.author_notes}

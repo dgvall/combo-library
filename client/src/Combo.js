@@ -5,7 +5,7 @@ import Icon from './Icon'
 
 import './Combo.css'
 
-function Combo( { id, imageUrls, youtubeId, authorNotes, canEdit, handleClickEdit, isBookmarked, user, addBookmark, removeBookmark, madeCombo} ) {
+function Combo( { id, starter, hitType, location, imageUrls, youtubeId, authorNotes, canEdit, handleClickEdit, isBookmarked, user, addBookmark, removeBookmark, madeCombo} ) {
   const [showVideo, setShowVideo] = useState(false)
   const [showNotes, setShowNotes] = useState(false)
   const [bookmarked, setBookmarked] = useState(isBookmarked)
@@ -51,34 +51,34 @@ function Combo( { id, imageUrls, youtubeId, authorNotes, canEdit, handleClickEdi
         ? 'owns-combo-container'
         :  'combo-container'
       }>
-      <div className = 'buttons-container'>
-        {
-          authorNotes &&
-            // <button
-            //   onClick = {() => setShowNotes(() => !showNotes)}
-            // >🗒️</button>
+        <div className = 'combo-top-display'>
+          <div className = 'buttons-container'>
+            {
+              authorNotes &&
+                // <button
+                //   onClick = {() => setShowNotes(() => !showNotes)}
+                // >🗒️</button>
+
+                <img
+                  className = "bookmark-icon"
+                  onClick = {() => setShowNotes(() => !showNotes)}
+                  src = "https://i.imgur.com/wmSZLTt.png"
+                  alt = "author notes button"
+                />
+            }
+
+            {/* <button
+              onClick = {() => setShowVideo(() => !showVideo)}
+            >▶️</button> */}
 
             <img
               className = "bookmark-icon"
-              onClick = {() => setShowNotes(() => !showNotes)}
-              src = "https://i.imgur.com/wmSZLTt.png"
-              alt = "author notes button"
+              onClick = {() => setShowVideo(() => !showVideo)}
+              src = "https://i.imgur.com/jfFgTr3.png"
+              alt = "open video button"
             />
-        }
-
-        {/* <button
-          onClick = {() => setShowVideo(() => !showVideo)}
-        >▶️</button> */}
-
-        <img
-          className = "bookmark-icon"
-          onClick = {() => setShowVideo(() => !showVideo)}
-          src = "https://i.imgur.com/jfFgTr3.png"
-          alt = "open video button"
-        />
-
-        
-      </div>
+          </div>
+        </div>
 
       <div className = 'icons-container'>
         {
@@ -104,7 +104,12 @@ function Combo( { id, imageUrls, youtubeId, authorNotes, canEdit, handleClickEdi
       }
       {
         user
-        ?
+        ? 
+        <div className = 'combo-bottom-display'>
+          <div className = 'combo-info'>
+            <h3>{hitType} {starter}</h3>
+            <h3>{location}</h3>
+          </div>
           <div className = 'buttons-container'>
             {
               canEdit &&
@@ -132,6 +137,7 @@ function Combo( { id, imageUrls, youtubeId, authorNotes, canEdit, handleClickEdi
                 onClick = {handleRemoveBookmark}
               />
               
+              
               :
               // <button
               //   onClick = {handleBookmark}
@@ -144,11 +150,17 @@ function Combo( { id, imageUrls, youtubeId, authorNotes, canEdit, handleClickEdi
               />
             }
           </div>
-        : <></>
+        </div>
+        : 
+        <div className = 'combo-bottom-display'>
+          <div className = 'combo-info'>
+            <h3>{hitType} {starter}</h3>
+            <h3>{location}</h3>
+          </div>
+        </div>
       }
     </div>
   )
 }
-
 export default Combo
 
