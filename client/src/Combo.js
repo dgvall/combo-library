@@ -107,8 +107,8 @@ function Combo( { id, starter, hitType, location, imageUrls, youtubeId, authorNo
         ? 
         <div className = 'combo-bottom-display'>
           <div className = 'combo-info'>
-            <h3>{hitType} {starter}</h3>
-            <h3>{location}</h3>
+            <h3 className = 'combo-info-headers'>{hitType} {starter}</h3>
+            <h3 className = 'combo-info-headers'>{location}</h3>
           </div>
           <div className = 'buttons-container'>
             {
@@ -154,8 +154,8 @@ function Combo( { id, starter, hitType, location, imageUrls, youtubeId, authorNo
         : 
         <div className = 'combo-bottom-display'>
           <div className = 'combo-info'>
-            <h3>{hitType} {starter}</h3>
-            <h3>{location}</h3>
+            <h3 className = 'combo-info-headers'>{hitType} {starter}</h3>
+            <h3 className = 'combo-info-headers'>{location}</h3>
           </div>
         </div>
       }
