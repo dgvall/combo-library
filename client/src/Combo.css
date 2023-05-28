@@ -67,9 +67,11 @@
 }
 
 .combo-info-headers {
-  margin-left: 1vw;
-  margin-right: 1vw;
-  padding: none;
+  padding-left: 1vw;
+  padding-right: 1vw;
+  /* margin-left: 1vw;
+  margin-right: 1vw; */
+  /* padding: none; */
   margin-top: none;
   margin-bottom: none;
   font-size: 1.2rem;
