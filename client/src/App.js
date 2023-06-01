@@ -1,8 +1,7 @@
-import React, {useContext, useState, useEffect} from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { UserContext } from './context/user'
 import { CharacterDataProvider } from './context/CharacterData'
 import { Switch, Route } from 'react-router-dom'
-
 import NavBar from './NavBar'
 import Home from './Home'
 import Signup from './Signup'
@@ -12,8 +11,8 @@ import CharactersPage from './CharactersPage'
 import CharacterPage from './CharacterPage'
 import UploadComboPage from './UploadComboPage'
 import EditComboPage from './EditComboPage'
-import './App.css'
 import BookmarkCharacterPage from './BookmarkCharacterPage'
+import './App.css'
 
 function App() {
   const { user, setUser } = useContext(UserContext)
@@ -33,15 +32,10 @@ function App() {
         r.json().then((gamesData) => {
           setGames(gamesData)
           setDataRetrieved(true)
-          console.log(gamesData)
         })
       }
     })
   }, [setUser])
-
-  useEffect(() => {
-    console.log(user)
-  }, [user])
 
   function handleGameSelection(slug) {
     if (dataRetrieved) {
@@ -83,17 +77,6 @@ function App() {
           </CharacterDataProvider>
         </Route>
 
-        {/* <Route exact path = '/:username/bookmarks/:character'>
-          <CharacterDataProvider>
-            < CharacterPage
-              handleGameSelection = {handleGameSelection}
-              selectedGame = {selectedGame}
-              dataRetrieved = {dataRetrieved}
-              isBookmarks = {true}
-            />
-          </CharacterDataProvider>
-        </Route> */}
-
         <Route exact path = '/:game/:character/upload'>
           <CharacterDataProvider>
             <UploadComboPage
@@ -104,17 +87,6 @@ function App() {
             />
           </CharacterDataProvider>
         </Route>
-
-        {/* <Route exact path = '/:game/:character/:comboId'>
-          <CharacterDataProvider>
-            <ComboForm
-              isEdit = {true}
-              handleGameSelection = {handleGameSelection}
-              selectedGame = {selectedGame}
-              dataRetrieved = {dataRetrieved}
-            />
-          </CharacterDataProvider>
-        </Route> */}
 
         <Route exact path = '/:game/:character/:comboId/edit'>
           <CharacterDataProvider>

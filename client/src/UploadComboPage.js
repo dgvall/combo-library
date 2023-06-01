@@ -28,7 +28,6 @@ function UploadComboPage( { dataRetrieved, selectedGame, handleGameSelection } )
       ...comboDetails,
       youtube_id: youtubeId,
       inputs
-      // youtube id only works after clicking check video
     }
     fetch(`/api/characters/${characterData.id}/combos`, {
       method: "POST",

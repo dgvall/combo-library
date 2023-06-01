@@ -1,8 +1,6 @@
 import React from 'react'
 import './IconPicker.css'
-
 import ClickableIcon from './ClickableIcon'
-
 
 function IconPicker({extraInputs, buttonInputs, handleClick, handleSpace, gameSlug}) {
 
@@ -50,45 +48,6 @@ function IconPicker({extraInputs, buttonInputs, handleClick, handleSpace, gameSl
       image_url: "https://i.imgur.com/06D3AyK.png"
     }
   ]
-
-  // const directionInputs = [
-  //   {
-  //     name: "7",
-  //     image_url: "https://i.imgur.com/2rO9chH.png"
-  //   },
-  //   {
-  //     name: "8",
-  //     image_url: "https://i.imgur.com/8fY51s7.png"
-  //   },
-  //   {
-  //     name: "9",
-  //     image_url: "https://i.imgur.com/UqYEenq.png"
-  //   },
-  //   {
-  //     name: "4",
-  //     image_url: "https://i.imgur.com/HwKpXDr.png"
-  //   },
-  //   {
-  //     name: "5",
-  //     image_url: "https://i.imgur.com/OfO6HKV.png"
-  //   },
-  //   {
-  //     name: "6",
-  //     image_url: "https://i.imgur.com/gyfnDrv.png"
-  //   },
-  //   {
-  //     name: "1",
-  //     image_url: "https://i.imgur.com/Fby15hF.png"
-  //   },
-  //   {
-  //     name: "2",
-  //     image_url: "https://i.imgur.com/KezFbHr.png"
-  //   },
-  //   {
-  //     name: "3",
-  //     image_url: "https://i.imgur.com/06D3AyK.png"
-  //   }
-  // ]
 
   const motionsRow1 = [
     {

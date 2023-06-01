@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react'
 import './ComboFilter.css'
-
 import DropdownMenu from './DropdownMenu'
 
 function ComboFilter({characterData, selectedGame, setDisplayedCombos, isBookmarks, username, character, currentFilteredPage, setCurrentFilteredPage, setTotalFilteredPages, setDisplayedFiltered, triggerFilteredFetch}) {
@@ -55,7 +54,6 @@ function ComboFilter({characterData, selectedGame, setDisplayedCombos, isBookmar
       .then((r) => {
         if (r.ok) {
           r.json().then((data) => {
-            console.log(data)
             setShowUnfilter(true)
             setDisplayedCombos(data.combos)
             setTotalFilteredPages(data.total_pages)
@@ -88,7 +86,6 @@ function ComboFilter({characterData, selectedGame, setDisplayedCombos, isBookmar
       .then((r) => {
         if (r.ok) {
           r.json().then((data) => {
-            console.log(data)
             setShowUnfilter(true)
             setDisplayedCombos(data.combos)
             setTotalFilteredPages(data.total_pages)

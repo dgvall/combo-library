@@ -1,6 +1,5 @@
 import React from 'react'
 import Game from './Game'
-
 import './GamesPage.css'
 
 function GamesPage({ games }) {

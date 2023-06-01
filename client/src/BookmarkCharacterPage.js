@@ -4,8 +4,8 @@ import { CharacterDataContext } from './context/CharacterData'
 import { UserContext } from './context/user'
 import Combo from './Combo'
 import ComboFilter from './ComboFilter'
-import './CharacterPage.css'
 import Pagination from './Pagination'
+import './CharacterPage.css'
 
 function BookmarkCharacterPage({ dataRetrieved, selectedGame, handleGameSelection }) {
   const { game, character, username } = useParams()
@@ -15,12 +15,9 @@ function BookmarkCharacterPage({ dataRetrieved, selectedGame, handleGameSelectio
   const [ displayedCombos, setDisplayedCombos ] = useState([])
   const [currentPage, setCurrentPage] = useState(1)
   const [totalPages, setTotalPages] = useState(1)
-
    const [currentFilteredPage, setCurrentFilteredPage] = useState(1)
   const [totalFilteredPages, setTotalFilteredPages] = useState(1)
-
   const [displayedFiltered, setDisplayedFiltered] = useState(false)
-
   // refetch on unbookmark
   const [triggerFetch, setTriggerFetch] = useState(false)
   const [triggerFilteredFetch, setTriggerFilteredFetch] = useState(false)
@@ -38,12 +35,9 @@ function BookmarkCharacterPage({ dataRetrieved, selectedGame, handleGameSelectio
       if (user) {
         if (user.username === username) {
           const foundBookmark = user.bookmarks.find((b) => b.character.slug === character && b.character.game_slug === game)
-          if (foundBookmark) {
-            
-          }
-          else {
-            // if you're on your own bookmarks without a combo, push to your combo page
-            history.push(`/${username}/bookmarks`)
+          if (!foundBookmark) {
+             // if you're on your own bookmarks without a combo, push to your combo page
+             history.push(`/${username}/bookmarks`)
           }
         }
       }
@@ -51,7 +45,6 @@ function BookmarkCharacterPage({ dataRetrieved, selectedGame, handleGameSelectio
 
   useEffect(() => {
     if (selectedGame && characterData && username && !displayedFiltered) {
-      console.log("FETCHING FOR UNFILTERED")
       fetch(`/api/users/${username}/bookmarks/games/${selectedGame.id}/characters/${characterData.id}/combos`, {
         method: "POST",
         headers: {
@@ -64,12 +57,10 @@ function BookmarkCharacterPage({ dataRetrieved, selectedGame, handleGameSelectio
       .then((r) => {
         if (r.ok) {
           r.json().then((data) => {
-            console.log(data)
             setDisplayedCombos(data.combos)
             setTotalPages(data.total_pages)
 
             if (currentPage === 1 && data.combos.length === 0) {
-              console.log("DELETE")
               if (user) {
                 if (user.username === username) {
                   const updatedBookmarks = user.bookmarks.filter((b) => b.character.slug !== characterData.slug || b.character.game_slug !== game)
@@ -83,12 +74,6 @@ function BookmarkCharacterPage({ dataRetrieved, selectedGame, handleGameSelectio
       .catch((error) => console.log(error))
     }
   }, [character, game, currentPage, displayedFiltered, username, triggerFetch, selectedGame, characterData])
-
-
-  useEffect(() => {
-    console.log(currentPage)
-    console.log(currentFilteredPage)
-  }, [currentPage, currentFilteredPage])
 
   function handlePageChange(pageNumber) {
     setCurrentPage(pageNumber)

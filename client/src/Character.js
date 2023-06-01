@@ -1,6 +1,5 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
-
 import './Character.css'
 
 function Character({ imageUrl, name, game, slug, isBookmarks, username }) {

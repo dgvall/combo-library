@@ -18,10 +18,6 @@ function CharacterDataProvider({ children }) {
     }
   }, [character, game])
 
-  useEffect(() => {
-    console.log(characterData)
-  }, [characterData])
-
   return (
     <CharacterDataContext.Provider value ={{ characterData, setCharacterData }}>
       { children }

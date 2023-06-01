@@ -32,12 +32,10 @@ function EditComboPage( {dataRetrieved, selectedGame, handleGameSelection} ) {
         .then((r) => {
           if (r.ok) {
             r.json().then((data) => {
-              console.log(data)
               setCombo(data)
               setYoutubeInput(data.youtube_id)
               setYoutubeId(data.youtube_id)
               setInputs(data.inputs)
-              // setImageUrls(data.image_urls)
               setOwnsCombo(true)
             })
           }
@@ -52,7 +50,6 @@ function EditComboPage( {dataRetrieved, selectedGame, handleGameSelection} ) {
       ...comboDetails,
       youtube_id: youtubeId,
       inputs
-      // youtube id only works after clicking check video
     }
 
       fetch(`/api/characters/${characterData.id}/combos/${comboId}`, {
@@ -65,7 +62,6 @@ function EditComboPage( {dataRetrieved, selectedGame, handleGameSelection} ) {
         .then((r) => {
           if(r.ok) {
             r.json().then((data) => {
-              // updateCombo(data)
               history.push(`/${game}/${character}`)
             })
           }

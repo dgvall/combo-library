@@ -4,8 +4,8 @@ import { CharacterDataContext } from './context/CharacterData'
 import { UserContext } from './context/user'
 import Combo from './Combo'
 import ComboFilter from './ComboFilter'
-import './CharacterPage.css'
 import Pagination from './Pagination'
+import './CharacterPage.css'
 
 function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection}) {
   const { game, character, username } = useParams()
@@ -13,14 +13,11 @@ function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection}) {
   const { characterData } = useContext(CharacterDataContext)
   const { user, setUser } = useContext(UserContext)
   const [ displayedCombos, setDisplayedCombos ] = useState([])
-
   const [currentPage, setCurrentPage] = useState(1)
   const [totalPages, setTotalPages] = useState(1)
-  
   const [currentFilteredPage, setCurrentFilteredPage] = useState(1)
   const [totalFilteredPages, setTotalFilteredPages] = useState(1)
-
-  // are filteredcombos being displayed? enabled when filter is clicked, disabled when unfilter is clicked
+  // are filteredcombos being displayed? is enabled when filter is clicked and disabled when unfilter is clicked
   const [displayedFiltered, setDisplayedFiltered] = useState(false)
 
 
@@ -34,7 +31,6 @@ function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection}) {
 
   useEffect(() => {
     if (game && character && !displayedFiltered && selectedGame && characterData) {
-      console.log("FETCHING FOR UNFILTERED")
       fetch(`/api/games/${selectedGame.id}/characters/${characterData.id}/combos`, {
         method: "POST",
         headers: {
@@ -47,7 +43,6 @@ function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection}) {
       .then((r) => {
         if (r.ok) {
           r.json().then((data) => {
-            console.log(data)
             setDisplayedCombos(data.combos)
             setTotalPages(data.total_pages)
           })
@@ -56,11 +51,6 @@ function CharacterPage({ dataRetrieved, selectedGame, handleGameSelection}) {
       .catch((error) => console.log(error))
     }
   }, [character, game, currentPage, displayedFiltered, selectedGame, characterData])
-
-  useEffect(() => {
-    console.log(currentPage)
-    console.log(currentFilteredPage)
-  }, [currentPage, currentFilteredPage])
 
   function handlePageChange(pageNumber) {
     setCurrentPage(pageNumber)

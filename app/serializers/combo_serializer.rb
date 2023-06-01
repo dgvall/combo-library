@@ -4,6 +4,8 @@ class ComboSerializer < ActiveModel::Serializer
   def image_urls
     object.inputs.split(' ').map do |input|
       case input
+        when '-'
+        'https://i.imgur.com/IxEwf4u.png'
         when '1'
           'https://i.imgur.com/Fby15hF.png'
         when '2'
@@ -73,8 +75,6 @@ class ComboSerializer < ActiveModel::Serializer
         else
           if object.character.game.slug === "ggst"
             case input
-              when '-'
-                'https://i.imgur.com/IxEwf4u.png'
               when 'P'
                 'https://i.imgur.com/Dv8VQDw.png'
               when 'K'
@@ -98,8 +98,6 @@ class ComboSerializer < ActiveModel::Serializer
               end
           elsif object.character.game.slug === "sf6"
             case input
-              when '-'
-                'https://i.imgur.com/IxEwf4u.png'
               when 'LP'
                 'https://i.imgur.com/aCCMFrY.png'
               when 'MP'

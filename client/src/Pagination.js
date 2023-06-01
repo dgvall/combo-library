@@ -8,16 +8,10 @@ const Pagination= ({ dataPerPage, getData, currentPageData, navigation, getStyle
   const pageNumbers = [];
   const showPagination = [];
   const [currentPage, setCurrentPage] = useState(1);
-  // const [dataPerPageState, setDataPerPageState] = useState();
   const [navigationState, setNavigationState] = useState(false);
   const [showPaginationState, setShowPaginationState] = useState([1,2,3,4,5]);
   const [style, setStyle]=useState('');
   const [styleCustom, setStyleCustom] = useState('');
-  // const [newPageData, setNewPageData] = useState([1,2,3,4,5]);
-
-  // useEffect(() => {
-  //   setCurrentPage(1)
-  // }, [filterButtonClicked])
 
   useEffect(() => {
     setCurrentPage(currentPageProp)
@@ -85,44 +79,10 @@ const Pagination= ({ dataPerPage, getData, currentPageData, navigation, getStyle
 
   }, [currentPage])
 
-  //  initialize page data
-  // useEffect(() => {
-  //   if (!dataPerPage) {
-  //     setDataPerPageState(10);
-  //   } else {
-  //     setDataPerPageState(dataPerPage);
-  //   }
-  // }, [dataPerPage, getData]);
-
   // Navigation State Update
   useEffect(() => {
     setNavigationState(navigation);
   }, [navigation]);
-
-  // // Get current Data
-  // const indexOfLastPost = currentPage * dataPerPageState;
-  // const indexOfFirstPost = indexOfLastPost - dataPerPageState;
-  // const NewCurrentPageData = getData.slice(indexOfFirstPost, indexOfLastPost);
-
-  
-
-
-  
-  // useEffect(() => {
-  //   currentPageData(NewCurrentPageData);
-  //   if(pageNumbers.length > 10){
-  //     setNewPageData(NewCurrentPageData)
-  //   }
-  // }, [currentPage, dataPerPageState, getData]);
-
-
-
-// useEffect(()=>{
-//   if(newPageData.length===0){
-//         showPaginationState.pop();
-//         setCurrentPage(showPaginationState.at(-1))
-//   }
-// },[newPageData.length===0])
 
   const handleCurrentPage = (pageNumber) => {
     setCurrentPage(pageNumber);

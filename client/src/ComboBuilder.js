@@ -3,14 +3,12 @@ import IconPicker from './IconPicker'
 import Icon from './Icon'
 import './ComboBuilder.css'
 
-function ComboBuilder({selectedGame, characterData, combo, inputs, setInputs}) {
+function ComboBuilder({selectedGame, combo, inputs, setInputs}) {
   const [imageUrls, setImageUrls] = useState([])
-  // const [inputs, setInputs] = useState("")
 
   useEffect(() => {
     if (combo) {
       setImageUrls(combo.image_urls)
-      // setInputs(combo.inputs)
     }
   }, [combo])
 
@@ -23,7 +21,6 @@ function ComboBuilder({selectedGame, characterData, combo, inputs, setInputs}) {
   }
 
   function handleSpace() {
-    // set spaceUrl from game data later!
     const spaceUrl = "https://i.imgur.com/IxEwf4u.png"
     setImageUrls(() => [...imageUrls, spaceUrl])
     setInputs(() => `${inputs} -`)
@@ -91,7 +88,6 @@ function ComboBuilder({selectedGame, characterData, combo, inputs, setInputs}) {
       <IconPicker
         extraInputs = {selectedGame.inputs["Extra"]}
         buttonInputs = {selectedGame.inputs["Button"]}
-        // motionInputs = {characterData.inputs["Motion"]}
         handleClick = {handleClick}
         handleSpace = {handleSpace}
         gameSlug = {selectedGame.slug.toUpperCase()}

@@ -1,7 +1,6 @@
 import React, { useContext } from 'react'
 import { UserContext } from './context/user'
 import { NavLink } from 'react-router-dom'
-
 import './NavBar.css'
 
 function NavBar() {
@@ -31,17 +30,6 @@ function NavBar() {
           exact to = '/home'
         >HOME</NavLink>
       </div>
-      {/* {
-        gameImageUrl
-        ?
-        <div className = 'navbar-center'>
-        <h1 className = 'navbar-title'>{gameImageUrl}</h1>
-      </div>
-        :
-        <div className = 'navbar-center'>
-        <h1 className = 'navbar-title'>COMBO LIBRARY</h1>
-      </div>
-      } */}
       <div className = 'navbar-center'>
         <h1 className = 'navbar-title'>COMBO LIBRARY</h1>
       </div>

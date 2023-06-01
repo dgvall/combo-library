@@ -69,9 +69,6 @@
 .combo-info-headers {
   padding-left: 1vw;
   padding-right: 1vw;
-  /* margin-left: 1vw;
-  margin-right: 1vw; */
-  /* padding: none; */
   margin-top: none;
   margin-bottom: none;
   font-size: 1.2rem;
@@ -80,7 +77,6 @@
 
 .buttons-container {
   display: flex;
-  /* margin-left: 91%; */
 }
 
 .buttons-container button {

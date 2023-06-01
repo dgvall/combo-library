@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import YouTube from 'react-youtube'
-
 import Icon from './Icon'
-
 import './Combo.css'
 
 function Combo( { id, starter, hitType, location, imageUrls, youtubeId, authorNotes, canEdit, handleClickEdit, isBookmarked, user, addBookmark, removeBookmark, madeCombo} ) {
@@ -55,10 +53,6 @@ function Combo( { id, starter, hitType, location, imageUrls, youtubeId, authorNo
           <div className = 'buttons-container'>
             {
               authorNotes &&
-                // <button
-                //   onClick = {() => setShowNotes(() => !showNotes)}
-                // >🗒️</button>
-
                 <img
                   className = "bookmark-icon"
                   onClick = {() => setShowNotes(() => !showNotes)}
@@ -66,10 +60,6 @@ function Combo( { id, starter, hitType, location, imageUrls, youtubeId, authorNo
                   alt = "author notes button"
                 />
             }
-
-            {/* <button
-              onClick = {() => setShowVideo(() => !showVideo)}
-            >▶️</button> */}
 
             <img
               className = "bookmark-icon"
@@ -113,9 +103,6 @@ function Combo( { id, starter, hitType, location, imageUrls, youtubeId, authorNo
           <div className = 'buttons-container'>
             {
               canEdit &&
-              // <button
-              //   onClick = {() => handleClickEdit(id)}
-              // >⚙️</button>
               <img
                 className = "bookmark-icon"
                 onClick = {() => handleClickEdit(id)}
@@ -126,9 +113,6 @@ function Combo( { id, starter, hitType, location, imageUrls, youtubeId, authorNo
             {
               bookmarked
               ?
-              // <button
-              //   onClick = {handleRemoveBookmark}
-              // >🔖</button>
 
               <img
                 className = "bookmark-icon"
@@ -137,11 +121,7 @@ function Combo( { id, starter, hitType, location, imageUrls, youtubeId, authorNo
                 onClick = {handleRemoveBookmark}
               />
               
-              
               :
-              // <button
-              //   onClick = {handleBookmark}
-              // >x</button>
               <img
                 className = "bookmark-icon"
                 src = "https://i.imgur.com/G2oUrm9.png"

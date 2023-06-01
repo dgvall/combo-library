@@ -1,7 +1,6 @@
 import React, { useEffect, useContext } from 'react'
 import { useParams } from 'react-router-dom'
 import { UserContext } from './context/user'
-
 import Character from './Character'
 import './CharactersPage.css'
 
@@ -27,7 +26,6 @@ function CharactersPage({ dataRetrieved, selectedGame, handleGameSelection, isBo
                 return (
                   <Character
                     key = {b.character.id}
-                    // id = {b.character.id}
                     imageUrl = {b.character.image_url}
                     name = {b.character.name}
                     slug = {b.character.slug}
