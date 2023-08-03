@@ -4,6 +4,7 @@ import { CharacterDataProvider } from './context/CharacterData'
 import { Switch, Route } from 'react-router-dom'
 import NavBar from './NavBar'
 import Home from './Home'
+import Glossary from './Glossary'
 import Signup from './Signup'
 import Login from './Login'
 import GamesPage from './GamesPage'
@@ -51,6 +52,10 @@ function App() {
 
         <Route exact path = '/home'>
           <Home />
+        </Route>
+
+        <Route exact path = '/glossary'>
+          <Glossary />
         </Route>
 
         <Route exact path = '/signup'>

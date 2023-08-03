@@ -29,6 +29,11 @@ function NavBar() {
           className = 'navbar-header'
           exact to = '/home'
         >HOME</NavLink>
+
+        <NavLink
+          className = 'navbar-header'
+          exact to = '/glossary'
+        >GLOSSARY</NavLink>
       </div>
       <div className = 'navbar-center'>
         <h1 className = 'navbar-title'>COMBO LIBRARY</h1>
