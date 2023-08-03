@@ -117,6 +117,10 @@ function IconPicker({extraInputs, buttonInputs, handleClick, handleSpace, gameSl
       image_url: "https://i.imgur.com/HgDolUR.png"
     },
     {
+      name: ">",
+      image_url: "https://i.imgur.com/VvCULEF.png"
+    },
+    {
       name: "j.",
       image_url: "https://i.imgur.com/X4u3eOL.png"
     },

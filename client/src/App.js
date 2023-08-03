@@ -15,7 +15,7 @@ import BookmarkCharacterPage from './BookmarkCharacterPage'
 import './App.css'
 
 function App() {
-  const { user, setUser } = useContext(UserContext)
+  const { setUser } = useContext(UserContext)
   const [games, setGames] = useState(null)
   const [selectedGame, setSelectedGame] = useState(null)
   const [dataRetrieved, setDataRetrieved] = useState(false)
