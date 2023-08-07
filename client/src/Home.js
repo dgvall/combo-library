@@ -9,19 +9,64 @@ function Home() {
         <h2>READING A COMBO</h2>
         <p>At the combo library, we use iconography to display combos in an easy to read fashion.</p>
         <p>Directions and motion inputs are shown with an image of a dpad.</p>
-        <p>Button icons are used on a per game basis. Strive uses slash and heavy slash while Street fighter uses punches and kicks.</p>
+        <div className = 'home-icon-row'>
+          <img src = "https://i.imgur.com/HwKpXDr.png" />
+          <img src = "https://i.imgur.com/gyfnDrv.png" />
+          <img src = "https://i.imgur.com/F0hNuQt.png" />
+          <img src = "https://i.imgur.com/FGoSIYq.png" />
+        </div>
+        <p>Button icons are implemented on a per game basis.</p>
+        <div className = 'home-icon-row'>
+          <img src = "https://i.imgur.com/KtvFf0G.png" />
+          <img src = "https://i.imgur.com/Ki3AR78.png" />
+          <img src = "https://i.imgur.com/aCCMFrY.png" />
+          <img src = "https://i.imgur.com/ptI0QQ8.png" />
+        </div>
         <p>By combining directions/motion inputs and buttons, you can now read fighting game notation!</p>
-        <h2>IMPORTANT</h2>
-        <p>All fighting game notation assumes the character is facing right. If your character is facing left, you will need to flip the directions and motions.</p>
+
+        <div className = 'home-icon-row'>
+          <img src = "https://i.imgur.com/KtvFf0G.png" />
+          <img src = "https://i.imgur.com/IxEwf4u.png" />
+          <img src = "https://i.imgur.com/gyfnDrv.png" />
+          <img src = "https://i.imgur.com/Ki3AR78.png" />
+          <img src = "https://i.imgur.com/IxEwf4u.png" />
+          <img src = "https://i.imgur.com/FGoSIYq.png" />
+          <img src = "https://i.imgur.com/Ki3AR78.png" />
+        </div>
+        <p>You can find more advanced notation in the glossary!</p>
+        <div className = 'home-icon-row'>
+          <img src = "https://i.imgur.com/rXmq6Ps.png"/>
+          <img src = "https://i.imgur.com/HwKpXDr.png"/>
+          <img src = "https://i.imgur.com/HgDolUR.png"/>
+          <img src = "https://i.imgur.com/gyfnDrv.png"/>
+          <img src = "https://i.imgur.com/IxEwf4u.png" />
+          <img src = "https://i.imgur.com/AREXTeF.png" />
+        </div>
       </div>
 
       <div className = 'home-column'>
         <h2>WHAT MAKES A COMBO?</h2>
         <p>A combo is a way to extend a hit into extra damage by linking/chaining normal moves, command normals, special moves, and supers.</p>
         <p>Normals are performed with a button</p>
+        <div className = 'home-icon-row'>
+        <img src = "https://i.imgur.com/Ki3AR78.png" />
+        </div>
         <p>Command normals are performed with a direction and a button</p>
+        <div className = 'home-icon-row'>
+          <img src = "https://i.imgur.com/gyfnDrv.png" />
+          <img src = "https://i.imgur.com/Ki3AR78.png" />
+        </div>
         <p>Special moves are performed with a motion input and a button</p>
+        <div className = 'home-icon-row'>
+          <img src = "https://i.imgur.com/FGoSIYq.png" />
+          <img src = "https://i.imgur.com/Ki3AR78.png" />
+        </div>
         <p>Supers are performed with a complicated motion input and a button</p>
+        <div className = 'home-icon-row'>
+          <img src = "https://i.imgur.com/iocDwKJ.png" />
+          <img src = "https://i.imgur.com/gyfnDrv.png" />
+          <img src = "https://i.imgur.com/Ki3AR78.png" />
+        </div>
       </div>
 
       <div className = 'home-column'>

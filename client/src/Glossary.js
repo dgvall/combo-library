@@ -21,7 +21,7 @@ function Glossary() {
       <div className = 'glossary-item-manual'>
         <div className = 'glossary-icons-row'>
           <img src = "https://i.imgur.com/rXmq6Ps.png"/>
-          <img src = "https://i.imgur.com/AREXTeF.png"/>
+          <img src = "https://i.imgur.com/HwKpXDr.png"/>
           <img src = "https://i.imgur.com/HgDolUR.png"/>
         </div>
         <p>Hold a button</p>

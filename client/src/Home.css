@@ -25,3 +25,8 @@
   margin: 0;
   font-size: 2rem;
 }
+
+.home-icon-row {
+  display: flex;
+  margin-bottom: 3vh;
+}
