@@ -4,12 +4,15 @@
   align-items: center;
   flex-direction: row;
   width: 25vw;
+  height: 15vh;
   border: solid #007bff;
   background-color: white;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   border-radius: 4px;
   margin-top: 1vh;
   margin-bottom: 1vh;
+  margin-left: 1vw;
+  margin-right: 1vw;
 }
 .glossary-item img {
   margin-right: 3vw;

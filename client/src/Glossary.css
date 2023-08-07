@@ -1,5 +1,42 @@
 .glossary-page {
   display: flex;
+  justify-content: center;
   align-items: center;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.glossary-icons-row {
+  display: flex;
+  flex-direction: row;
+  margin-right: 3vw;
+  margin-left: 3vw;
+}
+
+.glossary-icons-row img{
+  display: flex;
+  flex-direction: row;
+}
+
+.glossary-item-manual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  width: 25vw;
+  height: 15vh;
+  border: solid #007bff;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  margin-top: 1vh;
+  margin-bottom: 1vh;
+  margin-left: 1vw;
+  margin-right: 1vw;
+}
+
+.glossary-item-manual p {
+  width: 15vw;
+  font-size: 2rem;
+  margin-right: 3vw;
 }
