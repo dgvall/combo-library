@@ -20,10 +20,6 @@ function NavBar() {
   return (
     <nav className = 'navbar'>
       <div className = 'navbar-left'>
-        <NavLink
-          className = 'navbar-header'
-          exact to = '/games'
-        >GAMES</NavLink>
 
         <NavLink
           className = 'navbar-header'
@@ -34,6 +30,10 @@ function NavBar() {
           className = 'navbar-header'
           exact to = '/glossary'
         >GLOSSARY</NavLink>
+        <NavLink
+          className = 'navbar-header'
+          exact to = '/games'
+        >GAMES</NavLink>
       </div>
       <div className = 'navbar-center'>
         <h1 className = 'navbar-title'>COMBO LIBRARY</h1>
