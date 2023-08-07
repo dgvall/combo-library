@@ -16,7 +16,7 @@ function Glossary() {
           <img src = "https://i.imgur.com/VvCULEF.png"/>
           <img src = "https://i.imgur.com/AREXTeF.png"/>
         </div>
-        <p>Successive inputs</p>
+        <p>Follow up attack</p>
       </div>
       <div className = 'glossary-item-manual'>
         <div className = 'glossary-icons-row'>
