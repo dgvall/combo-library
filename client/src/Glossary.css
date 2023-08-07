@@ -1,6 +1,19 @@
 .glossary-page {
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.glossary-header {
+  margin-top: 2vw;
+}
+.glossary-main-header {
+  font-size: 3rem;
+}
+
+.glossary-items-container {
+  display: flex;
+  justify-content: center;
   align-items: center;
   flex-direction: row;
   flex-wrap: wrap;
